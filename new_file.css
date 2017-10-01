@@ -1,0 +1,178 @@
+*{
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+body{
+	height: 100vh;
+	width: 100vw;
+	/*background: url(background.png);
+	background-size: 100% 100%;*/
+}
+div{
+	overflow: hidden;
+	float: left;
+}
+a{
+	text-decoration: none;
+}
+#content{
+	/*border: 1px solid #d3d3d3;*/
+	/*box-shadow: 0px 0px 25px #D3D3D3;*/
+	height: 500px;
+	width: 300px;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    
+}
+#lift{
+	height: 100px;
+	width: 300px;
+	font-size: 100px;
+	letter-spacing: 20px;
+	line-height: 100px;
+	top: 8px;
+	left: 40px;
+	color: #85cffe;
+}
+/*右边登录框*/
+#main{
+	height: 400px;
+	width: 300px;
+}
+/*选项卡*/
+#main ul{
+	height: 80px;
+	width: 300px;
+	padding: 0px 25px;
+}
+#main li{
+	height: 80px;
+	width: 100px;
+	display: inline-block;
+	font-size: 25px;
+	
+	font-weight: 600;
+	line-height: 80px;
+	text-align: center;
+	margin: 0px 10px;
+}
+#main li:hover{
+	cursor: pointer;
+	color: #46b6fd;
+}
+#li-signIn{
+	color: #85cffe;
+}
+#li-signUp{
+	color: #D3D3D3;
+}
+#space{
+	height: 20px;
+	width: 2px;
+	background: #808080;
+	top: 30px;
+	left: 125px;
+}
+/*登录*/
+.inputDiv{
+	height: 60px;
+	width: 300px;
+}
+/*输入框*/
+.inputText{
+	height: 40px;
+	width: 250px;
+	margin: 5px 25px;
+	padding: 0px 0px 0px 40px ;
+	border-radius: 5px;
+	font-size: 15px;
+	border: 1px solid #D3D3D3;
+}
+#name{
+	background: url(icon/name.png) no-repeat;
+	background-size: 25px 25px;
+	background-position: 7px 7px;
+}
+#password{
+	background: url(icon/password.png) no-repeat;
+	background-size: 25px 25px;
+	background-position: 7px 7px;
+}
+
+/*记住密码和前边的框*/
+#remember{
+	height: 50px;
+	width: 300px;
+}
+#remember input{
+	top: 2px;
+	left: 30px;
+}
+#remember label{
+	color: grey;
+	left: 30px;
+}
+#remember label:hover{
+	color: black;
+	cursor: pointer;
+}
+/*忘记密码*/
+#forget{
+	color: #808080;
+	left: 110px;
+}
+#forget:hover{
+	color: black;
+}
+/*登录按钮*/
+#signInBtn{
+	height: 35px;
+	width: 240px;
+	margin: 7px 30px;
+	background: #85CFFE;
+	border: 1px solid #85CFFE;
+	border-radius: 3px;
+	cursor: pointer;
+	color: #FFFFFF;
+}
+#signInBtn:hover{
+	background: #46B6FD;
+}
+
+/*关联登录*/
+#other{
+	height: 50px;
+	width: 300px;
+	padding: 10px 50px;
+}
+#qq a{
+	background: url(icon/qq.png) no-repeat;
+}
+#weixin a{
+	background: url(icon/weixin.png) no-repeat;
+}
+#pay a{
+	background: url(icon/pay.png) no-repeat;
+}
+#other a{
+	display: block;
+	height: 40px;
+	width: 40px;
+	margin: 0px 13px;
+	background-size: 80px 40px;
+}
+#other a:hover{
+	background-position: -40px 0px;
+}
+/*宽度小于900px时*/
+/*@media screen and (max-width: 900px){
+	
+}*/
