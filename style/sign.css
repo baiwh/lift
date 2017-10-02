@@ -19,7 +19,6 @@ a{
 }
 #content{
 	/*border: 1px solid #d3d3d3;*/
-	/*box-shadow: 0px 0px 25px #D3D3D3;*/
 	height: 500px;
 	width: 300px;
 	position: absolute;
@@ -32,6 +31,7 @@ a{
     left: 50%;
     
 }
+/*logo*/
 #lift{
 	height: 100px;
 	width: 300px;
@@ -40,9 +40,9 @@ a{
 	line-height: 100px;
 	top: 8px;
 	left: 40px;
-	color: #85cffe;
+	color: #46B6FD;
 }
-/*右边登录框*/
+/*登录框*/
 #main{
 	height: 400px;
 	width: 300px;
@@ -66,10 +66,10 @@ a{
 }
 #main li:hover{
 	cursor: pointer;
-	color: #46b6fd;
+	color: #009cff;
 }
 #li-signIn{
-	color: #85cffe;
+	color: #46B6FD;
 }
 #li-signUp{
 	color: #D3D3D3;
@@ -81,7 +81,11 @@ a{
 	top: 30px;
 	left: 125px;
 }
+
 /*登录*/
+#signIn{
+	/*display: none;*/
+}
 .inputDiv{
 	height: 60px;
 	width: 300px;
@@ -97,12 +101,12 @@ a{
 	border: 1px solid #D3D3D3;
 }
 #name{
-	background: url(icon/name.png) no-repeat;
+	background: url(../icon/name.png) no-repeat;
 	background-size: 25px 25px;
 	background-position: 7px 7px;
 }
 #password{
-	background: url(icon/password.png) no-repeat;
+	background: url(../icon/password.png) no-repeat;
 	background-size: 25px 25px;
 	background-position: 7px 7px;
 }
@@ -137,14 +141,14 @@ a{
 	height: 35px;
 	width: 240px;
 	margin: 7px 30px;
-	background: #85CFFE;
-	border: 1px solid #85CFFE;
+	background: #46B6FD;
+	border: 1px solid #46B6FD;
 	border-radius: 3px;
 	cursor: pointer;
 	color: #FFFFFF;
 }
 #signInBtn:hover{
-	background: #46B6FD;
+	background: #009cff;
 }
 
 /*关联登录*/
@@ -154,13 +158,13 @@ a{
 	padding: 10px 50px;
 }
 #qq a{
-	background: url(icon/qq.png) no-repeat;
+	background: url(../icon/qq.png) no-repeat;
 }
 #weixin a{
-	background: url(icon/weixin.png) no-repeat;
+	background: url(../icon/weixin.png) no-repeat;
 }
 #pay a{
-	background: url(icon/pay.png) no-repeat;
+	background: url(../icon/pay.png) no-repeat;
 }
 #other a{
 	display: block;
@@ -171,6 +175,45 @@ a{
 }
 #other a:hover{
 	background-position: -40px 0px;
+}
+/*注册*/
+#signUp{
+	display: none;
+}
+/*验证码*/
+#verification input{
+	width: 150px;
+	margin-right: 0px;
+}
+#verification img{
+	width: 80px;
+	height: 30px;
+	border: 1px solid #D3D3D3;
+	cursor: pointer;
+}
+/*注册按钮*/
+#signUpBtn{
+	height: 35px;
+	width: 240px;
+	margin: 7px 30px;
+	background: #46B6FD;
+	border: 1px solid #46B6FD;
+	border-radius: 3px;
+	cursor: pointer;
+	color: #FFFFFF;
+}
+#signUpBtn:hover{
+	background: #009cff;
+}
+/*同意注册*/
+#agree{
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	color: #808080;
+}
+#agree a{
+	color: #009CFF;
 }
 /*宽度小于900px时*/
 /*@media screen and (max-width: 900px){
