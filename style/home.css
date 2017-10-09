@@ -4,6 +4,7 @@
     box-sizing: border-box;
     position: relative;
     float: left;
+    overflow: hidden;
 }
 body{
 	background: #efefef;
@@ -22,21 +23,21 @@ body{
 /*侧导航链接*/
 #nav-left a{
 	padding: 20px 15px;
-	
-}
-/*侧导航链接里的图标*/
-#nav-left img{
-	height: 20px;
-	width: 20px;
 	opacity: 0.6;
 }
-#nav-left img:hover{
+#nav-left a:hover{
 	opacity: 1.0;
 	transform: scale(1.3, 1.3);
 	-webkit-transform: scale(1.3, 1.3);
 	-ms-transform: scale(1.3, 1.3);
 }
-
+/*侧导航链接里的图标*/
+#nav-left img{
+	height: 20px;
+	width: 20px;
+	
+}
+/*上导航*/
 #nav-top{
 	position: fixed;
 	top: 0;
@@ -44,4 +45,68 @@ body{
 	height: 60px;
 	width: 100vw;
 	box-shadow: 0px 0px 35px #c2c2c2;
+	padding: 0px 60px 0px 100px;
+	z-index: 500;
+}
+/*搜索*/
+#search{
+	padding: 15px 0px;
+}
+#search-text{
+	line-height: 30px;
+	border: 1px solid #C2C2C2;
+	border-radius: 10px 0px 0px 10px;
+	padding: 0px 10px;
+}
+#search-button{
+	height: 31px;
+	width: 50px;
+	background: #C2C2C2;
+	border: 1px solid #C2C2C2;
+	border-radius: 0px 10px 10px 0px;
+	cursor: pointer;
+}
+#search img{
+	left: 10px;
+	height: 20px;
+	width: 20px;
+	
+}
+/*提醒*/
+#remind{
+	float: right;
+	padding: 15px;
+}
+#remind img{
+	height: 30px;
+	width: 30px;
+}
+#remind span{
+	
+}
+/*个人中心*/
+#personal{
+	float: right;
+	padding: 5px;
+}
+#personal img{
+	
+}
+.open{
+	height: 20px;
+	width: 20px;
+	top: 15px;
+	margin: 5px;
+}
+
+
+#content{
+	width: 1000px;
+	margin: 0px auto;
+	/*position: absolute;*/
+}
+#list{
+	height: 300px;
+	width: 500px;
+	background: #FFFFFF;
 }
