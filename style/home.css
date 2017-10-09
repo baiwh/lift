@@ -3,8 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     position: relative;
-    float: left;
-    overflow: hidden;
+}
+div{
+	overflow: hidden;
+}
+a{
+	text-decoration: none;
 }
 body{
 	background: #efefef;
@@ -19,11 +23,13 @@ body{
 	z-index: 1000;
 	box-shadow: 0px 0px 20px #0064FF;
 	padding: 80px 0px;
+	float: left;
 }
 /*侧导航链接*/
 #nav-left a{
 	padding: 20px 15px;
 	opacity: 0.6;
+	float: left;
 }
 #nav-left a:hover{
 	opacity: 1.0;
@@ -33,9 +39,8 @@ body{
 }
 /*侧导航链接里的图标*/
 #nav-left img{
-	height: 20px;
 	width: 20px;
-	
+	float: left;
 }
 /*上导航*/
 #nav-top{
@@ -47,16 +52,19 @@ body{
 	box-shadow: 0px 0px 35px #c2c2c2;
 	padding: 0px 60px 0px 100px;
 	z-index: 500;
+	float: left;
 }
 /*搜索*/
 #search{
 	padding: 15px 0px;
+	float: left;
 }
 #search-text{
 	line-height: 30px;
 	border: 1px solid #C2C2C2;
 	border-radius: 10px 0px 0px 10px;
 	padding: 0px 10px;
+	float: left;
 }
 #search-button{
 	height: 31px;
@@ -65,12 +73,13 @@ body{
 	border: 1px solid #C2C2C2;
 	border-radius: 0px 10px 10px 0px;
 	cursor: pointer;
+	float: left;
 }
 #search img{
 	left: 10px;
 	height: 20px;
 	width: 20px;
-	
+	float: left;
 }
 /*提醒*/
 #remind{
@@ -89,24 +98,47 @@ body{
 	float: right;
 	padding: 5px;
 }
-#personal img{
-	
-}
-.open{
+#open{
 	height: 20px;
 	width: 20px;
-	top: 15px;
+	top: -5px;
 	margin: 5px;
 }
 
-
+/*主体部分*/
 #content{
 	width: 1000px;
-	margin: 0px auto;
-	/*position: absolute;*/
+	top: 100px;
+	margin: 0px auto 50px auto;
 }
-#list{
-	height: 300px;
-	width: 500px;
+/*标签*/
+#tag-box{
+	height: 50px;
+}
+/*列表大盒子*/
+#list-box{
+	width: 400px;
+	float: left;
+	padding: 10px 10px;
+}
+.list{
+	height: 200px;
+	width: 380px;
+	margin: 0px 0px 20px 0px;
 	background: #FFFFFF;
+	border: 1px solid #D3D3D3;
+	box-shadow: 0px 0px 15px #C2C2C2;
+}
+/*内容大盒子*/
+#item-box{
+	width: 600px;
+	float: left;
+	padding: 10px 10px;
+}
+.item{
+	background: #FFFFFF;
+	width: 580px;
+	height: 900px;
+	border: 1px solid #D3D3D3;
+	box-shadow: 0px 0px 15px #C2C2C2;
 }
