@@ -11,7 +11,7 @@ body{
 	background-size: 100% 100%;*/
 }
 div{
-	overflow: hidden;
+	/*overflow: hidden;*/
 	float: left;
 }
 a{
@@ -181,7 +181,20 @@ a{
 	display: none;
 }
 .info{
+	float: left;
+	height: 0px;
+	width: 200px;
 	color: red;
+	left: 290px;
+	top: -40px;
+}
+.pass{
+	color: green;
+	font-weight: 900;
+	float: left;
+	height: 0px;
+	left: 290px;
+	top: -40px;
 }
 /*验证码*/
 #verification input{
