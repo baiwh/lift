@@ -68,10 +68,10 @@ a{
 	cursor: pointer;
 	color: #009cff;
 }
-#li-signIn{
+.cli{
 	color: #46B6FD;
 }
-#li-signUp{
+.no_cli{
 	color: #D3D3D3;
 }
 #space{
@@ -179,6 +179,9 @@ a{
 /*注册*/
 #signUp{
 	display: none;
+}
+.info{
+	color: red;
 }
 /*验证码*/
 #verification input{

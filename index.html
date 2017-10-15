@@ -4,6 +4,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="style/sign.css"/>
+
+	 	<script src="script/jquery-3.2.1.js" type="text/javascript"  charset="utf-8"></script>
 		<script src="script/sign.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
@@ -15,11 +17,11 @@
 			<div id="main">
 				<!--选项卡-->
 				<ul>
-					<li id="li-signIn">登录</li>
+					<li id="li-signIn" class="cli">登录</li>
 					<div id="space">
 						
 					</div>
-					<li id="li-signUp">注册</li>
+					<li id="li-signUp" class="no_cli">注册</li>
 				</ul>
 				<!--登录-->
 				<div id="signIn">
@@ -54,25 +56,28 @@
 							<a href="" title="微信登录"></a>
 						</div>
 					</div>
-					
 				</div>
 				
 				
 				<!--注册-->
 				<div id="signUp">
 					<!--邮箱-->
-					<input type="email" name="" id="" value="" class="inputText" placeholder="用于注册的email"/>
+					<input type="email" name="" id="email" value="" class="inputText" placeholder="用于注册的email"/>
+					<span id="emailInfo" class="info"></span>
 					<!--用户名-->
 					<!--<input type="text" name="" id="" value="" class="inputText" placeholder="用户名"/>-->
 					<!--密码-->
-					<input type="password" name="" id="" class="inputText" value="" placeholder="请输入密码"/>
+					<input type="password" name="" id="pwd" class="inputText" value="" placeholder="请输入密码"/>
+					<span id="pwdInfo" class="info"></span>
 					<!--再输入一次密码-->
-					<input type="password" name="" id="" class="inputText" value="" placeholder="请再次输入密码"/>
+					<input type="password" name="" id="pwd2" class="inputText" value="" placeholder="请再次输入密码"/>
+					<span id="pwd2Info" class="info"></span>
 					<!--验证码-->
 					<div id="verification">
-						<input type="text" name="" id="" class="inputText" value="" placeholder="请输入验证码"/>
+						<input type="text" name="" id="verifyCode" class="inputText" value="" placeholder="请输入验证码"/>
 						<img src="" title="点击刷新"/>
 					</div>
+					<span id="verifyInfo" class="info"></span>
 					
 					<!--提交-->
 					<input type="button" name="" id="signUpBtn" value="立即注册" />
