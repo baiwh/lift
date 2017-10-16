@@ -12,6 +12,7 @@ $(function () {
         $("#signIn").show();
         $("#signUp").hide();
     })
+
     // 判空验证
     function checkNull (inputId,infoId,tip) {
         var inputValue=$("#"+inputId).val();
@@ -20,9 +21,10 @@ $(function () {
             info.html(tip+"不能为空");
             return;
         }else {
-            info.html("√").attr('class','pass');
+            info.html("");
         }
     }
+
     // 邮箱
     $("#email").blur(function () {
         // 判空
@@ -34,7 +36,7 @@ $(function () {
         if (!pattern.test(emailVal)){
             info.html("邮箱格式不正确");
         }else {
-            // info.html("√").attr('class','pass');
+            info.html("√").attr('class','pass');
         }
         // 查重
     })
@@ -43,7 +45,44 @@ $(function () {
         // 判空
         checkNull("pwd","pwdInfo","密码");
         // 强弱
+        var regxs=new Array();
+        regxs[0]=/[^a-zA-Z0-9_]/g;
+        regxs[1]=/[a-z]/g;
+        regxs[2]=/[0-9]/g;
+        regxs[3]=/[A-Z]/g;
+        var pwd=$("#pwd").val();
+        var len=pwd.length;
+        var streng=0;
+        if(len>=6){
+            $("#strength").show();
+            for (i=0;i<regxs.length;i++){
+                if (pwd.match(regxs[i])){
+                    streng++;
+                }
+            }
+        }
+        var s1=$("#strength1");
+        var s2=$("#strength2");
+        var s3=$("#strength3");
+        var tab=$("#strengthTab");
+        if (streng==1){
+            // 弱
+            s1.attr("class","red");
+            tab.attr("class","change1");
+        }else if(streng==2){
+            // 中
+            s1.attr("class","orange");
+            s2.attr("class","orange");
+            tab.attr("class","change2");
+        }else if(streng==3){
+            // 强
+            s1.attr("class","green");
+            s2.attr("class","green");
+            s3.attr("class","green");
+            tab.attr("class","change3");
+        }
     })
+
     // 重复密码
     $("#pwd2").blur(function () {
         // 判空

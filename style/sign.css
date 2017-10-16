@@ -180,6 +180,7 @@ a{
 #signUp{
 	display: none;
 }
+/*提示*/
 .info{
 	float: left;
 	height: 0px;
@@ -188,6 +189,7 @@ a{
 	left: 290px;
 	top: -40px;
 }
+/*绿对勾*/
 .pass{
 	color: green;
 	font-weight: 900;
@@ -195,6 +197,102 @@ a{
 	height: 0px;
 	left: 290px;
 	top: -40px;
+}
+/*密码强度*/
+#strength{
+
+}
+/*强度等级*/
+#strength{
+	display: none;
+}
+#strength span{
+	float: left;
+	margin: -1px;
+	top: 15px;
+}
+#strengthTab{
+	/*上边可耐滴小气泡*/
+	border-radius: 12px;
+	height: 24px;
+	width: 24px;
+	color: #FFFFFF;
+	top: -18px;
+}
+#strengthTab:before{
+	/*小气泡的三角*/
+	content: "";
+	width: 0px;
+	height: 0px;
+	position: relative;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	top: 28px;
+	left: 2px;
+}
+#strengthTab:after{
+	position: absolute;
+	left: 4px;
+}
+/*弱*/
+.change1{
+	background: red;
+	left: -105px;
+}
+.change1:after{
+	content: "弱";
+}
+.change1:before{
+	border-top: 9px solid red;
+}
+/*中*/
+.change2{
+	background: orange;
+	left: -70px;
+}
+.change2:after{
+	content: "中";
+}
+.change2:before{
+	border-top: 9px solid orange;
+}
+/*强*/
+.change3{
+	background: green;
+	left: -35px;
+}
+.change3:after{
+	content: "强";
+}
+.change3:before{
+	border-top: 9px solid green;
+}
+/*强度等级条*/
+#strength1{
+	height: 15px;
+	width: 40px;
+	border: 2px solid #c2c2c2;
+	border-radius: 10px 0px 0px 10px;
+}
+#strength2{
+	height: 15px;
+	width: 40px;
+	border: 2px solid #c2c2c2;
+}
+#strength3{
+	height: 15px;
+	width: 40px;
+	border: 2px solid #c2c2c2;
+	border-radius: 0px 10px 10px 0px;
+}
+.red{
+	background: red;
+}
+.orange{
+	background: orange;
+}
+.green{
+	background: green;
 }
 /*验证码*/
 #verification input{
