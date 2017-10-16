@@ -18,12 +18,14 @@ $(function () {
         var inputValue=$("#"+inputId).val();
         var info=$("#"+infoId);
         if (inputValue==""){
-            info.html(tip+"不能为空");
+            info.html(tip+"不能为空").attr("class","info");
             return;
         }else {
             info.html("");
         }
     }
+
+
 
     // 邮箱
     $("#email").blur(function () {
@@ -40,6 +42,11 @@ $(function () {
         }
         // 查重
     })
+
+
+
+
+
     // 密码
     $("#pwd").blur(function () {
         // 判空
@@ -65,14 +72,16 @@ $(function () {
         var s2=$("#strength2");
         var s3=$("#strength3");
         var tab=$("#strengthTab");
-        if (streng==1){
+        if (len<6&&pwd!=""){
+            $("#pwdInfo").html("密码不能小于六位").attr("class","info");
+        }else if(streng==1){
             // 弱
-            s1.attr("class","red");
+            s1.attr("class","red").siblings("span").attr("class","");
             tab.attr("class","change1");
         }else if(streng==2){
             // 中
             s1.attr("class","orange");
-            s2.attr("class","orange");
+            s2.attr("class","orange").next("span").attr("class","");
             tab.attr("class","change2");
         }else if(streng==3){
             // 强
@@ -82,6 +91,8 @@ $(function () {
             tab.attr("class","change3");
         }
     })
+
+
 
     // 重复密码
     $("#pwd2").blur(function () {
@@ -99,6 +110,10 @@ $(function () {
         }
 
     })
+
+
+
+
     // 验证码
     $("#verifyCode").blur(function () {
         // 判空
