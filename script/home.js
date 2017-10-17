@@ -52,6 +52,9 @@ $(function () {
     $("#add").click(function () {
         addElementDiv('list-box');
     })
+    $(".items").click(function(){
+        $(this).find("input[type=checkbox]").attr("checked", 'checked');
+    });
     // var titleOk=$(".title").children("span");
     // var titleInput=$(".title").children("input");
     // titleOk.click(function () {
