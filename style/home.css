@@ -104,6 +104,24 @@ body{
 	top: -5px;
 	margin: 5px;
 }
+#add{
+	position: fixed;
+	right: 5vw;
+	bottom: 5vw;
+	background: black;
+	padding: 15px;
+	opacity: 0.4;
+	height: 50px;
+	width: 50px;
+	cursor: pointer;
+}
+#add img{
+	height: 20px;
+	width: 20px;
+}
+
+
+
 
 /*主体部分*/
 #content{
@@ -112,18 +130,19 @@ body{
 	margin: 0px auto 50px auto;
 }
 /*标签*/
+#contentTag{
+	width: 1000px;
+}
 #tag-box{
 	height: 50px;
 	padding: 10px;
 	
 }
 .tag{
-	float: left;
+	float: right;
 	height: 30px;
 	width: auto;
 	padding: 5px 15px;
-	border: 2px solid #46B6FD;
-	background: #46B6FD;
 	border-radius: 5px;
 	margin: 0px 20px;
 	cursor: pointer;
@@ -145,11 +164,47 @@ body{
 	width: 0;
     height: 4px;
     border-top: 11px solid transparent;
-    border-right: 13px solid #46B6FD;
     border-bottom: 11px solid transparent;
     position: absolute;
     left: -14px;
 	top: 0px;
+}
+/*有标签*/
+.haveTag{
+	border: 2px solid #46B6FD;
+	background: #46B6FD;
+}
+.haveTag:before{
+	content: "";
+	border-right: 13px solid #46B6FD;
+}
+/*没标签*/
+.haveNotTag{
+	border: 2px solid #dcdcdc;
+	background: #dcdcdc;
+}
+.haveNotTag:before{
+	content: "";
+	border-right: 13px solid #dcdcdc;
+}
+/*标签悬浮*/
+.allTag{
+	background: #FFFFFF;
+	box-shadow: 0px 0px 5px #d3d3d3;
+	position: absolute;
+	padding: 5px;
+	z-index: 5;
+	top: 60px;
+	left: 270px;
+}
+.allTag:after{
+	content: "";
+	border-left:10px solid transparent;
+	border-bottom: 10px solid #d3d3d3;
+	border-right: 10px solid transparent;
+	position: relative;
+	top: 0px;
+	left: 10px;
 }
 /*列表大盒子*/
 #list-box{
@@ -173,7 +228,6 @@ body{
 	height: 50px;
 	margin: 5px 10px;
 }
-
 /*紧急程度*/
 .grade{
 	height: 20px;
@@ -181,11 +235,24 @@ body{
 	left: 15px;
 	top: 20px;
 	border-radius: 10px;
-	background: #ff5139;
+	float: left;
+	margin: 5px;
+	cursor: pointer;
+}
+.other .tag{
+	top: 15px;
 }
 /*标题*/
 .title{
 	margin: 5px 25px;
+}
+.title input{
+	position: absolute;
+	z-index: 2;
+	height: 20px;
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid #C2C2C2;
 }
 .day{
 	color: #808080;
@@ -211,6 +278,30 @@ body{
 	color: #808080;
 	margin: 0px 25px;
 }
+
+
+/*增加的列表*/
+#addList{
+	display: none;
+	cursor: pointer;
+}
+#grade1{
+	border: 5px solid red;
+	opacity: 0.1;
+}
+#grade2{
+	border: 5px solid orange;
+	opacity: 0.1;
+}
+#grade3{
+	border: 5px solid green;
+	opacity: 0.1;
+}
+#addList .ratio{
+	left: -325px;
+}
+
+
 /*右边详细内容的大盒子*/
 #item-box{
 	width: 600px;
@@ -286,4 +377,7 @@ h2{
 	width: 20px;
 	height: 20px;
 	margin: 10px;
+}
+.newDiv {
+	display: none;
 }

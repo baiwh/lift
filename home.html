@@ -4,6 +4,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="style/home.css"/>
+		<script src="script/jquery-3.2.1.js" charset="utf-8"></script>
+		<script src="script/home.js" charset="utf-8"></script>
 	</head>
 	<body>
 		<!--侧导航-->
@@ -48,27 +50,69 @@
 					
 				</span>
 			</div>
-			
+			<!--测悬浮-->
+			<div id="add">
+				<img src="icon/add.png" alt="添加新项目">
+			</div>
 		</div>
 		<!--主体部分-->
 		<div id="content">
 			<!--标签-->
-			<div id="tag-box">
-				<span class="tag">
-					家
-				</span>
-				<span class="tag">
-					公司
-				</span>
+			<div id="contentTag">
+				<div id="tag-box">
+					<span class="tag">
+						家
+					</span>
+					<span class="tag">
+						公司
+					</span>
+				</div>
 			</div>
 			<!--列表-->
 			<div id="list-box">
+				<div class="list" id="addList">
+					<!--&lt;!&ndash;附加信息&ndash;&gt;-->
+					<!--<div class="other">-->
+						<!--&lt;!&ndash;紧急程度&ndash;&gt;-->
+						<!--<div class="grade" id="grade1">-->
+						<!--</div>-->
+						<!--<div class="grade" id="grade2">-->
+						<!--</div>-->
+						<!--<div class="grade" id="grade3">-->
+						<!--</div>-->
+						<!--&lt;!&ndash;标签&ndash;&gt;-->
+						<!--<span class="tag"></span>-->
+
+					<!--</div>-->
+					<!--&lt;!&ndash;标签悬浮&ndash;&gt;-->
+					<!--<div class="allTag">-->
+						<!--<span></span>-->
+					<!--</div>-->
+					<!--&lt;!&ndash;标题&ndash;&gt;-->
+					<!--<div class="title">-->
+						<!--<input type="text">-->
+						<!--<span> </span>-->
+					<!--</div>-->
+					<!--&lt;!&ndash;日期&ndash;&gt;-->
+					<!--<div class="day">-->
+						<!--<span></span>-->
+					<!--</div>-->
+					<!--&lt;!&ndash;进度条&ndash;&gt;-->
+					<!--<div class="rate">-->
+						<!--<div class="ratio">-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<span class="rateVal"></span>-->
+				</div>
 				<div class="list">
 					<!--附加信息-->
 					<div class="other">
 						<div class="grade">
 							
 						</div>
+						<span class="tag">
+							家
+						</span>
 					</div>
 					<!--标题-->
 					<div class="title">
@@ -85,6 +129,7 @@
 					</div>
 					<span class="rateVal">2/5</span>
 				</div>
+
 			</div>
 			<!--内容-->
 			<div id="item-box">
