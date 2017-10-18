@@ -179,14 +179,14 @@ body{
 	border-right: 13px solid #46B6FD;
 }
 /*没标签*/
-.haveNotTag{
-	border: 2px solid #dcdcdc;
-	background: #dcdcdc;
-}
-.haveNotTag:before{
-	content: "";
-	border-right: 13px solid #dcdcdc;
-}
+/*.haveNotTag{*/
+	/*border: 2px solid #dcdcdc;*/
+	/*background: #dcdcdc;*/
+/*}*/
+/*.haveNotTag:before{*/
+	/*content: "";*/
+	/*border-right: 13px solid #dcdcdc;*/
+/*}*/
 /*标签悬浮*/
 .allTag{
 	background: #FFFFFF;
@@ -282,7 +282,7 @@ body{
 
 /*增加的列表*/
 #addList{
-	display: none;
+	/*display: none;*/
 	cursor: pointer;
 }
 #grade1{
@@ -347,6 +347,7 @@ h2{
 	padding: 0px 30px;
 	margin: 0px 40px;
 	border-radius: 2px;
+	display: block;
 }
 .items:hover{
 	border: 1px solid #46B6FD;
@@ -355,6 +356,10 @@ h2{
 	background: #FFFFFF;
 	height: 15px;
 	width: 15px;
+}
+.spanChecked{
+	text-decoration: line-through;
+	color: #C2C2C2;
 }
 /*这里要来一个超长夜用的。。*/
 .items label{

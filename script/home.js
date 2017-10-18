@@ -2,11 +2,6 @@
  * Created by 白 on 2017/10/17.
  */
 $(function () {
-    // 插入新项目
-    // $("#add").click(function () {
-    //     $("#addList").slideDown();
-    // })
-
 
     var tag = $(".tag").innerHTML;
     if (tag == "") {
@@ -22,6 +17,8 @@ $(function () {
     //     })
     // }
 
+
+    // 重要程度选择
     $(".grade").click(function () {
         var sibl = $(this).siblings("div");
         sibl.hide();
@@ -48,16 +45,22 @@ $(function () {
         parent.prepend(div);
         $(".newDiv").slideDown();
     }
-
+    // 添加新任务
     $("#add").click(function () {
         addElementDiv('list-box');
     })
-    // var titleOk=$(".title").children("span");
-    // var titleInput=$(".title").children("input");
-    // titleOk.click(function () {
-    //     titleInput.slideDown();
-    // }).blur(function () {
-    //     titleInput.slideUp();
-    // })
 
+    // 划掉项目
+    $(".items").click(function () {
+        var items=$(this).find("input[type=checkbox]");
+        if (items.is(":checked")){
+            items.attr("checked",false);
+            $(this).find("span").removeClass("spanChecked");
+        }else {
+            items.attr("checked",true);
+            $(this).find("span").addClass("spanChecked");
+        }
+    })
+
+    
 })
