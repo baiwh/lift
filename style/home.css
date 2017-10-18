@@ -144,7 +144,7 @@ body{
 	width: auto;
 	padding: 5px 15px;
 	border-radius: 5px;
-	margin: 0px 20px;
+	margin: 5px 5px 5px 15px;
 	cursor: pointer;
 	font-size: 10px;
 	color: #FFFFFF;
@@ -168,6 +168,9 @@ body{
     position: absolute;
     left: -14px;
 	top: 0px;
+}
+.allTag .tag{
+	float: left;
 }
 /*有标签*/
 .haveTag{
@@ -195,17 +198,18 @@ body{
 	padding: 5px;
 	z-index: 5;
 	top: 60px;
-	left: 270px;
+	/*left: 270px;*/
 	overflow: visible;
 	border-radius: 5px;
+
 }
 .allTag:after{
 	content: "";
 	border-left:10px solid transparent;
 	border-bottom: 10px solid #d3d3d3;
 	border-right: 10px solid transparent;
-	position: relative;
-	top: -35px;
+	position: absolute;
+	top: -10px;
 	left: 45px;
 }
 /*列表大盒子*/
@@ -221,6 +225,7 @@ body{
 	background: #FFFFFF;
 	border: 1px solid #D3D3D3;
 	box-shadow: 0px 0px 15px #C2C2C2;
+	overflow: visible;
 }
 .list:hover{
 	border: 2px solid #46B6FD;
