@@ -62,5 +62,29 @@ $(function () {
         }
     })
 
-    
+    // 添加新的div。点击切换input
+    $(".listSpan").click(function () {
+        $(this).hide();
+        $(this).siblings().show();
+    })
+    // 光标离开input。切换回span
+    $(".listInput").blur(function () {
+        $(this).hide();
+        $(this).siblings().show();
+        // 获取标题
+        var titInput=$(".title").find("input").val();
+        // 把input的值赋给span
+        if (titInput!=""){
+            $(this).parent().find("span").html(titInput);
+        }
+
+        // 获取日期
+        var datInput=$(".day").find("input").val();
+        if(datInput!=""){
+            $(this).parent().find("span").html(datInput);
+        }
+
+
+    })
+
 })
