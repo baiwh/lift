@@ -189,13 +189,15 @@ body{
 /*}*/
 /*标签悬浮*/
 .allTag{
-	background: #FFFFFF;
+	background: #d3d3d3;
 	box-shadow: 0px 0px 5px #d3d3d3;
 	position: absolute;
 	padding: 5px;
 	z-index: 5;
 	top: 60px;
 	left: 270px;
+	overflow: visible;
+	border-radius: 5px;
 }
 .allTag:after{
 	content: "";
@@ -203,8 +205,8 @@ body{
 	border-bottom: 10px solid #d3d3d3;
 	border-right: 10px solid transparent;
 	position: relative;
-	top: 0px;
-	left: 10px;
+	top: -35px;
+	left: 45px;
 }
 /*列表大盒子*/
 #list-box{
@@ -506,6 +508,9 @@ input[type=checkbox]:checked + .check-box::before,
 /*这里要来一个超长夜用的。。*/
 .items label{
 
+}
+.title,.day{
+	height: 25px;
 }
 /*下边还要添加新的项目呢*/
 .add{

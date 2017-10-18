@@ -86,5 +86,20 @@ $(function () {
 
 
     })
+    // 输入的同时详细列表改变信息
+    $(".listInput").keyup(function () {
+        // 获取标题
+        var titInput=$(".title").find("input").val();
+        // 把标题赋给h2
+        if (titInput!=""){
+            $(".item").find("h2").html(titInput);
+        }
+
+    })
+    $(".other").find(".tag").click(function () {
+        $(this).parent().parent().find(".allTag").show()
+    }).blur(function () {
+        $(this).parent().parent().find(".allTag").hide();
+    })
 
 })
