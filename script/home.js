@@ -42,7 +42,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = " <div class=\"list\"> <div class=\"other\" > <div class=\"grade\"> </div> <span class=\"tag\"> 家 </span> </div> <div class=\"title\"> <span>最近怎么总下雨</span> </div> <div class=\"day\"> <span>2017.10.10</span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">2/5</span> </div>";
+        div.innerHTML = " <div class=\"list\"> <div class=\"stateBar\" > <div class=\"grade\"> </div> <span class=\"tag\"> 家 </span> </div> <div class=\"title\"> <span>最近怎么总下雨</span> </div> <div class=\"day\"> <span>2017.10.10</span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">2/5</span> </div>";
         // 在之后加
         // parent.appendChild(div);
         //在之前加
@@ -101,10 +101,17 @@ $(function () {
         }
 
     })
-    $(".other").find(".tag").click(function () {
-        $(this).parent().parent().find(".allTag").show()
-    }).blur(function () {
-        $(this).parent().parent().find(".allTag").hide();
+
+    $(".tag").click(function () {
+        // 获取列表里的标签
+        var tag=$(".stateBar").find(".tag");
+        if($(".allTag").is(":hidden")){
+            tag.parent().parent().find(".allTag").show();
+        }else {
+            tag.parent().parent().find(".allTag").hide();
+        }
     })
+
+
 
 })
