@@ -20,14 +20,18 @@ $(function () {
 
     // 重要程度选择
     $(".grade").click(function () {
+        // 获取他的同辈div
         var sibl = $(this).siblings("div");
-        sibl.hide();
-        $(this).animate({'opacity': '1'}).siblings("div").animate({'opacity': '0.1'});
-
+        // 如果他的同辈div是隐藏状态
         if (sibl.is(":hidden")) {
-            $(this).click(function () {
-                sibl.show();
-            })
+            // 则显示他们
+            sibl.show();
+        } else {
+            //将点击的div设置为选中
+            $(this).animate({'opacity': '1'});
+            //将其他的同级别Div设置为透明
+            sibl.animate({'opacity': '0.1'});
+            sibl.hide();
         }
     })
 
@@ -45,6 +49,7 @@ $(function () {
         parent.prepend(div);
         $(".newDiv").slideDown();
     }
+
     // 添加新任务
     $("#add").click(function () {
         addElementDiv('list-box');
@@ -52,12 +57,12 @@ $(function () {
 
     // 划掉项目
     $(".items").click(function () {
-        var items=$(this).find("input[type=checkbox]");
-        if (items.is(":checked")){
-            items.attr("checked",false);
+        var items = $(this).find("input[type=checkbox]");
+        if (items.is(":checked")) {
+            items.attr("checked", false);
             $(this).find("span").removeClass("spanChecked");
-        }else {
-            items.attr("checked",true);
+        } else {
+            items.attr("checked", true);
             $(this).find("span").addClass("spanChecked");
         }
     })
@@ -72,15 +77,15 @@ $(function () {
         $(this).hide();
         $(this).siblings().show();
         // 获取标题
-        var titInput=$(".title").find("input").val();
+        var titInput = $(".title").find("input").val();
         // 把input的值赋给span
-        if (titInput!=""){
+        if (titInput != "") {
             $(this).parent().find("span").html(titInput);
         }
 
         // 获取日期
-        var datInput=$(".day").find("input").val();
-        if(datInput!=""){
+        var datInput = $(".day").find("input").val();
+        if (datInput != "") {
             $(this).parent().find("span").html(datInput);
         }
 
@@ -89,9 +94,9 @@ $(function () {
     // 输入的同时详细列表改变信息
     $(".listInput").keyup(function () {
         // 获取标题
-        var titInput=$(".title").find("input").val();
+        var titInput = $(".title").find("input").val();
         // 把标题赋给h2
-        if (titInput!=""){
+        if (titInput != "") {
             $(".item").find("h2").html(titInput);
         }
 
