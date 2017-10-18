@@ -10,15 +10,6 @@ $(function () {
         $(".tag").removeClass("haveNotTag").addClass("haveTag");
     }
 
-    // var tit=$("#title input").val();
-    // if (tit!=""){
-    //     $("#tit input").blur(function () {
-    //         $("#tit input").replaceWith("<span></span>");
-    //     })
-    // }
-
-
-    // 重要程度选择
     $(".grade").click(function () {
         var sibl = $(this).siblings("div");
         sibl.hide();
@@ -45,10 +36,13 @@ $(function () {
         parent.prepend(div);
         $(".newDiv").slideDown();
     }
-    // 添加新任务
+
     $("#add").click(function () {
         addElementDiv('list-box');
     })
+    $(".items").click(function(){
+        $(this).find("input[type=checkbox]").attr("checked", 'checked');
+    });
 
     // 划掉项目
     $(".items").click(function () {
@@ -103,3 +97,4 @@ $(function () {
     })
 
 })
+ 

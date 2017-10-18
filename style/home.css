@@ -179,14 +179,14 @@ body{
 	border-right: 13px solid #46B6FD;
 }
 /*没标签*/
-/*.haveNotTag{*/
-	/*border: 2px solid #dcdcdc;*/
-	/*background: #dcdcdc;*/
-/*}*/
-/*.haveNotTag:before{*/
-	/*content: "";*/
-	/*border-right: 13px solid #dcdcdc;*/
-/*}*/
+.haveNotTag{
+	border: 2px solid #dcdcdc;
+	background: #dcdcdc;
+}
+.haveNotTag:before{
+	content: "";
+	border-right: 13px solid #dcdcdc;
+}
 /*标签悬浮*/
 .allTag{
 	background: #d3d3d3;
@@ -249,6 +249,7 @@ body{
 	margin: 5px 25px;
 }
 .title input{
+	position: absolute;
 	z-index: 2;
 	height: 20px;
 	width: 200px;
@@ -283,7 +284,7 @@ body{
 
 /*增加的列表*/
 #addList{
-	/*display: none;*/
+	display: none;
 	cursor: pointer;
 }
 #grade1{
@@ -348,7 +349,6 @@ h2{
 	padding: 0px 30px;
 	margin: 0px 40px;
 	border-radius: 2px;
-	display: block;
 }
 .items:hover{
 	border: 1px solid #46B6FD;
@@ -357,153 +357,6 @@ h2{
 	background: #FFFFFF;
 	height: 15px;
 	width: 15px;
-}
-/*下划线和改变颜色*/
-.spanChecked{
-	text-decoration: line-through;
-	color: #C2C2C2;
-}
-/*对勾*/
-@-moz-keyframes dothabottomcheck {
-	0% {
-		height: 0;
-	}
-	100% {
-		height: 15px;
-	}
-}
-@-webkit-keyframes dothabottomcheck {
-	0% {
-		height: 0;
-	}
-	100% {
-		height: 15px;
-	}
-}
-@keyframes dothabottomcheck {
-	0% {
-		height: 0;
-	}
-	100% {
-		height: 15px;
-	}
-}
-@keyframes dothatopcheck {
-	0% {
-		height: 0;
-	}
-	50% {
-		height: 0;
-	}
-	100% {
-		height: 30px;
-	}
-}
-@-webkit-keyframes dothatopcheck {
-	0% {
-		height: 0;
-	}
-	50% {
-		height: 0;
-	}
-	100% {
-		height:30px;
-	}
-}
-@-moz-keyframes dothatopcheck {
-	0% {
-		height: 0;
-	}
-	50% {
-		height: 0;
-	}
-	100% {
-		height: 30px;
-	}
-}
-input[type=checkbox] {
-	display: none;
-}
-.check-box {
-	height: 35px;
-	width: 35px;
-	background-color: transparent;
-	border: 5px solid #dcdcdc;
-	border-radius: 5px;
-	position: relative;
-	display: inline-block;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	-moz-transition: border-color ease 0.2s;
-	-o-transition: border-color ease 0.2s;
-	-webkit-transition: border-color ease 0.2s;
-	transition: border-color ease 0.2s;
-	cursor: pointer;
-}
-.check-box::before, .check-box::after {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	position: absolute;
-	height: 0;
-	width: 5px;
-	background-color: #34b93d;
-	display: inline-block;
-	-moz-transform-origin: left top;
-	-ms-transform-origin: left top;
-	-o-transform-origin: left top;
-	-webkit-transform-origin: left top;
-	transform-origin: left top;
-	border-radius: 5px;
-	content: ' ';
-	-webkit-transition: opacity ease .5;
-	-moz-transition: opacity ease .5;
-	transition: opacity ease .5;
-}
-.check-box::before {
-	top: 20px;
-	left: 15px;
-	box-shadow: 0 0 0 5px #ffffff;
-	-moz-transform: rotate(-135deg);
-	-ms-transform: rotate(-135deg);
-	-o-transform: rotate(-135deg);
-	-webkit-transform: rotate(-135deg);
-	transform: rotate(-135deg);
-}
-.check-box::after {
-	top: 10px;
-	left: 2px;
-	-moz-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-input[type=checkbox]:checked + .check-box,
-.check-box.checked {
-	border-color: #34b93d;
-}
-input[type=checkbox]:checked + .check-box::after,
-.check-box.checked::after {
-	height: 20px;
-	-moz-animation: dothabottomcheck 0.2s ease 0s forwards;
-	-o-animation: dothabottomcheck 0.2s ease 0s forwards;
-	-webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
-	animation: dothabottomcheck 0.2s ease 0s forwards;
-}
-input[type=checkbox]:checked + .check-box::before,
-.check-box.checked::before {
-	height:30px;
-	-moz-animation: dothatopcheck 0.4s ease 0s forwards;
-	-o-animation: dothatopcheck 0.4s ease 0s forwards;
-	-webkit-animation: dothatopcheck 0.4s ease 0s forwards;
-	animation: dothatopcheck 0.4s ease 0s forwards;
-}
-/*小列表的标题*/
-.listInput{
-	display: none;
 }
 /*这里要来一个超长夜用的。。*/
 .items label{
