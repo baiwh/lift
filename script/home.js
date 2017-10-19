@@ -88,13 +88,13 @@ $(function () {
     })
 
     // 标签悬浮窗的显示和隐藏
-    $(".tag").click(function () {
-        // 获取列表里的标签
-        var tag=$(".stateBar").find(".tag");
-        if($(".allTag").is(":hidden")){
-            $(this).parent().next("div").fadeIn();
+    $(".stateBar span").click(function () {
+        // 获取他的悬浮标签
+        var tag=$(this).parent().next("div");
+        if(tag.is(":hidden")){
+            tag.fadeIn();
         }else {
-            $(this).parent().next("div").fadeOut();
+            tag.fadeOut();
         }
     })
 
@@ -104,7 +104,7 @@ $(function () {
         // 获取悬浮窗内被点击的html
         var newTag=$(this).html();
         // 获取要替换的那个tag
-        var theTag=$(this).parent().parent().children().find("#theTag");
+        var theTag=$(this).parent().parent().children().find(".theTag");
         // 替换
         theTag.html(newTag);
         // 隐藏悬浮窗
