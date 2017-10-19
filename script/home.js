@@ -46,9 +46,13 @@ $(function () {
         if (items.is(":checked")) {
             items.attr("checked", false);
             $(this).find("span").removeClass("spanChecked");
+            $(this).find(".checkBox").removeClass("c");
+
         } else {
             items.attr("checked", true);
             $(this).find("span").addClass("spanChecked");
+            $(this).find(".checkBox").addClass("c");
+
         }
     })
 

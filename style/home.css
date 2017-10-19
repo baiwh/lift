@@ -228,7 +228,7 @@ h2{
 	width: 500px;
 	height: 50px;
 	line-height: 50px;
-	padding: 0px 30px;
+	padding: 0px 20px;
 	margin: 0px 40px;
 	border-radius: 2px;
 	display: block;
@@ -250,28 +250,150 @@ h2{
 input[type=checkbox]{
 	display: none;
 }
+
+
+@-moz-keyframes dothabottomcheck {
+	0% {
+		height: 0;
+	}
+
+	100% {
+		height: 17px;
+	}
+}
+@-webkit-keyframes dothabottomcheck {
+	0% {
+		height: 0;
+	}
+
+	100% {
+		height: 17px;
+	}
+}
+@keyframes dothabottomcheck {
+	0% {
+		height: 0;
+	}
+
+	100% {
+		height: 17px;
+	}
+}
+@keyframes dothatopcheck {
+	0% {
+		height: 0;
+	}
+
+	50% {
+		height: 0;
+	}
+
+	100% {
+		height: 27px;
+	}
+}
+@-webkit-keyframes dothatopcheck {
+	0% {
+		height: 0;
+	}
+
+	50% {
+		height: 0;
+	}
+
+	100% {
+		height:27px;
+	}
+}
+@-moz-keyframes dothatopcheck {
+	0% {
+		height: 0;
+	}
+
+	50% {
+		height: 0;
+	}
+
+	100% {
+		height: 27px;
+	}
+}
+.checkBox:before, .checkBox:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute;
+	height: 0;
+	width: 5px;
+	background-color: #34b93d;
+	display: inline-block;
+	-moz-transform-origin: left top;
+	-ms-transform-origin: left top;
+	-o-transform-origin: left top;
+	-webkit-transform-origin: left top;
+	transform-origin: left top;
+	border-radius: 5px;
+	content: ' ';
+	-webkit-transition: opacity ease 0.5s;
+	-moz-transition: opacity ease 0.5s;
+	transition: opacity ease 0.5s;
+}
+.checkBox:after{
+	top: 5px;
+	left: 0px;
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
 .checkBox {
-	height: 30px;
-	width: 30px;
-	border: 5px solid #dcdcdc;
+	height: 25px;
+	width: 25px;
+	border: 3px solid #d3d3d3;
 	border-radius: 5px;
 	position: relative;
-	float: left;
-	margin: 10px 10px;
+	display: inline-block;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-moz-transition: border-color ease 0.2s;
+	-o-transition: border-color ease 0.2s;
+	-webkit-transition: border-color ease 0.2s;
+	transition: border-color ease 0.2s;
+	margin: 12px 15px 12px 0px;
 	overflow: visible;
+	float: left;
 }
-/*.checkBox:after{*/
-	/*content: "";*/
-	/*height: 10px;*/
-	/*width: 10px;*/
-	/*border: 5px solid #46B6FD;*/
-/*}*/
-/*.checkBox:before{*/
-	/*content: "";*/
-	/*height: 10px;*/
-	/*width: 10px;*/
-	/*border: 5px solid #46B6FD;*/
-/*}*/
+.checkBox:before{
+	top: 16px;
+	left: 13px;
+	box-shadow: 0 0 0 2px #ffffff;
+	-moz-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	-o-transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+/*点击对勾追加效果*/
+.c:after{
+	height: 20px;
+	-moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+	-o-animation: dothabottomcheck 0.2s ease 0s forwards;
+	-webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+	animation: dothabottomcheck 0.2s ease 0s forwards;
+}
+.c:before {
+	height: 30px;
+	-moz-animation: dothatopcheck 0.4s ease 0s forwards;
+	-o-animation: dothatopcheck 0.4s ease 0s forwards;
+	-webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+	animation: dothatopcheck 0.4s ease 0s forwards;
+}
+/*划线*/
+.line{
+
+}
 /*小列表的标题*/
 .listInput{
 	display: none;
