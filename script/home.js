@@ -3,21 +3,6 @@
  */
 $(function () {
 
-    var tag = $(".tag").innerHTML;
-    if (tag == "") {
-        $(".tag").removeClass("haveTag").addClass("haveNotTag");
-    } else {
-        $(".tag").removeClass("haveNotTag").addClass("haveTag");
-    }
-
-    // var tit=$("#title input").val();
-    // if (tit!=""){
-    //     $("#tit input").blur(function () {
-    //         $("#tit input").replaceWith("<span></span>");
-    //     })
-    // }
-
-
     // 重要程度选择
     $(".grade").click(function () {
         // 获取他的同辈div
@@ -102,6 +87,7 @@ $(function () {
 
     })
 
+    // 标签悬浮窗的显示和隐藏
     $(".tag").click(function () {
         // 获取列表里的标签
         var tag=$(".stateBar").find(".tag");
@@ -112,6 +98,14 @@ $(function () {
         }
     })
 
+    // 点击悬浮窗内的标签。替换悬浮窗外的
+    // 当它被点击
+    $(".allTag span").click(function () {
+        // 获取悬浮窗内被点击的html
+        var newTag=$(this).html();
+        // 赋值
+        $(this).parent().parent().find("#theTag").html(newTag);
 
+    })
 
 })

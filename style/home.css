@@ -140,14 +140,16 @@ body{
 }
 .tag{
 	float: right;
-	height: 30px;
+	height: 25px;
 	width: auto;
-	padding: 5px 15px;
+	padding: 0px 5px;
 	border-radius: 5px;
 	margin: 5px 5px 5px 15px;
 	cursor: pointer;
-	font-size: 10px;
+	font-size: 15px;
 	color: #FFFFFF;
+	border: 2px solid #46B6FD;
+	background: #46B6FD;
 }
 .tag:after{
 	content: "";
@@ -157,39 +159,24 @@ body{
 	background: #FFFFFF;
 	position: absolute;
 	left: -5px;
-	top: 10px;
+	top: 8px;
 }
 .tag:before{
 	content: "";
 	width: 0;
     height: 4px;
-    border-top: 11px solid transparent;
-    border-bottom: 11px solid transparent;
+    border-top: 10px solid transparent;
+	border-right: 10px solid #46B6FD;
+    border-bottom: 10px solid transparent;
     position: absolute;
-    left: -14px;
-	top: 0px;
+    left: -9px;
+	top: -2px;
 }
 .allTag .tag{
 	float: left;
 }
-/*有标签*/
-.haveTag{
-	border: 2px solid #46B6FD;
-	background: #46B6FD;
-}
-.haveTag:before{
-	content: "";
-	border-right: 13px solid #46B6FD;
-}
-/*没标签*/
-/*.haveNotTag{*/
-	/*border: 2px solid #dcdcdc;*/
-	/*background: #dcdcdc;*/
-/*}*/
-/*.haveNotTag:before{*/
-	/*content: "";*/
-	/*border-right: 13px solid #dcdcdc;*/
-/*}*/
+
+
 /*标签悬浮*/
 .allTag{
 	background: #d3d3d3;
@@ -198,7 +185,7 @@ body{
 	padding: 5px;
 	z-index: 5;
 	top: 60px;
-	/*left: 270px;*/
+	right: 10px;
 	overflow: visible;
 	border-radius: 5px;
 	display: none;
@@ -210,7 +197,7 @@ body{
 	border-right: 10px solid transparent;
 	position: absolute;
 	top: -10px;
-	left: 45px;
+	right: 8px;
 }
 /*列表大盒子*/
 #list-box{
