@@ -85,13 +85,9 @@
 					</div>
 					<!--标签悬浮-->
 					<div class="allTag">
-						<span class="tag">12222222222222222</span>
+						<span class="tag">1</span>
 						<span class="tag">2</span>
-						<span class="tag">2</span>
-						<span class="tag">2</span>
-						<span class="tag">2</span>
-						<span class="tag">2</span>
-						<span class="tag">2</span>
+						<span class="tag">3</span>
 					</div>
 					<!--标题-->
 					<div class="title">
@@ -112,30 +108,41 @@
 				</div>
 
 
-				<div class="list">
+				<div class="list" id="addList">
 					<!--附加信息-->
-					<div class="other">
-						<div class="grade">
-							
+					<div class="stateBar">
+						<!--紧急程度-->
+						<div class="grade" id="grade1">
 						</div>
-						<span class="tag">
-							家
-						</span>
+						<div class="grade" id="grade2">
+						</div>
+						<div class="grade" id="grade3">
+						</div>
+						<!--标签-->
+						<span class="tag" id="theTag">0</span>
+					</div>
+					<!--标签悬浮-->
+					<div class="allTag">
+						<span class="tag">a</span>
+						<span class="tag">b</span>
+						<span class="tag">c</span>
 					</div>
 					<!--标题-->
 					<div class="title">
-						<span>最近怎么总下雨</span>
+						<input type="text" class="listInput" placeholder="标题">
+						<span class="listSpan">试一试</span>
 					</div>
 					<!--日期-->
 					<div class="day">
-						<span>2017.10.10</span>
+						<input type="date" class="listInput">
+						<span class="listSpan">2017-10-10</span>
 					</div>
 					<!--进度条-->
 					<div class="rate">
 						<div class="ratio">
 						</div>
 					</div>
-					<span class="rateVal">2/5</span>
+					<span class="rateVal" id="numb">5/2</span>
 				</div>
 
 			</div>

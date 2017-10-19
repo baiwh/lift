@@ -92,9 +92,9 @@ $(function () {
         // 获取列表里的标签
         var tag=$(".stateBar").find(".tag");
         if($(".allTag").is(":hidden")){
-            tag.parent().parent().find(".allTag").show();
+            $(this).parent().next("div").fadeIn();
         }else {
-            tag.parent().parent().find(".allTag").hide();
+            $(this).parent().next("div").fadeOut();
         }
     })
 
@@ -103,9 +103,12 @@ $(function () {
     $(".allTag span").click(function () {
         // 获取悬浮窗内被点击的html
         var newTag=$(this).html();
-        // 赋值
-        $(this).parent().parent().find("#theTag").html(newTag);
-
+        // 获取要替换的那个tag
+        var theTag=$(this).parent().parent().children().find("#theTag");
+        // 替换
+        theTag.html(newTag);
+        // 隐藏悬浮窗
+        $(this).parent().fadeOut();
     })
 
 })
