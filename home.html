@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="style/home.css"/>
+		<link rel="stylesheet" type="text/css" href="style/nav.css"/>
 		<script src="script/jquery-3.2.1.js" charset="utf-8"></script>
 		<script src="script/home.js" charset="utf-8"></script>
 	</head>
@@ -150,11 +151,17 @@
 			<div id="item-box">
 				<div class="item">
 					<div class="header">
-						<div class="grade">
+						<div class="stateBar">
+							<!--紧急程度-->
+							<div class="grade" id="grade1">
+							</div>
+							<div class="grade" id="grade2">
+							</div>
+							<div class="grade" id="grade3">
+							</div>
+							<!--标签-->
+							<span class="tag theTag" >0</span>
 						</div>
-						<span class="tag">
-							家
-						</span>
 						<div class="more">
 							<img src="icon/more.png" alt="">
 						</div>
@@ -162,7 +169,7 @@
 					<h2>最近怎么总下雨</h2>
 					<div class="items">
 						<input type="checkbox"/>
-						<!--<div></div>-->
+						<div class="checkBox"></div>
 						<span>天天都在下雨</span>
 					</div>
 					<div class="items">

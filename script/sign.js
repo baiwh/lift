@@ -1,3 +1,4 @@
+
 $(function () {
     // 注册登录切换
     $("#li-signUp").click(function () {
@@ -127,4 +128,11 @@ $(function () {
     })
 
 
+    $("#signInBtn").click(function () {
+        $("#indexForm").submit();
+    })
+    $("#signUpBtn").click(function () {
+        $("#indexForm").action="/index/index.action";
+        $("#indexForm").submit();
+    })
 })
