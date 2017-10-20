@@ -113,11 +113,14 @@ $(function () {
         var theTag=$(this).parent().parent().children().find(".theTag");
         // 替换
         theTag.html(newTag);
+
+        // 替换掉大列表里的标签
+        $(".item").find(".tag").html(newTag);
         // 隐藏悬浮窗
         $(this).parent().fadeOut();
     })
 
-    
+
     // 被选中的小列表加上效果
     $(".list").click(function () {
         $(this).addClass("choose");
@@ -126,12 +129,7 @@ $(function () {
 
     // 标签对详情页的绑定
 
-    // 获取被选中的附加信息
-    var choose=$("#list-box").find(".stateBar");
-    // 获取小列表 中的标签内容
-    var chooseTag=choose.find(".tag").html();
-    // 替换掉大列表里的
-    $(".item").find(".theTag").html(chooseTag);
+
 
     // 获取紧急程度的id
     var chooseGrade=choose.find("div:visited").attr("id");
