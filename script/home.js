@@ -49,14 +49,13 @@ $(function () {
     })
 
     // 划掉项目
-    $('body').on('click', '.items', function () {
-    // $(".items").click(function () {
+    // $('body').on('click', '.items', function () {
+    $(".items").click(function () {
         var items = $(this).find("input[type=checkbox]");
         if (items.is(":checked")) {
             items.attr("checked", false);
             $(this).find("span").removeClass("spanChecked");
             $(this).find(".checkBox").removeClass("c");
-
         } else {
             items.attr("checked", true);
             $(this).find("span").addClass("spanChecked");
@@ -136,12 +135,10 @@ $(function () {
         $(this).addClass("choose");
         $(this).siblings().removeClass("choose");
     })
+    // $('body').on('blur', '.list', function () {
+    //     $(this).removeClass("choose");
+    // })
 
-
-
-
-
-
-
-
+    // 进度条效果
+    $("")
 })
