@@ -19,6 +19,11 @@ $(function () {
             sibl.animate({'opacity': '0.1'});
             sibl.hide();
         }
+        // 获取紧急程度的id
+        var chooseGrade=$(this).parent().find("div:visible").attr("id");
+        // 赋给大列表的
+        $(".item").find(".grade").attr("id",chooseGrade).animate({'opacity': '1'});;
+
     })
 
 
@@ -111,9 +116,8 @@ $(function () {
         var newTag=$(this).html();
         // 获取要替换的那个tag
         var theTag=$(this).parent().parent().children().find(".theTag");
-        // 替换
+        // 替换悬浮窗外的小标签
         theTag.html(newTag);
-
         // 替换掉大列表里的标签
         $(".item").find(".tag").html(newTag);
         // 隐藏悬浮窗
@@ -127,14 +131,10 @@ $(function () {
         $(this).siblings().removeClass("choose");
     })
 
-    // 标签对详情页的绑定
 
 
 
-    // 获取紧急程度的id
-    var chooseGrade=choose.find("div:visited").attr("id");
-    // 赋给大列表的
-    $(".item").find("grade").attr("id",chooseGrade);
+
 
 
 
