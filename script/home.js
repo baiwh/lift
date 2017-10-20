@@ -27,7 +27,7 @@ $(function () {
     })
 
 
-    //新增Div的方法
+    //新增小列表Div的方法
     function addElementDiv(obj) {
         var parent = document.getElementById(obj);
         //添加 div
@@ -35,8 +35,6 @@ $(function () {
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
         div.innerHTML = "<div class=\"list\" id=\"addList\"><div class=\"stateBar\"><div class=\"grade\" id=\"grade1\"></div><div class=\"grade\" id=\"grade2\" ></div><div class=\"grade\" id=\"grade3\"></div><span class=\"tag theTag\" id=\"newTag1\"  >0</span></div><div class=\"allTag\"><span class=\"tag\">a</span><span class=\"tag\">b</span><span class=\"tag\">c</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">试一试</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017-10-10</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\" id=\"numb\">0/0</span></div>";
-        // 在之后加
-        // parent.appendChild(div);
         //在之前加
         parent.prepend(div);
         $(".newDiv").slideDown();
@@ -46,6 +44,24 @@ $(function () {
     $('body').on('click', '#add', function () {
     // $("#add").click(function () {
         addElementDiv('list-box');
+    })
+
+    //新增新项目Div的方法
+    function addItemDiv(obj) {
+        var parent = document.getElementById(obj);
+        //添加 div
+        var div = document.createElement("div");
+        //设置 div 属性，如 id
+        div.setAttribute("class", "newDiv");
+        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span>新增项目</span></div>";
+        // 在之后加
+        parent.append(div);
+        $(".newDiv").slideDown();
+    }
+    // 添加新项目
+    $('body').on('click', '#newItem', function () {
+        // $("#newItem").click(function () {
+        addItemDiv('toDoList');
     })
 
     // 划掉项目
@@ -139,6 +155,14 @@ $(function () {
     //     $(this).removeClass("choose");
     // })
 
+
+
     // 进度条效果
-    $("")
+    // 当小项目被点击
+    $(".items").click(function () {
+        // 获取进度条的条
+        var ratio=$(".choose").find(".ratio");
+
+    })
+
 })
