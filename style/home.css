@@ -104,8 +104,14 @@ body{
 	border: 1px solid #D3D3D3;
 	box-shadow: 0px 0px 15px #C2C2C2;
 	overflow: visible;
+	display: block;
 }
 .list:hover{
+	border: 2px solid #46B6FD;
+	border-radius: 5px;
+}
+/*左边小列表被选中*/
+.choose {
 	border: 2px solid #46B6FD;
 	border-radius: 5px;
 }
@@ -191,6 +197,7 @@ body{
 	width: 600px;
 	float: left;
 	padding: 10px 10px;
+
 }
 /*里边还要套一个小一号的盒纸*/
 .item{
@@ -236,6 +243,7 @@ h2{
 .items:hover{
 	border: 1px solid #46B6FD;
 }
+
 .items input{
 	background: #FFFFFF;
 	height: 15px;

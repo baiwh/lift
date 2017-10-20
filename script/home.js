@@ -4,7 +4,8 @@
 $(function () {
 
     // 重要程度选择
-    $(".grade").click(function () {
+    $('body').on('click', '.grade', function () {
+        // $(".grade").click(function () {
         // 获取他的同辈div
         var sibl = $(this).siblings("div");
         // 如果他的同辈div是隐藏状态
@@ -20,6 +21,7 @@ $(function () {
         }
     })
 
+
     //新增Div的方法
     function addElementDiv(obj) {
         var parent = document.getElementById(obj);
@@ -27,7 +29,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = " <div class=\"list\"> <div class=\"stateBar\" > <div class=\"grade\"> </div> <span class=\"tag\"> 家 </span> </div> <div class=\"title\"> <span>最近怎么总下雨</span> </div> <div class=\"day\"> <span>2017.10.10</span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">2/5</span> </div>";
+        div.innerHTML = "<div class=\"list\" id=\"addList\"><div class=\"stateBar\"><div class=\"grade\" id=\"grade1\"></div><div class=\"grade\" id=\"grade2\" ></div><div class=\"grade\" id=\"grade3\"></div><span class=\"tag theTag\" id=\"newTag1\"  >0</span></div><div class=\"allTag\"><span class=\"tag\">a</span><span class=\"tag\">b</span><span class=\"tag\">c</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">试一试</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017-10-10</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\" id=\"numb\">0/0</span></div>";
         // 在之后加
         // parent.appendChild(div);
         //在之前加
@@ -114,5 +116,28 @@ $(function () {
         // 隐藏悬浮窗
         $(this).parent().fadeOut();
     })
+
+    
+    // 被选中的小列表加上效果
+    $(".list").click(function () {
+        $(this).addClass("choose");
+        $(this).siblings().removeClass("choose");
+    })
+
+    // 标签对详情页的绑定
+
+    // 获取被选中的附加信息
+    var choose=$("#list-box").find(".stateBar");
+    // 获取小列表 中的标签内容
+    var chooseTag=choose.find(".tag").html();
+    // 替换掉大列表里的
+    $(".item").find(".theTag").html(chooseTag);
+
+    // 获取紧急程度的id
+    var chooseGrade=choose.find("div:visited").attr("id");
+    // 赋给大列表的
+    $(".item").find("grade").attr("id",chooseGrade);
+
+
 
 })
