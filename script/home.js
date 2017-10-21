@@ -1,8 +1,19 @@
 /**
  * Created by 白 on 2017/10/17.
  */
-$(function () {
+function choose(){
+    var div = $("#list-box").find("div:first");
+    div[0].classList.add("choose");
+    console.log(div[0].classList);
+}
 
+$(function () {
+    // 给页面的第一个小列表加上选中效果
+    $(document).ready(function () {
+        var div = $("#list-box").find("div:first");
+        div[0].classList.add("choose");
+        // console.log(div[0].classList);
+    })
     // 重要程度选择
     $('body').on('click', '.grade', function () {
         // $(".grade").click(function () {
@@ -62,11 +73,25 @@ $(function () {
     $('body').on('click', '#newItem', function () {
         // $("#newItem").click(function () {
         addItemDiv('toDoList');
+        // 进度条效果
+        // 获取小项目的个数
+        var len=document.getElementsByClassName("items").length;
+        // 获取小项目被选中的个数
+        var checkLen=$("#toDoList").find("input[type='checkbox']:checked").length;
+        // 获取进度条的条
+        var ratio=$(".choose").find(".ratio");
+        // 进度条效果
+        var leftNum=(-325)+checkLen/len*325;
+        ratio.animate({left:leftNum+"px"});
+        // 获取进度条下的分数
+        var rateVal=$(".choose").find(".rateVal");
+        // 进度条下分数效果
+        rateVal.html(checkLen+"/"+len);
     })
 
     // 划掉项目
-    // $('body').on('click', '.items', function () {
-    $(".items").click(function () {
+    $('body').on('click', '.items', function () {
+    // $(".items").click(function () {
         var items = $(this).find("input[type=checkbox]");
         if (items.is(":checked")) {
             items.attr("checked", false);
@@ -76,8 +101,21 @@ $(function () {
             items.attr("checked", true);
             $(this).find("span").addClass("spanChecked");
             $(this).find(".checkBox").addClass("c");
-
         }
+        // 进度条效果
+        // 获取小项目的个数
+        var len=document.getElementsByClassName("items").length;
+        // 获取小项目被选中的个数
+        var checkLen=$("#toDoList").find("input[type='checkbox']:checked").length;
+        // 获取进度条的条
+        var ratio=$(".choose").find(".ratio");
+        // 进度条效果
+        var leftNum=(-325)+checkLen/len*325;
+        ratio.animate({left:leftNum+"px"});
+        // 获取进度条下的分数
+        var rateVal=$(".choose").find(".rateVal");
+        // 进度条下分数效果
+        rateVal.html(checkLen+"/"+len);
     })
 
     // 添加新的div。点击切换input
@@ -157,12 +195,7 @@ $(function () {
 
 
 
-    // 进度条效果
-    // 当小项目被点击
-    $(".items").click(function () {
-        // 获取进度条的条
-        var ratio=$(".choose").find(".ratio");
 
-    })
+
 
 })

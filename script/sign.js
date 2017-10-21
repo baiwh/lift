@@ -124,9 +124,12 @@ $(function () {
         // 对错
     })
 
+    // 登录
     $("#signInBtn").click(function () {
         $("#indexForm").submit();
+        // 验证登录密码是否正确
     })
+    // 注册
     $("#signUpBtn").click(function () {
         // 判断是否为空
 
@@ -154,6 +157,6 @@ $(function () {
         }
     })
 
-    // 验证登录密码是否正确
-    
+
+
 })
