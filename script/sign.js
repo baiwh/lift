@@ -38,7 +38,7 @@ $(function () {
             if (!pattern.test(emailVal)) {
                 info.html("邮箱格式不正确").attr('class', 'info');
             } else {
-                info.html("√").attr('class', 'pass');
+                $("#emailInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
             }
         }
         // 查重
@@ -112,7 +112,7 @@ $(function () {
             if (password != password2) {
                 $("#pwd2Info").html("两次密码不一致");
             } else {
-                $("#pwd2Info").html("√").attr('class', 'pass');
+                $("#pwd2Info").append("<img class='ok' src='/lift/icon/ok.png'>");
             }
         }
     })
@@ -149,7 +149,7 @@ $(function () {
                 success:function(data){
                     if (data.status){
                         // 对的
-                        $("#nameInfo").html("√").attr('class', 'pass');
+                        $("#nameInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
                     }else {
                         $("#nameInfo").html("该用户不存在").attr('class', 'info');
                     }

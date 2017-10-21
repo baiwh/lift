@@ -189,14 +189,11 @@ a{
 	left: 290px;
 	top: -40px;
 }
-/*绿对勾*/
-.pass{
-	color: green;
-	font-weight: 900;
-	float: left;
-	height: 0px;
-	left: 290px;
-	top: -40px;
+.ok{
+	position: absolute;
+	top: 5px;
+	height: 20px;
+	width: 20px;
 }
 /*密码强度*/
 #strength{
@@ -209,7 +206,7 @@ a{
 #strength span{
 	float: left;
 	margin: -1px;
-	top: 15px;
+	top: 20px;
 }
 #strengthTab{
 	/*上边可耐滴小气泡*/
@@ -217,7 +214,7 @@ a{
 	height: 24px;
 	width: 24px;
 	color: #FFFFFF;
-	top: -18px;
+	top: -12px;
 }
 #strengthTab:before{
 	/*小气泡的三角*/
@@ -258,14 +255,14 @@ a{
 }
 /*强*/
 .change3{
-	background: green;
+	background: #66cc00;
 	/*left: -35px;*/
 }
 .change3:after{
 	content: "强";
 }
 .change3:before{
-	border-top: 9px solid green;
+	border-top: 9px solid #66cc00;
 }
 /*强度等级条*/
 #strength1{
@@ -292,7 +289,7 @@ a{
 	background: orange;
 }
 .green{
-	background: green;
+	background: #66cc00;
 }
 /*验证码*/
 #verification input{
