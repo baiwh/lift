@@ -237,7 +237,7 @@ a{
 /*弱*/
 .change1{
 	background: red;
-	left: -105px;
+	/*left: -105px;*/
 }
 .change1:after{
 	content: "弱";
@@ -248,7 +248,7 @@ a{
 /*中*/
 .change2{
 	background: orange;
-	left: -70px;
+	/*left: -70px;*/
 }
 .change2:after{
 	content: "中";
@@ -259,7 +259,7 @@ a{
 /*强*/
 .change3{
 	background: green;
-	left: -35px;
+	/*left: -35px;*/
 }
 .change3:after{
 	content: "强";
