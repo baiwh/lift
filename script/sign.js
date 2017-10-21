@@ -26,7 +26,6 @@ $(function () {
         }
     }
 
-
     // 邮箱
     $("#email").blur(function () {
         // 判空
@@ -41,11 +40,9 @@ $(function () {
             } else {
                 info.html("√").attr('class', 'pass');
             }
-
         }
         // 查重
     })
-
 
     // 密码
     $("#pwd").blur(function () {
@@ -102,14 +99,7 @@ $(function () {
                 tab.attr("class", "change3").animate({left:"-35px"});
             }
         }
-
-
-
-
-
-
     })
-
 
     // 重复密码
     $("#pwd2").blur(function () {
@@ -125,9 +115,7 @@ $(function () {
                 $("#pwd2Info").html("√").attr('class', 'pass');
             }
         }
-
     })
-
 
     // 验证码
     $("#verifyCode").blur(function () {
@@ -136,12 +124,36 @@ $(function () {
         // 对错
     })
 
-
     $("#signInBtn").click(function () {
         $("#indexForm").submit();
     })
     $("#signUpBtn").click(function () {
+        // 判断是否为空
+
         $("#indexForm").action="/index/index.action";
         $("#indexForm").submit();
     })
+
+    // 登录判断用户是否存在
+    $("#userName").blur(function () {
+        if ($(this).val()!=""){
+            $.ajax({
+                url:"/index/checkUser.action",    //请求的url地址
+                dataType:"json",   //返回格式为json
+                async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                data:{"userName":$(this).val()},    //参数值
+                type:"POST",   //请求方式
+                success:function(data){
+                    $("#nameInfo").html("√").attr('class', 'pass');
+                },
+                error:function(){
+                    //请求出错处理
+                    $("#nameInfo").html("该用户不存在").attr('class', 'info');
+                }
+            });
+        }
+    })
+
+    // 验证登录密码是否正确
+    
 })
