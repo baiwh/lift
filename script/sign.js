@@ -147,11 +147,17 @@ $(function () {
                 data:{"userName":$(this).val()},    //参数值
                 type:"POST",   //请求方式
                 success:function(data){
-                    $("#nameInfo").html("√").attr('class', 'pass');
+                    if (data.status){
+                        // 对的
+                        $("#nameInfo").html("√").attr('class', 'pass');
+                    }else {
+                        $("#nameInfo").html("该用户不存在").attr('class', 'info');
+                    }
+
                 },
                 error:function(){
                     //请求出错处理
-                    $("#nameInfo").html("该用户不存在").attr('class', 'info');
+
                 }
             });
         }

@@ -1,19 +1,18 @@
 /**
  * Created by 白 on 2017/10/17.
  */
-function choose(){
-    var div = $("#list-box").find("div:first");
-    div[0].classList.add("choose");
-    console.log(div[0].classList);
-}
+
 
 $(function () {
     // 给页面的第一个小列表加上选中效果
-    $(document).ready(function () {
-        var div = $("#list-box").find("div:first");
+    // $(document).ready(function () {
+    //     var div = $("#list-box").find("div:first");
+    //     div[0].classList.add("choose");
+    //     // console.log(div[0].classList);
+    // })
+    var div = $("#list-box").find("div:first");
         div[0].classList.add("choose");
-        // console.log(div[0].classList);
-    })
+
     // 重要程度选择
     $('body').on('click', '.grade', function () {
         // $(".grade").click(function () {
