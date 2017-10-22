@@ -44,7 +44,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "list");
-        div.innerHTML = " <div class=\"stateBar\"><div class=\"grade\" id=\"grade1\"></div><div class=\"grade\" id=\"grade2\" ></div><div class=\"grade\" id=\"grade3\"></div><span class=\"tag theTag\" id=\"newTag1\"  >0</span></div><div class=\"allTag\"><span class=\"tag\">a</span><span class=\"tag\">b</span><span class=\"tag\">c</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">试一试</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017-10-10</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\" id=\"numb\">0/0</span>";
+        div.innerHTML = " <div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\"></div><div class=\"grade grade3\"></div><span class=\"tag theTag\" id=\"newTag1\"  >0</span></div><div class=\"allTag\"><span class=\"tag\">a</span><span class=\"tag\">b</span><span class=\"tag\">c</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">试一试</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017-10-10</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\" >0/0</span>";
         //在之前加
         parent.prepend(div);
         $(".newDiv").slideDown();

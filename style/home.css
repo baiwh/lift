@@ -171,26 +171,31 @@ body{
 
 
 /*增加的列表*/
-#addList{
+.addList{
 	/*display: none;*/
 	cursor: pointer;
 }
-#grade1{
+.grade1{
 	border: 5px solid red;
 	opacity: 0.1;
 }
-#grade2{
+.grade2{
 	border: 5px solid orange;
 	opacity: 0.1;
 }
-#grade3{
+.grade3{
 	border: 5px solid green;
 	opacity: 0.1;
 }
-#addList .ratio{
+.addList .ratio{
 	left: -325px;
 }
 
+.del{
+	background: url("/icon/delete.png");
+	background: black;
+
+}
 
 /*右边详细内容的大盒子*/
 #item-box{
