@@ -56,6 +56,7 @@ $(function () {
                     error:function(){
                         //请求出错处理
                         alert("服务器错误");
+                        return;
                     }
                 });
 
@@ -152,6 +153,30 @@ $(function () {
         var password=$("#password").val();
         // 如果都非空。则判断是否正确。否则提示为空
         if(userName!=""&&password!=""){
+            // 先判断邮箱是否存在
+            $.ajax({
+                url:"/index/checkUser.action",    //请求的url地址
+                dataType:"json",   //返回格式为json
+                async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                data:{"userName":$(this).val(),
+                    "checkType":1},    //参数值
+                type:"POST",   //请求方式
+                success:function(data){
+                    if (data.status){
+                        // 对的
+                        $("#nameInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
+                    }else {
+                        $("#nameInfo").html("该用户不存在").attr('class', 'info');
+                    }
+                    return;
+                },
+                error:function(){
+                    //请求出错处理
+                    alert("服务器错误");
+                    return;
+                }
+            });
+            // 再判断是否正确
             $.ajax({
                 url:"/index/signIn.action",    //请求的url地址
                 dataType:"json",   //返回格式为json
@@ -173,6 +198,7 @@ $(function () {
                 error:function(){
                     //请求出错处理
                     alert("服务器错误");
+                    return;
                 }
             });
         }else {
@@ -220,6 +246,7 @@ $(function () {
             error:function(){
                 //请求出错处理
                 alert("服务器错误");
+                return;
             }
         });
         // 判断两次密码是否一致
@@ -253,6 +280,7 @@ $(function () {
                 error:function(){
                     //请求出错处理
                     alert("服务器错误");
+                    return;
                 }
             });
         }
