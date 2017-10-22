@@ -160,7 +160,7 @@ $(function () {
             $.ajax({
                 url:"/index/checkUser.action",    //请求的url地址
                 dataType:"json",   //返回格式为json
-                async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                async:false,//请求是否异步，默认为异步，这也是ajax重要特性
                 data:{"userName":userName,
                     "checkType":1},    //参数值
                 type:"POST",   //请求方式
@@ -185,7 +185,7 @@ $(function () {
                 $.ajax({
                     url:"/index/signIn.action",    //请求的url地址
                     dataType:"json",   //返回格式为json
-                    async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                    async:false,//请求是否异步，默认为异步，这也是ajax重要特性
                     data:{"userName":userName,
                         "password":password},    //参数值
                     type:"POST",   //请求方式
@@ -193,8 +193,8 @@ $(function () {
                         // 如果登录成功。跳转到主页面。否则提示密码错误
                         if (data.status){
                             // 对的
-                            $("#indexForm").action="/task/list.action";
-                            $("#indexForm").submit();
+                            $("#indexForm")[0].action="/task/list.action";
+                            $("#indexForm")[0].submit();
                         }else {
                             $("#passwordInfo").html("密码错误").attr('class', 'info');
                         }
@@ -265,8 +265,8 @@ $(function () {
             return;
         }
         if (flag==1){
-            $("#indexForm").action="/index/signUp.action";
-            $("#indexForm").submit();
+            $("#indexForm")[0].action="/index/signUp.action";
+            $("#indexForm")[0].submit();
         }
 
 
@@ -278,7 +278,7 @@ $(function () {
             $.ajax({
                 url:"/index/checkUser.action",    //请求的url地址
                 dataType:"json",   //返回格式为json
-                async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                async:false,//请求是否异步，默认为异步，这也是ajax重要特性
                 data:{"userName":$(this).val(),
                     "checkType":1},    //参数值
                 type:"POST",   //请求方式
