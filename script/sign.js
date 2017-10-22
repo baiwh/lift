@@ -26,7 +26,7 @@ $(function () {
         }
     }
 
-    // 邮箱
+    // 注册页面邮箱判断
     $("#email").blur(function () {
         // 判空
         checkNull("email", "emailInfo", "邮箱");
@@ -44,7 +44,7 @@ $(function () {
         // 查重
     })
 
-    // 密码
+    // 注册页面密码判断
     $("#pwd").blur(function () {
         // 判空
         checkNull("pwd", "pwdInfo", "密码");
@@ -101,7 +101,7 @@ $(function () {
         }
     })
 
-    // 重复密码
+    // 注册页面重复密码
     $("#pwd2").blur(function () {
         // 判空
         checkNull("pwd2", "pwd2Info", "重复密码");
@@ -124,14 +124,51 @@ $(function () {
         // 对错
     })
 
+
     // 登录
     $("#signInBtn").click(function () {
-        $("#indexForm").submit();
-        // 验证登录密码是否正确
+        // 对两个input进行判断
+        var userName=$("#userName").val();
+        var password=$("#password").val();
+        // 如果都非空。则判断是否正确。否则提示为空
+        if(userName!=""&&password!=""){
+            $.ajax({
+                url:"/index/signIn.action",    //请求的url地址
+                dataType:"json",   //返回格式为json
+                async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                data:{"userName":userName,
+                        "passWord":password},    //参数值
+                type:"POST",   //请求方式
+                success:function(data){
+                    // 如果登录成功。跳转到主页面。否则提示密码错误
+                    if (data.status){
+                        // 对的
+                        $("#indexForm").action="/task/list.action";
+                        $("#indexForm").submit();
+                    }else {
+                        $("#passwordInfo").html("密码错误").attr('class', 'info');
+                    }
+
+                },
+                error:function(){
+                    //请求出错处理
+                    alert("服务器错误");
+                }
+            });
+        }else {
+            if(userName==""){
+                $("#nameInfo").html("请填写用户名").attr('class', 'info');
+            }
+            if (password==""){
+                $("#passwordInfo").html("请输入密码").attr('class', 'info');
+            }
+        }
     })
     // 注册
     $("#signUpBtn").click(function () {
-        // 判断是否为空
+        // 验证是否为空
+        // 判断邮箱是否存在
+        // 判断两次密码是否一致
 
         $("#indexForm").action="/index/index.action";
         $("#indexForm").submit();
@@ -153,11 +190,10 @@ $(function () {
                     }else {
                         $("#nameInfo").html("该用户不存在").attr('class', 'info');
                     }
-
                 },
                 error:function(){
                     //请求出错处理
-
+                    alert("服务器错误");
                 }
             });
         }
