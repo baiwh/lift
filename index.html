@@ -14,7 +14,7 @@
 				Lift
 			</div>
 			<!--登录框-->
-			<form id="indexForm">
+			<form id="indexForm" action="/index/signIn.action" method="post">
 			<div id="main">
 				<!--选项卡-->
 				<ul>
@@ -65,12 +65,12 @@
 				<!--注册-->
 				<div id="signUp">
 					<!--邮箱-->
-					<input type="email" name="" id="email" value="" class="inputText" placeholder="用于注册的email"/>
+					<input type="email" name="email" id="email" value="" class="inputText" placeholder="用于注册的email"/>
 					<span id="emailInfo" class="info"></span>
 					<!--用户名-->
 					<!--<input type="text" name="" id="" value="" class="inputText" placeholder="用户名"/>-->
 					<!--密码-->
-					<input type="password" name="" id="pwd" class="inputText" value="" placeholder="请输入密码"/>
+					<input type="password" name="pwd" id="pwd" class="inputText" value="" placeholder="请输入密码"/>
 					<span id="pwdInfo" class="info"></span>
 					<div class="info" id="strength">
 						<span id="strength1" ></span>
@@ -79,15 +79,14 @@
 						<div id="strengthTab" ></div>
 					</div>
 					<!--再输入一次密码-->
-					<input type="password" name="" id="pwd2" class="inputText" value="" placeholder="请再次输入密码"/>
+					<input type="password" name="pwd2" id="pwd2" class="inputText" value="" placeholder="请再次输入密码"/>
 					<span id="pwd2Info" class="info"></span>
 					<!--验证码-->
-					<div id="verification">
-						<input type="text" name="" id="verifyCode" class="inputText" value="" placeholder="请输入验证码"/>
-						<img src="" title="点击刷新"/>
-						<span id="verifyInfo" class="info"></span>
-					</div>
-
+					<!--<div id="verification">-->
+						<!--<input type="text" name="" id="verifyCode" class="inputText" value="" placeholder="请输入验证码"/>-->
+						<!--<img src="" title="点击刷新"/>-->
+						<!--<span id="verifyInfo" class="info"></span>-->
+					<!--</div>-->
 
 					<!--提交-->
 					<input type="button" name="" id="signUpBtn" value="立即注册" />

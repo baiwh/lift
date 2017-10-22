@@ -166,12 +166,50 @@ $(function () {
     })
     // 注册
     $("#signUpBtn").click(function () {
+        var email=$("#email").val();
+        var pwd=$("#pwd").val();
+        var pwd2=$("#pwd2").val();
         // 验证是否为空
+        if (email!=""){
+            checkNull("email", "emailInfo", "邮箱");
+            return;
+        }
+        if(pwd!=""){
+            checkNull("pwd", "pwdInfo", "密码");
+            return;
+        }
+        if(pwd2!=""){
+            checkNull("pwd2", "pwd2Info", "重复密码");
+            return;
+        }
         // 判断邮箱是否存在
+        $.ajax({
+            url:"/index/checkUser.action",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:{"userName":$(this).val()},    //参数值
+            type:"POST",   //请求方式
+            success:function(data){
+                if (data.status){
+                    // 对的
+                    $("#nameInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
+                }else {
+                    $("#nameInfo").html("该用户不存在").attr('class', 'info');
+                }
+            },
+            error:function(){
+                //请求出错处理
+                alert("服务器错误");
+            }
+        });
         // 判断两次密码是否一致
-
+        if(pwd2!=pwd){
+            $("#pwd2Info").html("两次密码不一致");
+            return;
+        }
         $("#indexForm").action="/index/index.action";
         $("#indexForm").submit();
+
     })
 
     // 登录判断用户是否存在
