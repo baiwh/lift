@@ -38,7 +38,27 @@ $(function () {
             if (!pattern.test(emailVal)) {
                 info.html("邮箱格式不正确").attr('class', 'info');
             } else {
-                $("#emailInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
+                $.ajax({
+                    url:"/index/checkUser.action",    //请求的url地址
+                    dataType:"json",   //返回格式为json
+                    async:false,//请求是否异步，默认为异步，这也是ajax重要特性
+                    data:{"userName":$(this).val(),
+                            "checkType":2},    //参数值
+                    type:"POST",   //请求方式
+                    success:function(data){
+                        if (data.status){
+                            // 对的
+                            $("#nameInfo").html("请勿重复注册").attr('class', 'info');
+                        }else {
+                            $("#emailInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
+                        }
+                    },
+                    error:function(){
+                        //请求出错处理
+                        alert("服务器错误");
+                    }
+                });
+
             }
         }
         // 查重
@@ -186,16 +206,16 @@ $(function () {
         $.ajax({
             url:"/index/checkUser.action",    //请求的url地址
             dataType:"json",   //返回格式为json
-            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{"userName":$(this).val()},    //参数值
+            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:{"userName":$(this).val(),
+                "checkType":2},    //参数值
             type:"POST",   //请求方式
             success:function(data){
                 if (data.status){
                     // 对的
-                    $("#nameInfo").append("<img class='ok' src='/lift/icon/ok.png'>");
-                }else {
-                    $("#nameInfo").html("该用户不存在").attr('class', 'info');
+                    $("#nameInfo").html("请勿重复注册").attr('class', 'info');
                 }
+                return;
             },
             error:function(){
                 //请求出错处理
@@ -207,7 +227,7 @@ $(function () {
             $("#pwd2Info").html("两次密码不一致");
             return;
         }
-        $("#indexForm").action="/index/index.action";
+        $("#indexForm").action="/index/signUp.action";
         $("#indexForm").submit();
 
     })
@@ -219,7 +239,8 @@ $(function () {
                 url:"/index/checkUser.action",    //请求的url地址
                 dataType:"json",   //返回格式为json
                 async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-                data:{"userName":$(this).val()},    //参数值
+                data:{"userName":$(this).val(),
+                    "checkType":1},    //参数值
                 type:"POST",   //请求方式
                 success:function(data){
                     if (data.status){
