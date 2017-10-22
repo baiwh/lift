@@ -193,7 +193,10 @@ $(function () {
     // })
 
 
-
+    // 小垃圾桶删除小列表的效果
+    $("body").on("click",".del",function () {
+        $(this).parent().remove();
+    })
 
 
 

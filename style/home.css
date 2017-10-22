@@ -66,7 +66,13 @@ body{
 .allTag .tag{
 	float: left;
 }
-
+.newTag{
+	border: 2px solid #C2C2C2;
+	background: #C2C2C2;
+}
+.newTag:before{
+	border-right: 10px solid #C2C2C2;
+}
 
 /*标签悬浮*/
 .allTag{
@@ -190,11 +196,17 @@ body{
 .addList .ratio{
 	left: -325px;
 }
-
+/*删除小列表的垃圾桶图*/
 .del{
-	background: url("/icon/delete.png");
-	background: black;
-
+	opacity: 0.3;
+	height: 20px;
+	width: 20px;
+	float: right;
+	right: 10px;
+	cursor: pointer;
+}
+.del:hover{
+	opacity: 0.6;
 }
 
 /*右边详细内容的大盒子*/
@@ -221,14 +233,32 @@ body{
 .header .stateBar .grade{
 	position: relative;
 	top: 5px;
+	cursor: auto;
 }
 /*大列表里的标签*/
 .header .stateBar .tag{
 	top: 2px;
+	cursor: auto;
 }
-/*更多~~*/
-.more{
+/*修改*/
+.change{
 	float: right;
+	height: 25px;
+	width: 25px;
+	margin: 5px;
+	cursor: pointer;
+}
+/*增加和删除小项目*/
+.items img{
+	float: right;
+	height: 25px;
+	width: 25px;
+	opacity: 0.3;
+	cursor: pointer;
+	margin: 10px;
+}
+.items img:hover{
+	opacity: 0.6;
 }
 /*标题要大一点吧*/
 h2{
@@ -240,7 +270,7 @@ h2{
 	width: 500px;
 	height: 50px;
 	line-height: 50px;
-	padding: 0px 20px;
+	padding: 0px 10px 0px 20px;
 	margin: 0px 40px;
 	border-radius: 2px;
 	display: block;
