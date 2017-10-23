@@ -261,6 +261,9 @@ body{
 	margin: 0px 40px;
 	border-radius: 2px;
 }
+.itemInput:hover{
+	 border: 1px solid #46B6FD;
+ }
 /*输入框*/
 .itemInput input{
 	height: 30px;
@@ -269,13 +272,14 @@ body{
 	border: 1px solid #d3d3d3;
 	top: -4px;
 }
+
 .itemInput img{
 	float: right;
-	height: 25px;
-	width: 25px;
+	height: 20px;
+	width: 20px;
 	opacity: 0.3;
 	cursor: pointer;
-	margin: 10px;
+	margin: 15px 10px 15px 15px;
 }
 .itemInput img:hover{
 	opacity: 0.6;

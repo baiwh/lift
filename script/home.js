@@ -63,10 +63,11 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span>新增项目</span></div>";
+        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"><img class=\"changeAdd\" src=\"icon/changeAdd.png\" alt=\"\"></div>";
         // 在之后加
         parent.append(div);
         $(".newDiv").slideDown();
+
     }
     // 添加新项目
     $('body').on('click', '#newItem', function () {
@@ -86,7 +87,18 @@ $(function () {
         var rateVal=$(".choose").find(".rateVal");
         // 进度条下分数效果
         rateVal.html(checkLen+"/"+len);
+        // 显示输入框
+        $(".newDiv").find(".items").slideUp();
+        $(".newDiv").find(".itemInput").slideDown();
     })
+        // 添加新的小项目。当鼠标离开输入框
+        $("body").on("blur",".itemInput",function () {
+            // 如果这个输入框可见，且绿色对勾不可见。则隐藏输入框
+            if($(this).is(":visible")&&$(".changeOk").is(":hidden")){
+                $(".itemInput").slideUp();
+                $(".items").slideDown();
+            }
+        })
 
     // 划掉项目
     $('body').on('click', '.items', function () {
@@ -220,7 +232,19 @@ $(function () {
     })
 
     // 点加号在后边加个小项目
+    function addItemDivTo(obj) {
+        var parent = document.getElementById(obj);
+        //添加 div
+        var div = document.createElement("div");
+        //设置 div 属性，如 id
+        div.setAttribute("class", "newDiv");
+        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"><img class=\"changeAdd\" src=\"icon/changeAdd.png\" alt=\"\"></div>";
+        // 在之后加
+        parent.append(div);
+        $(".newDiv").slideDown();
+    }
     $("body").on("click",".changeAdd",function () {
+        addItemDivTo('toDoList');
     })
 
     // 点对勾恢复原样
