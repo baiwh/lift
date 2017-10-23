@@ -29,10 +29,10 @@ $(function () {
             sibl.animate({'opacity': '0.1'});
             sibl.hide();
         }
-        // 获取紧急程度的id
-        var chooseGrade=$(this).parent().find("div:visible").attr("id");
+        // 获取紧急程度的class
+        var chooseGrade=$(this).parent().find("div:visible").attr("class");
         // 赋给大列表的
-        $(".item").find(".grade").attr("id",chooseGrade).animate({'opacity': '1'});;
+        $(".item").find(".grade").attr("class",chooseGrade).animate({'opacity': '1'});;
 
     })
 
@@ -90,17 +90,21 @@ $(function () {
 
     // 划掉项目
     $('body').on('click', '.items', function () {
-    // $(".items").click(function () {
+        // $(".items").click(function () {
         var items = $(this).find("input[type=checkbox]");
         if (items.is(":checked")) {
             items.attr("checked", false);
             $(this).find("span").removeClass("spanChecked");
             $(this).find(".checkBox").removeClass("c");
+            // 给后边的input也加上对勾
+            $(this).next().find(".checkBox").removeClass("c");
         } else {
             items.attr("checked", true);
             $(this).find("span").addClass("spanChecked");
             $(this).find(".checkBox").addClass("c");
+            $(this).next().find(".checkBox").addClass("c");
         }
+
         // 进度条效果
         // 获取小项目的个数
         var len=document.getElementsByClassName("items").length;
@@ -144,11 +148,12 @@ $(function () {
     // 输入的同时详细列表改变信息
     $('body').on('keyup', '.listInput', function () {
     // $(".listInput").keyup(function () {
-        // 获取标题
-        var titInput = $(".title").find("input").val();
-        // 把标题赋给h2
-        if (titInput != "") {
-            $(".item").find("h2").html(titInput);
+        var par=$(this).parent().attr("class");
+        if (titInput != ""&&par=="title") {
+            // 获取标题
+            var titInput = $(this).val();
+            // 把标题赋给h2
+            $("#item").find("h2").html(titInput);
         }
 
     })
@@ -172,9 +177,9 @@ $(function () {
         // 获取悬浮窗内被点击的html
         var newTag=$(this).html();
         // 获取要替换的那个tag
-        var theTag=$(this).parent().parent().children().find(".theTag");
+        var theTag1=$(this).parent().parent().children().find(".theTag1");
         // 替换悬浮窗外的小标签
-        theTag.html(newTag);
+        theTag1.html(newTag);
         // 替换掉大列表里的标签
         $(".item").find(".tag").html(newTag);
         // 隐藏悬浮窗
@@ -198,6 +203,38 @@ $(function () {
         $(this).parent().remove();
     })
 
+    // 编辑按钮效果
+    $(".change").click(function () {
+        // 原span隐藏。输入框出现
+        $(".items").slideUp();
+        $(".itemInput").slideDown();
+        // 加号隐藏。对勾出现
+        $(".add").slideUp();
+        $(".changeOk").slideDown();
+    })
 
+    // 点垃圾桶删除这个小项目
+    $("body").on("click",".changeDel",function () {
+        $(this).parent().prev().remove();
+        $(this).parent().remove();
+    })
+
+    // 点加号在后边加个小项目
+    $("body").on("click",".changeAdd",function () {
+    })
+
+    // 点对勾恢复原样
+    $("body").on("click",".changeOk",function () {
+        $(".itemInput").slideUp();
+        $(".items").slideDown();
+        $(".changeOk").slideUp();
+        $(".add").slideDown();
+    })
+
+    // 大列表修改输入框鼠标离开时将数据赋给原来的span
+    $("body").on("blur",".changeInput",function () {
+        var changeInput=$(this).val();
+        $(this).parent().prev().find("span").html(changeInput);
+    })
 
 })

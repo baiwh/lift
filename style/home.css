@@ -27,7 +27,6 @@ body{
 #tag-box{
 	height: 50px;
 	padding: 10px;
-	
 }
 .tag{
 	float: right;
@@ -63,21 +62,22 @@ body{
     left: -9px;
 	top: -2px;
 }
+.chooseTag{
+	border: 2px solid #46B6FD;
+	background: #46B6FD;
+}
+.chooseTag:before{
+	border-right: 10px solid #46B6FD;
+}
+
 .allTag .tag{
 	float: left;
 }
-.newTag{
-	border: 2px solid #C2C2C2;
-	background: #C2C2C2;
-}
-.newTag:before{
-	border-right: 10px solid #C2C2C2;
-}
-
 /*标签悬浮*/
 .allTag{
-	background: #d3d3d3;
-	box-shadow: 0px 0px 5px #d3d3d3;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 10px #808080;
+	border: 1px solid #C2C2C2;
 	position: absolute;
 	padding: 5px;
 	z-index: 5;
@@ -89,13 +89,15 @@ body{
 }
 .allTag:after{
 	content: "";
-	border-left:10px solid transparent;
-	border-bottom: 10px solid #d3d3d3;
-	border-right: 10px solid transparent;
 	position: absolute;
 	top: -10px;
-	right: 8px;
+	right: 7px;
+	background: url("../icon/arrow.png") no-repeat;
+	background-size: 100% 100%;
+	height: 10px;
+	width: 20px;
 }
+
 /*列表大盒子*/
 #list-box{
 	width: 400px;
@@ -249,7 +251,25 @@ body{
 	cursor: pointer;
 }
 /*增加和删除小项目*/
-.items img{
+.itemInput{
+	display: none;
+	border: 1px solid #D3D3D3;
+	width: 500px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0px 10px 0px 20px;
+	margin: 0px 40px;
+	border-radius: 2px;
+}
+/*输入框*/
+.itemInput input{
+	height: 30px;
+	width: 330px;
+	border-radius: 5px;
+	border: 1px solid #d3d3d3;
+	top: -4px;
+}
+.itemInput img{
 	float: right;
 	height: 25px;
 	width: 25px;
@@ -257,9 +277,10 @@ body{
 	cursor: pointer;
 	margin: 10px;
 }
-.items img:hover{
+.itemInput img:hover{
 	opacity: 0.6;
 }
+
 /*标题要大一点吧*/
 h2{
 	margin: 40px;
@@ -448,20 +469,39 @@ input[type=checkbox]{
 .title,.day{
 	height: 25px;
 }
-/*下边还要添加新的项目呢*/
+/*下边还要添加新的小项目呢*/
 .add{
 	height: 40px;
 	width: 500px;
 	margin: 30px 40px;
-	background: #dcdcdc;
+	background: #46B6FD;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 5px;
 }
 .add:hover{
-	background: #46B6FD;
+	background: #009cff;
 }
 .add img{
+	width: 20px;
+	height: 20px;
+	margin: 10px;
+}
+.changeOk{
+	display: none;
+	height: 40px;
+	width: 500px;
+	margin: 30px 40px;
+	background: #34b93d;
+	opacity: 0.8;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.changeOk:hover{
+	opacity: 1;
+}
+.changeOk img{
 	width: 20px;
 	height: 20px;
 	margin: 10px;

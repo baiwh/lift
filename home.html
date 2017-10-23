@@ -80,8 +80,8 @@
                 <div class="grade grade3" >
                 </div>
                 <!--标签-->
-                <span class="tag theTag">0</span>
-                <span class="tag newTag">+</span>
+                <span class="tag theTag1">0</span>
+                <!--<span class="tag theTag2">+</span>-->
             </div>
             <!--标签悬浮-->
             <div class="allTag">
@@ -110,44 +110,7 @@
         </div>
 
 
-        <div class="list addList" id="">
-            <!--附加信息-->
-            <div class="stateBar">
-                <!--紧急程度-->
-                <div class="grade grade1">
-                </div>
-                <div class="grade grade2" >
-                </div>
-                <div class="grade grade3" >
-                </div>
-                <!--标签-->
-                <span class="tag theTag">0</span>
-            </div>
-            <!--标签悬浮-->
-            <div class="allTag">
-                <span class="tag">1</span>
-                <span class="tag">2</span>
-                <span class="tag">3</span>
-            </div>
-            <!--标题-->
-            <div class="title">
-                <input type="text" class="listInput" placeholder="标题">
-                <span class="listSpan">标题</span>
-            </div>
-            <!--日期-->
-            <div class="day">
-                <input type="date" class="listInput" title="">
-                <span class="listSpan">2017</span>
-            </div>
-            <!--进度条-->
-            <div class="rate">
-                <div class="ratio">
-                </div>
-            </div>
-            <span class="rateVal">0/0</span>
-            <!--删除-->
-            <img src="icon/del.png" alt="" class="del">
-        </div>
+
 
     </div>
     <!--内容-->
@@ -163,38 +126,42 @@
                     <img class="change" src="icon/change.png" alt="">
                     <!--标签-->
                     <span class="tag theTag">0</span>
-                    <span class="tag newTag">+</span>
                 </div>
             </div>
             <h2>接下来。。</h2>
             <div id="toDoList">
-                <div class="items">
-                    <input type="checkbox"/>
-                    <div class="checkBox"></div>
-                    <input type="text" class="changeInput">
-                    <img src="icon/del.png" alt="" class="changeDel">
-                    <img src="icon/changeAdd.png" alt="" class="changeAdd">
-                    <!--<span>小列表两个input绑定有bug。详情页未测试</span>-->
-                </div>
-                <div class="items">
-                    <input type="checkbox"/>
-                    <div class="checkBox"></div>
-                    <span>增加一个标签</span>
-                </div>
+
                 <div class="items">
                     <input type="checkbox"/>
                     <div class="checkBox"></div>
                     <span>标签改颜色</span>
                 </div>
+                <div class="itemInput">
+                    <div class="checkBox"></div>
+                    <input class="changeInput" type="text" >
+                    <img class="changeDel" src="icon/del.png" alt="">
+                    <img class="changeAdd" src="icon/changeAdd.png" alt="">
+                </div>
+
                 <div class="items">
                     <input type="checkbox"/>
                     <div class="checkBox"></div>
                     <span>编辑详细列表</span>
                 </div>
+                <div class="itemInput">
+                    <div class="checkBox"></div>
+                    <input class="changeInput" type="text" >
+                    <img class="changeDel" src="icon/del.png" alt="">
+                    <img class="changeAdd" src="icon/changeAdd.png" alt="">
+                </div>
+
             </div>
             <!--添加新项目-->
             <div class="add" id="newItem">
                 <img src="icon/add.png" alt="">
+            </div>
+            <div class="changeOk" >
+                <img src="icon/changeOk.png" alt="">
             </div>
 
 
