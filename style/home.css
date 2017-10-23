@@ -32,6 +32,7 @@ body{
 	float: right;
 	height: 25px;
 	width: auto;
+	min-width: 45px;
 	padding: 0px 5px;
 	border-radius: 5px;
 	margin: 5px 5px 5px 15px;
@@ -40,6 +41,7 @@ body{
 	color: #FFFFFF;
 	border: 2px solid #46B6FD;
 	background: #46B6FD;
+	text-align: center;
 }
 .tag:after{
 	content: "";
@@ -62,17 +64,24 @@ body{
     left: -9px;
 	top: -2px;
 }
-.chooseTag{
-	border: 2px solid #46B6FD;
-	background: #46B6FD;
-}
-.chooseTag:before{
-	border-right: 10px solid #46B6FD;
-}
-
-.allTag .tag{
+.allTag span{
 	float: left;
 }
+.NoChoose{
+	background: #C2C2C2;
+	border: 2px solid #C2C2C2;
+}
+.NoChoose:before{
+	border-right: 10px solid #C2C2C2;
+}
+
+/*.chooseTag{*/
+	 /*border: 2px solid #46B6FD;*/
+	 /*background: #46B6FD;*/
+ /*}*/
+/*.chooseTag:before{*/
+	/*border-right: 10px solid #46B6FD;*/
+/*}*/
 /*标签悬浮*/
 .allTag{
 	background: #FFFFFF;

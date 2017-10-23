@@ -88,8 +88,8 @@ $(function () {
         // 进度条下分数效果
         rateVal.html(checkLen+"/"+len);
         // 显示输入框
-        $(".newDiv").find(".items").slideUp();
-        $(".newDiv").find(".itemInput").slideDown();
+        $(".newDiv:last").find(".items").slideUp();
+        $(".newDiv:last").find(".itemInput").slideDown();
     })
         // 添加新的小项目。当鼠标离开输入框
         $("body").on("blur",".itemInput",function () {
@@ -196,6 +196,9 @@ $(function () {
         $(".item").find(".tag").html(newTag);
         // 隐藏悬浮窗
         $(this).parent().fadeOut();
+        // 颜色替换
+        $(this).removeClass("NoChoose");
+        $(this).siblings().addClass("NoChoose");
     })
 
 
@@ -231,20 +234,11 @@ $(function () {
         $(this).parent().remove();
     })
 
-    // 点加号在后边加个小项目
-    function addItemDivTo(obj) {
-        var parent = document.getElementById(obj);
-        //添加 div
-        var div = document.createElement("div");
-        //设置 div 属性，如 id
-        div.setAttribute("class", "newDiv");
-        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"><img class=\"changeAdd\" src=\"icon/changeAdd.png\" alt=\"\"></div>";
-        // 在之后加
-        parent.append(div);
-        $(".newDiv").slideDown();
-    }
+    // 编辑状态下的添加小项目
     $("body").on("click",".changeAdd",function () {
-        addItemDivTo('toDoList');
+        $(this).parent().after("<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"><img class=\"changeAdd\" src=\"icon/changeAdd.png\" alt=\"\"></div>");
+        $(this).parent().next().slideUp();
+        $(this).parent().next().next().slideDown();
     })
 
     // 点对勾恢复原样
