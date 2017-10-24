@@ -255,4 +255,8 @@ $(function () {
         $(this).parent().prev().find("span").html(changeInput);
     })
 
+    var itemsData=$(".items span").html();
+    // 取标题赋给输入框
+    var chooseTitle=$(".choose").find(".title span").html();
+    $(".choose").find(".title input").val(chooseTitle);
 })
