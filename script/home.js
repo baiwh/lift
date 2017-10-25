@@ -13,6 +13,7 @@ $(function () {
     var div = $("#list-box").find("div:first");
         div[0].classList.add("choose");
 
+
     // 重要程度选择
     $('body').on('click', '.grade', function () {
         // $(".grade").click(function () {
@@ -44,7 +45,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "list");
-        div.innerHTML = "<div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">0</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"icon/del.png\" alt=\"\" class=\"del\">";
+        div.innerHTML = "<div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">0</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"hidden\" id=\"\" class=\"detailId\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"hidden\" id=\"\" class=\"detailId\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"icon/del.png\" alt=\"\" class=\"del\">";
         //在之前加
         parent.prepend(div);
         $(".newDiv").slideDown();
@@ -63,7 +64,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"><img class=\"changeAdd\" src=\"icon/changeAdd.png\" alt=\"\"></div>";
+        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"></div>";
         // 在之后加
         parent.append(div);
         $(".newDiv").slideDown();
@@ -91,14 +92,43 @@ $(function () {
         $(".newDiv:last").find(".items").slideUp();
         $(".newDiv:last").find(".itemInput").slideDown();
     })
-        // 添加新的小项目。当鼠标离开输入框
-        $("body").on("blur",".itemInput",function () {
-            // 如果这个输入框可见，且绿色对勾不可见。则隐藏输入框
-            if($(this).is(":visible")&&$(".changeOk").is(":hidden")){
-                $(".itemInput").slideUp();
-                $(".items").slideDown();
+    // 添加新的小项目Ajax
+    function insert(inputData){
+        var taskId=$("#taskId").val();
+        var userId=$("#userId").val();
+        $.ajax({
+            url:"/taskDetail/updateTaskDetail.action",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:{"dataList":inputData,
+                "taskId":taskId,
+                "userId":userId},    //参数值
+            type:"POST",   //请求方式
+            success:function(data){
+                if (data.status){
+
+                }else {
+                    alert("保存失败");
+                }
+            },
+            error:function(){
+                //请求出错处理
+                // alert("服务器错误");
+                // return;
             }
-        })
+        });
+    }
+    // 添加新的小项目。当鼠标离开输入框
+    $("body").on("blur",".itemInput",function () {
+        // 如果这个输入框可见，且绿色对勾不可见。则隐藏输入框
+        if($(this).is(":visible")&&$(".changeOk").is(":hidden")){
+            $(".itemInput").slideUp();
+            $(".items").slideDown();
+        }
+        // 获取输入的值，返回到后台
+        var data=$(this).find(".changeInput").val();
+        insert(data);
+    })
 
     // 划掉项目
     $('body').on('click', '.items', function () {
@@ -131,6 +161,11 @@ $(function () {
         var rateVal=$(".choose").find(".rateVal");
         // 进度条下分数效果
         rateVal.html(checkLen+"/"+len);
+        // 返回数据
+        var changeInput=$(this).parent().next().find(".changeInput");
+        var inputId=$(this).parent().next().find(".detailId").attr("id");
+        var check=$(".items").find("input").is(":checked");
+        update(changeInput,inputId,"null",check);
     })
 
     // 添加新的div。点击切换input
@@ -139,6 +174,7 @@ $(function () {
         $(this).hide();
         $(this).siblings().show();
     })
+    
     // 光标离开input。切换回span
     $('body').on('blur', '.listInput', function () {
     // $(".listInput").blur(function () {
@@ -232,14 +268,21 @@ $(function () {
     $("body").on("click",".changeDel",function () {
         $(this).parent().prev().remove();
         $(this).parent().remove();
+        // 获取他的值
+        var val=$(this).parent().find(".changeInput").val();
+        // 获取他的id
+        var inputId=$(this).parent().find("input:hidden").attr("id");
+        var check=$(this).parent().prev().find("input").is(":checked");
+        update(val,inputId,"del",check);
     })
 
     // 编辑状态下的添加小项目
     $("body").on("click",".changeAdd",function () {
-        $(this).parent().after("<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"><img class=\"changeAdd\" src=\"icon/changeAdd.png\" alt=\"\"></div>");
+        $(this).parent().after("<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"></div>");
         $(this).parent().next().slideUp();
         $(this).parent().next().next().slideDown();
     })
+
 
     // 点对勾恢复原样
     $("body").on("click",".changeOk",function () {
@@ -249,14 +292,100 @@ $(function () {
         $(".add").slideDown();
     })
 
+    // 修改状态下的Ajax
+    function update(inputData,inputId,udOrDel,check){
+        var taskId=$("#taskId").val();
+        var userId=$("#userId").val();
+        $.ajax({
+            url:"/taskDetail/updateTaskDetail.action",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:{"dataList":inputData,
+                "id":inputId,
+                "actionType":udOrDel,
+                "isChecked":check,
+                "taskId":taskId,
+                "userId":userId},    //参数值
+            type:"POST",   //请求方式
+            success:function(data){
+                if (data.status){
+
+                }else {
+                    alert("保存失败");
+                }
+            },
+            error:function(){
+                //请求出错处理
+                // alert("服务器错误");
+                // return;
+            }
+        });
+    }
+
     // 大列表修改输入框鼠标离开时将数据赋给原来的span
     $("body").on("blur",".changeInput",function () {
+        // 他自己的值
         var changeInput=$(this).val();
         $(this).parent().prev().find("span").html(changeInput);
+        // 往后台传id和内容
+        // 他的hidden的id
+        var inputId=$(this).parent().find("input:hidden").attr("id");
+        var check=$(this).parent().prev().find("input").is(":checked");
+        update(changeInput,inputId,"ud",check);
     })
 
-    var itemsData=$(".items span").html();
+
+
     // 取标题赋给输入框
     var chooseTitle=$(".choose").find(".title span").html();
     $(".choose").find(".title input").val(chooseTitle);
+
+    // 点击编辑标签
+    $("body").on("click",".tagChange",function () {
+        // 他自己隐藏
+        $(this).hide();
+        // 全显示
+        $(this).siblings().fadeIn();
+    })
+
+    // 点击减号
+    $("body").on("click",".tagDel",function () {
+        // 他前边的span删除
+        $(this).prev().remove();
+        // 他自己也删除
+        $(this).remove();
+    })
+
+    // 点击添加新标签
+    $("body").on("click",".addTage",function () {
+        // 在他父元素后边的里边加一组新的
+
+    })
+
+    // 点击标签的对勾
+    $("body").on("click",".tagOk",function () {
+        var par = $(this).parent();
+        // 新标签隐藏
+        par.find(".addTag").hide();
+        // 减号隐藏
+        par.find(".tagDel").hide();
+        // 对勾隐藏
+        par.find(".tagOk").hide();
+        // 编辑显示
+        par.find(".tagChange").fadeIn();
+    })
+
+    // 点击添加新标签。添加输入框
+    $("body").on("click",".addTag",function (){
+        $(this).before("<div class=\"newTag\"><input type=\"hidden\" id=\"\" class=\"detailId\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag\"></span></div>");
+    })
+    // 鼠标离开新标签输入框。显示新标签。隐藏他自己
+    $("body").on("blur",".inputTag",function (){
+        var newTag=$(this).val();
+        if(newTag!=""){
+            $(this).next().html(newTag);
+            $(this).next().show();
+            $(this).hide();
+        }
+    })
 })

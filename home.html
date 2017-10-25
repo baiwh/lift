@@ -57,18 +57,25 @@
 <!--主体部分-->
 <div id="content">
     <!--标签-->
+    <form action="" id="labelForm">
     <div id="contentTag">
         <div id="tag-box">
-					<span class="tag">
-						家
-					</span>
-            <span class="tag">
-						公司
-					</span>
+            <img class="tagOk" src="icon/changeOk.png" alt="">
+            <img class="tagChange" src="icon/change.png" alt="">
+            <span class="tag">家</span>
+            <span class="tagDel">-</span>
+            <span class="tag">公司</span>
+            <span class="tagDel">-</span>
+
+            <span class="addTag">添加新标签</span>
         </div>
     </div>
+    </form>
+
     <!--列表-->
+    <form action="/task/insertTask.action" id="taskForm">
     <div id="list-box">
+
         <div class="list addList" id="">
             <!--附加信息-->
             <div class="stateBar">
@@ -91,11 +98,13 @@
             </div>
             <!--标题-->
             <div class="title">
+                <input type="hidden" id="" class="detailId">
                 <input type="text" class="listInput" placeholder="标题">
                 <span class="listSpan">标题</span>
             </div>
             <!--日期-->
             <div class="day">
+                <input type="hidden" id="" class="detailId">
                 <input type="date" class="listInput">
                 <span class="listSpan">2017</span>
             </div>
@@ -109,14 +118,15 @@
             <img src="icon/del.png" alt="" class="del">
         </div>
 
-
-
-
     </div>
+    </form>
+
     <!--内容-->
+    <form action="/taskDetail/insertTaskDetail.action" id="detailForm">
     <div id="item-box">
         <div class="item" id="item">
-
+            <input type="hidden" id="taskId" value="">
+            <input type="hidden" id="userId" value="">
             <div class="header">
                 <div class="stateBar">
                     <!--紧急程度-->
@@ -132,15 +142,16 @@
             <div id="toDoList">
 
                 <div class="items">
-                    <input type="checkbox"/>
+                    <input type="checkbox" />
                     <div class="checkBox"></div>
                     <span>标签改颜色</span>
                 </div>
                 <div class="itemInput">
+                    <input type="hidden" id="" class="detailId">
                     <div class="checkBox"></div>
-                    <input class="changeInput" type="text" >
+                    <input class="changeInput" type="text" value="">
                     <img class="changeDel" src="icon/del.png" alt="">
-                    <img class="changeAdd" src="icon/changeAdd.png" alt="">
+                    <!--<img class="changeAdd" src="icon/changeAdd.png" alt="">-->
                 </div>
 
                 <div class="items">
@@ -149,10 +160,11 @@
                     <span>详细列表加新的</span>
                 </div>
                 <div class="itemInput">
+                    <input type="hidden" id="" class="detailId">
                     <div class="checkBox"></div>
                     <input class="changeInput" type="text" >
                     <img class="changeDel" src="icon/del.png" alt="">
-                    <img class="changeAdd" src="icon/changeAdd.png" alt="">
+                    <!--<img class="changeAdd" src="icon/changeAdd.png" alt="">-->
                 </div>
 
             </div>
@@ -163,10 +175,9 @@
             <div class="changeOk" >
                 <img src="icon/changeOk.png" alt="">
             </div>
-
-
         </div>
     </div>
+    </form>
 
 </div>
 </body>
