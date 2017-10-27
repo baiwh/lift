@@ -23,6 +23,7 @@ body{
 /*标签*/
 #contentTag{
 	width: 1000px;
+	overflow: visible;
 }
 #tag-box{
 	height: 50px;
@@ -77,6 +78,7 @@ body{
 /*新的标签*/
 .newTag{
 	float: right;
+	overflow: visible;
 }
 .newTag span{
 	display: none;
@@ -214,14 +216,19 @@ body{
 }
 .title input{
 	z-index: 2;
-	height: 20px;
+	height: 25px;
 	width: 200px;
+	padding: 5px;
 	border-radius: 5px;
 	border: 1px solid #C2C2C2;
 }
 .day{
 	color: #808080;
 	margin: 5px 25px;
+	overflow: visible;
+}
+.day input{
+
 }
 /*进度条*/
 .rate{

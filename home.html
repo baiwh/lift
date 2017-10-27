@@ -54,17 +54,24 @@
         <img src="icon/add.png" alt="添加新项目">
     </div>
 </div>
+
+<input type="hidden" id="userId" value="">
 <!--主体部分-->
 <div id="content">
     <!--标签-->
     <form action="" id="labelForm">
     <div id="contentTag">
         <div id="tag-box">
+
             <img class="tagOk" src="icon/changeOk.png" alt="">
             <img class="tagChange" src="icon/change.png" alt="">
-            <span class="tag">家</span>
+
+            <input type="hidden" value="">
+            <span class="tag select">家</span>
             <span class="tagDel">-</span>
-            <span class="tag">公司</span>
+
+            <input type="hidden" value="">
+            <span class="tag select">公司</span>
             <span class="tagDel">-</span>
 
             <span class="addTag">添加新标签</span>
@@ -87,7 +94,7 @@
                 <div class="grade grade3" >
                 </div>
                 <!--标签-->
-                <span class="tag theTag1">0</span>
+                <span class="tag theTag1">家</span>
                 <!--<span class="tag theTag2">+</span>-->
             </div>
             <!--标签悬浮-->
@@ -126,7 +133,7 @@
     <div id="item-box">
         <div class="item" id="item">
             <input type="hidden" id="taskId" value="">
-            <input type="hidden" id="userId" value="">
+
             <div class="header">
                 <div class="stateBar">
                     <!--紧急程度-->
