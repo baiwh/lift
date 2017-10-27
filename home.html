@@ -66,13 +66,13 @@
             <img class="tagOk" src="icon/changeOk.png" alt="">
             <img class="tagChange" src="icon/change.png" alt="">
 
-            <input type="hidden" value="">
             <span class="tag select">家</span>
             <span class="tagDel">-</span>
-
             <input type="hidden" value="">
+
             <span class="tag select">公司</span>
             <span class="tagDel">-</span>
+            <input type="hidden" value="">
 
             <span class="addTag">添加新标签</span>
         </div>
@@ -83,7 +83,9 @@
     <form action="/task/insertTask.action" id="taskForm">
     <div id="list-box">
 
+
         <div class="list addList" id="">
+            <input type="hidden" id="" class="taskId">
             <!--附加信息-->
             <div class="stateBar">
                 <!--紧急程度-->
@@ -105,13 +107,11 @@
             </div>
             <!--标题-->
             <div class="title">
-                <input type="hidden" id="" class="detailId">
                 <input type="text" class="listInput" placeholder="标题">
                 <span class="listSpan">标题</span>
             </div>
             <!--日期-->
             <div class="day">
-                <input type="hidden" id="" class="detailId">
                 <input type="date" class="listInput">
                 <span class="listSpan">2017</span>
             </div>
@@ -124,6 +124,8 @@
             <!--删除-->
             <img src="icon/del.png" alt="" class="del">
         </div>
+
+
 
     </div>
     </form>

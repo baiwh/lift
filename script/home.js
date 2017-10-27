@@ -13,8 +13,7 @@ $(function () {
     })
 
     // 添加新标签的Ajax
-    function addTag(newTag,del) {
-        var taskId=$("#taskId").val();
+    function addTag(newTag,del,tagId) {
         var userId=$("#userId").val();
         $.ajax({
             url:"",    //请求的url地址
@@ -22,7 +21,7 @@ $(function () {
             async:false,//请求是否异步，默认为异步，这也是ajax重要特性
             data:{"newTag":newTag,
                 "del":del,
-                "taskId":taskId,
+                "tagId":tagId,
                 "userId":userId},    //参数值
             type:"POST",   //请求方式
             success:function(data){
@@ -47,7 +46,8 @@ $(function () {
         // 他自己也删除
         $(this).remove();
         var newTag=$(this).prev().html();
-        addTag(newTag,"yes");
+        var tagId=$(this).next().attr("id");
+        addTag(newTag,"yes",tagId);
     })
 
     // 点击标签的对勾
@@ -61,11 +61,15 @@ $(function () {
         par.find(".tagOk").hide();
         // 编辑显示
         par.find(".tagChange").fadeIn();
+        // 隐藏输入框
+        if($(".inputTag").val()==""){
+            $(".inputTag").hide();
+        }
     })
 
     // 点击添加新标签。添加输入框
     $("body").on("click",".addTag",function (){
-        $(this).before("<div class=\"newTag\"><input type=\"hidden\" id=\"\" class=\"detailId\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag\"></span></div>");
+        $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
     })
 
     // 鼠标离开新标签输入框。显示新标签。隐藏他自己
@@ -74,9 +78,11 @@ $(function () {
         if(newTag!=""){
             $(this).next().html(newTag);
             $(this).next().show();
+            $(this).next().next().show();
             $(this).hide();
         }
-        tag(newTag,"no");
+        var tagId=$(this).next().next().attr("id");
+        addTag(newTag,"no",tagId);
     })
 
     // 给页面的第一个小列表加上选中效果
