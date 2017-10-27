@@ -25,6 +25,7 @@ $(function () {
 
     })
 
+
     // 点击垃圾桶就删除他爸爸
     $("body").on("click",".delNote",function () {
         $(this).parent().remove();
@@ -32,7 +33,12 @@ $(function () {
 
     // 点击加号。添加新的
     $("body").on("click","#add",function () {
-        $(".contents").prepend("<div class=\"note newNote\"><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><textarea name=\"\" class=\"noteInput\"></textarea></div><img class=\"delNote\" src=\"icon/del.png\" alt=\"\"></div>");
+        $(".contents").prepend("<div class=\"note newNote\"><div class=\"hour\"><span class=\"theHour\"></span></div><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><textarea name=\"\" class=\"noteInput\"></textarea></div><img class=\"delNote\" src=\"icon/del.png\" alt=\"\"></div>");
+        var date=new Date();
+        var hour=date.getHours();
+        var minute=date.getMinutes();
+        var time=""+hour+"："+minute;
+        $(".newNote").find(".theHour").html(time);
         if($(".newNote").is(":hidden")){
             $(".newNote").slideDown();
         }
