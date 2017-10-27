@@ -95,8 +95,8 @@ $(function () {
         div[0].classList.add("choose");
 
     // 被选中的小列表加上效果
-    $('body').on('click', '.list', function () {
-        // $(".list").click(function () {
+    $('body').on('click', '.task', function () {
+        // $(".task").click(function () {
         $(this).addClass("choose");
         $(this).siblings().removeClass("choose");
     })
@@ -108,7 +108,7 @@ $(function () {
         var tag=choose.find(".theTag1").html();
         var title=choose.find(".title span").html();
         var day=choose.find(".day span").html();
-        var taskId=$("#taskId").val();
+        var taskId=choose.find(".taskId").attr("id");
         var userId=$("#userId").val();
         $.ajax({
             url:"",    //请求的url地址
@@ -243,8 +243,8 @@ $(function () {
         //添加 div
         var div = document.createElement("div");
         //设置 div 属性，如 id
-        div.setAttribute("class", "list");
-        div.innerHTML = "<div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">0</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"hidden\" id=\"\" class=\"detailId\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"hidden\" id=\"\" class=\"detailId\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"icon/del.png\" alt=\"\" class=\"del\">";
+        div.setAttribute("class", "task");
+        div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"taskId\"><div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">家</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"icon/del.png\" alt=\"\" class=\"del\">";
         //在之前加
         parent.prepend(div);
         $(".newDiv").slideDown();
@@ -252,14 +252,12 @@ $(function () {
 
     // 新增小列表
     function addNewList() {
-        var taskId=$("#taskId").val();
         var userId=$("#userId").val();
         $.ajax({
             url:"/task/insertTask.action",    //请求的url地址
             dataType:"json",   //返回格式为json
             async:false,//请求是否异步，默认为异步，这也是ajax重要特性
             data:{
-                "taskId":taskId,
                 "userId":userId},    //参数值
             type:"POST",   //请求方式
             success:function(data){
@@ -330,7 +328,7 @@ $(function () {
             url:"/taskDetail/insertTaskDetail.action",    //请求的url地址
             dataType:"json",   //返回格式为json
             async:false,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{"dataList":inputData,
+            data:{"inputData":inputData,
                 "taskId":taskId,
                 "userId":userId},    //参数值
             type:"POST",   //请求方式
@@ -359,7 +357,11 @@ $(function () {
             }
             // 获取输入的值，返回到后台
             var data=$(this).find(".changeInput").val();
-
+            // 如果是空的。就删了它。
+            if(data==""){
+                $(this).parent().remove();
+                return;
+            }
             insert(data);
         })
 
@@ -502,22 +504,18 @@ $(function () {
     })
 
 
-
-
-
-
     // 点击标签筛选
-    // $("body").on("click",".select",function (){
-    //     // 获取点击的那个标签的值
-    //     var select=$(this).html();
-    //     var beSelect=$(".theTag1").html();
-    //     if(select==beSelect){
-    //         $(".theTag1").parent().parent().show();
-    //     }else {
-    //         $(".theTag1").parent().parent().hide();
-    //     }
-    //
-    // })
+    $("body").on("click",".select",function (){
+
+        // 获取选取标签的id
+        var selectId=$(this).next().next().val();
+        // $(window).attr('location','/task/list.action?label='+selectId);
+
+        // 他自己是蓝的。别的全是灰的
+        $(this).removeClass("NoChoose");
+        $(this).siblings(".tag").addClass("NoChoose");
+
+    })
 
 
 
