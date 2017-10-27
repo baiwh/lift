@@ -4,9 +4,6 @@
     box-sizing: border-box;
     position: relative;
 }
-div{
-    overflow: hidden;
-}
 a{
     text-decoration: none;
 }

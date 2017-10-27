@@ -1,0 +1,52 @@
+/*主体部分*/
+.content{
+    width: 1000px;
+    top: 100px;
+    margin: 0px auto 50px auto;
+}
+/*时间*/
+.time{
+    width: 300px;
+    height: 500px;
+    float: left;
+}
+/*内容*/
+.contents{
+    width: 650px;
+    border-left: 4px solid #c2c2c2;
+    height: 500px;
+    float: left;
+}
+/*便签*/
+.note{
+    height: 100px;
+    width: 600px;
+    margin: 10px 0px;
+}
+/*点*/
+.point{
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    border: 4px solid #c2c2c2;
+    float: left;
+    left: -12px;
+    top: 10px;
+    background: #efefef;
+}
+/*箭头*/
+.arrow{
+    border-width: 10px 10px 10px 0px;
+    border-color: transparent #c2c2c2 transparent transparent;
+    border-style: dashed solid dashed dashed;
+    float: left;
+    top: 10px;
+}
+/*便签内容*/
+.notes{
+    height: 100px;
+    width: 500px;
+    background: #c2c2c2;
+    float: left;
+    border-radius: 10px;
+}
