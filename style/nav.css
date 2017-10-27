@@ -22,6 +22,7 @@ body{
     box-shadow: 0px 0px 20px #0064FF;
     padding: 80px 0px;
     float: left;
+    top: 0px;
 }
 /*侧导航链接*/
 #nav-left a{
@@ -106,13 +107,15 @@ body{
     position: fixed;
     right: 5vw;
     bottom: 5vw;
-    background: black;
+    background: #46B6FD;
     padding: 15px;
-    opacity: 0.4;
     height: 50px;
     width: 50px;
     cursor: pointer;
     border-radius: 25px;
+}
+#add:hover{
+    background: #009cff;
 }
 #add img{
     height: 20px;

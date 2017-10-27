@@ -10,43 +10,131 @@
     height: 500px;
     float: left;
 }
-/*内容*/
+/*时间里的span*/
+.time span{
+    display: block;
+    float: left;
+    clear: both;
+}
+.theTime{
+    width: 50px;
+    float: left;
+}
+/*年*/
+.year{
+    width: 50px;
+}
+/*月*/
+.month{
+    width: 30px;
+}
+/*月里的span*/
+/*日*/
+.day{
+    width: 50px;
+    overflow: scroll;
+    height: 500px;
+}
+/*日里的span*/
+.theDay{
+    height: 20px;
+    width: 20px;
+}
+/*日的滚动条*/
+.day::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.day::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+/*内容（时间轴的轴）*/
 .contents{
     width: 650px;
     border-left: 4px solid #c2c2c2;
-    height: 500px;
     float: left;
 }
-/*便签*/
+/*时间*/
+.hour{
+    left: -70px;
+    top: 8px;
+    float: left;
+}
+/*便签外框*/
 .note{
     height: 100px;
     width: 600px;
-    margin: 10px 0px;
+    margin: 20px 0px;
 }
-/*点*/
-.point{
-    height: 20px;
-    width: 20px;
-    border-radius: 10px;
-    border: 4px solid #c2c2c2;
-    float: left;
-    left: -12px;
-    top: 10px;
-    background: #efefef;
+/*新增的便签*/
+.newNote{
+    display: none;
 }
-/*箭头*/
-.arrow{
-    border-width: 10px 10px 10px 0px;
-    border-color: transparent #c2c2c2 transparent transparent;
-    border-style: dashed solid dashed dashed;
-    float: left;
-    top: 10px;
-}
-/*便签内容*/
+/*便签内框*/
 .notes{
     height: 100px;
     width: 500px;
-    background: #c2c2c2;
+    background: #FFFFFF;
     float: left;
+    left: -11px;
     border-radius: 10px;
+    box-shadow: 0px 0px 35px #c2c2c2;
+}
+/*点*/
+.notes:after{
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 20px;
+    border: 4px solid #c2c2c2;
+    float: left;
+    left: -43px;
+    top: 7px;
+    background: #efefef;
+}
+/*箭头*/
+.notes:before{
+    content: "";
+    position: absolute;
+    border-width: 10px 10px 10px 0px;
+    border-color: transparent #FFFFFF transparent transparent;
+    border-style: dashed solid dashed dashed;
+    float: left;
+    left: -10px;
+    top: 10px;
+    z-index: 5;
+}
+/*选中便签效果*/
+.choose:after{
+    border: 4px solid #009cff;
+}
+/*输入便签*/
+.noteInput{
+    min-height: 100px;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    width: 500px;
+    line-height: 20px;
+    height: auto;
+    padding: 10px;
+}
+/*删除便签*/
+.delNote{
+    display: none;
+    height: 20px;
+    width: 20px;
+    opacity: 0.3;
+    left: 10px;
+    top: 40px;
+}
+.delNote:hover{
+    opacity: 0.6;
+    cursor: pointer;
 }
