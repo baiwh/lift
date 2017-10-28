@@ -5,7 +5,7 @@
 
 $(function () {
     // 点击编辑标签
-    $("body").on("click",".tagChange",function () {
+    $("body").on("click", ".tagChange", function () {
         // 他自己隐藏
         $(this).hide();
         // 全显示
@@ -13,25 +13,27 @@ $(function () {
     })
 
     // 添加新标签的Ajax
-    function addTag(newTag,del,tagId) {
-        var userId=$("#userId").val();
+    function addTag(newTag, del, tagId) {
+        var userId = $("#userId").val();
         $.ajax({
-            url:"",    //请求的url地址
-            dataType:"json",   //返回格式为json
-            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{"newTag":newTag,
-                "del":del,
-                "tagId":tagId,
-                "userId":userId},    //参数值
-            type:"POST",   //请求方式
-            success:function(data){
-                if (data.status){
+            url: "",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "newTag": newTag,
+                "del": del,
+                "tagId": tagId,
+                "userId": userId
+            },    //参数值
+            type: "POST",   //请求方式
+            success: function (data) {
+                if (data.status) {
 
-                }else {
+                } else {
                     alert("保存失败");
                 }
             },
-            error:function(){
+            error: function () {
                 //请求出错处理
                 // alert("服务器错误");
                 // return;
@@ -40,18 +42,18 @@ $(function () {
     }
 
     // 点击减号
-    $("body").on("click",".tagDel",function () {
+    $("body").on("click", ".tagDel", function () {
         // 他前边的span删除
         $(this).prev().remove();
         // 他自己也删除
         $(this).remove();
-        var newTag=$(this).prev().html();
-        var tagId=$(this).next().attr("id");
-        addTag(newTag,"yes",tagId);
+        var newTag = $(this).prev().html();
+        var tagId = $(this).next().attr("id");
+        addTag(newTag, "yes", tagId);
     })
 
     // 点击标签的对勾
-    $("body").on("click",".tagOk",function () {
+    $("body").on("click", ".tagOk", function () {
         var par = $(this).parent();
         // 新标签隐藏
         par.find(".addTag").hide();
@@ -62,27 +64,27 @@ $(function () {
         // 编辑显示
         par.find(".tagChange").fadeIn();
         // 隐藏输入框
-        if($(".inputTag").val()==""){
+        if ($(".inputTag").val() == "") {
             $(".inputTag").hide();
         }
     })
 
     // 点击添加新标签。添加输入框
-    $("body").on("click",".addTag",function (){
+    $("body").on("click", ".addTag", function () {
         $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
     })
 
     // 鼠标离开新标签输入框。显示新标签。隐藏他自己
-    $("body").on("blur",".inputTag",function (){
-        var newTag=$(this).val();
-        if(newTag!=""){
+    $("body").on("blur", ".inputTag", function () {
+        var newTag = $(this).val();
+        if (newTag != "") {
             $(this).next().html(newTag);
             $(this).next().show();
             $(this).next().next().show();
             $(this).hide();
         }
-        var tagId=$(this).next().next().attr("id");
-        addTag(newTag,"no",tagId);
+        var tagId = $(this).next().next().attr("id");
+        addTag(newTag, "no", tagId);
     })
 
     // 给页面的第一个小列表加上选中效果
@@ -92,7 +94,7 @@ $(function () {
     //     // console.log(div[0].classList);
     // })
     var div = $("#list-box").find("div:first");
-        div[0].classList.add("choose");
+    div[0].classList.add("choose");
 
     // 被选中的小列表加上效果
     $('body').on('click', '.task', function () {
@@ -102,34 +104,36 @@ $(function () {
     })
 
     // 小列表的Ajax
-    function updateTask(del){
-        var choose=$(".choose");
-        var grade=choose.find(".grade:visible").attr("class");
-        var tag=choose.find(".theTag1").html();
-        var title=choose.find(".title span").html();
-        var day=choose.find(".day span").html();
-        var taskId=choose.find(".taskId").attr("id");
-        var userId=$("#userId").val();
+    function updateTask(del) {
+        var choose = $(".choose");
+        var grade = choose.find(".grade:visible").attr("class");
+        var tag = choose.find(".theTag1").html();
+        var title = choose.find(".title span").html();
+        var day = choose.find(".day span").html();
+        var taskId = choose.find(".taskId").attr("id");
+        var userId = $("#userId").val();
         $.ajax({
-            url:"",    //请求的url地址
-            dataType:"json",   //返回格式为json
-            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{"grade":grade,
-                "tag":tag,
-                "title":title,
-                "day":day,
-                "del":del,
-                "taskId":taskId,
-                "userId":userId},    //参数值
-            type:"POST",   //请求方式
-            success:function(data){
-                if (data.status){
+            url: "",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "grade": grade,
+                "tag": tag,
+                "title": title,
+                "day": day,
+                "del": del,
+                "taskId": taskId,
+                "userId": userId
+            },    //参数值
+            type: "POST",   //请求方式
+            success: function (data) {
+                if (data.status) {
 
-                }else {
+                } else {
                     alert("保存失败");
                 }
             },
-            error:function(){
+            error: function () {
                 //请求出错处理
                 // alert("服务器错误");
                 // return;
@@ -154,9 +158,10 @@ $(function () {
             sibl.hide();
         }
         // 获取紧急程度的class
-        var chooseGrade=$(this).parent().find("div:visible").attr("class");
+        var chooseGrade = $(this).parent().find("div:visible").attr("class");
         // 赋给大列表的
-        $(".item").find(".grade").attr("class",chooseGrade).animate({'opacity': '1'});;
+        $(".item").find(".grade").attr("class", chooseGrade).animate({'opacity': '1'});
+        ;
         updateTask("no");
     })
 
@@ -183,14 +188,14 @@ $(function () {
     })
 
     // 取标题赋给输入框
-    var chooseTitle=$(".choose").find(".title span").html();
+    var chooseTitle = $(".choose").find(".title span").html();
     $(".choose").find(".title input").val(chooseTitle);
 
     // 输入的同时详细列表标题改变信息
     $('body').on('keyup', '.listInput', function () {
         // $(".listInput").keyup(function () {
-        var par=$(this).parent().attr("class");
-        if (titInput != ""&&par=="title") {
+        var par = $(this).parent().attr("class");
+        if (titInput != "" && par == "title") {
             // 获取标题
             var titInput = $(this).val();
             // 把标题赋给h2
@@ -203,10 +208,10 @@ $(function () {
     $('body').on('click', '.stateBar span', function () {
         // $(".stateBar span").click(function () {
         // 获取他的悬浮标签
-        var tag=$(this).parent().next("div");
-        if(tag.is(":hidden")){
+        var tag = $(this).parent().next("div");
+        if (tag.is(":hidden")) {
             tag.fadeIn();
-        }else {
+        } else {
             tag.fadeOut();
         }
     })
@@ -216,9 +221,9 @@ $(function () {
     $('body').on('click', '.allTag span', function () {
         // $(".allTag span").click(function () {
         // 获取悬浮窗内被点击的html
-        var newTag=$(this).html();
+        var newTag = $(this).html();
         // 获取要替换的那个tag
-        var theTag1=$(this).parent().parent().children().find(".theTag1");
+        var theTag1 = $(this).parent().parent().children().find(".theTag1");
         // 替换悬浮窗外的小标签
         theTag1.html(newTag);
         // 替换掉大列表里的标签
@@ -232,7 +237,7 @@ $(function () {
     })
 
     // 小垃圾桶删除小列表的效果
-    $("body").on("click",".del",function () {
+    $("body").on("click", ".del", function () {
         $(this).parent().remove();
         updateTask("yes");
     })
@@ -252,22 +257,23 @@ $(function () {
 
     // 新增小列表
     function addNewList() {
-        var userId=$("#userId").val();
+        var userId = $("#userId").val();
         $.ajax({
-            url:"/task/insertTask.action",    //请求的url地址
-            dataType:"json",   //返回格式为json
-            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{
-                "userId":userId},    //参数值
-            type:"POST",   //请求方式
-            success:function(data){
-                if (data.status){
+            url: "/task/insertTask.action",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "userId": userId
+            },    //参数值
+            type: "POST",   //请求方式
+            success: function (data) {
+                if (data.status) {
 
-                }else {
+                } else {
                     alert("保存失败");
                 }
             },
-            error:function(){
+            error: function () {
                 //请求出错处理
                 // alert("服务器错误");
                 // return;
@@ -277,7 +283,7 @@ $(function () {
 
     // 添加新任务
     $('body').on('click', '#add', function () {
-    // $("#add").click(function () {
+        // $("#add").click(function () {
         addElementDiv('list-box');
         addNewList();
     })
@@ -289,31 +295,37 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = "<div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"></div>";
+        div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"></div>";
         // 在之后加
         parent.append(div);
         $(".newDiv").slideDown();
 
     }
 
+    // 获取进度条效果
+    function ratioAnimation() {
+        // 进度条效果
+        // 获取小项目的个数
+        var len = document.getElementsByClassName("items").length;
+        // 获取小项目被选中的个数
+        var checkLen = $("#toDoList").find("input[type='checkbox']:checked").length;
+        // 获取进度条的条
+        var ratio = $(".choose").find(".ratio");
+        // 进度条效果
+        var leftNum = (-325) + checkLen / len * 325;
+        ratio.animate({left: leftNum + "px"});
+        // 获取进度条下的分数
+        var rateVal = $(".choose").find(".rateVal");
+        // 进度条下分数效果
+        rateVal.html(checkLen + "/" + len);
+    }
+
+    ratioAnimation();
     // 添加新项目
     $('body').on('click', '#newItem', function () {
         // $("#newItem").click(function () {
         addItemDiv('toDoList');
-        // 进度条效果
-        // 获取小项目的个数
-        var len=document.getElementsByClassName("items").length;
-        // 获取小项目被选中的个数
-        var checkLen=$("#toDoList").find("input[type='checkbox']:checked").length;
-        // 获取进度条的条
-        var ratio=$(".choose").find(".ratio");
-        // 进度条效果
-        var leftNum=(-325)+checkLen/len*325;
-        ratio.animate({left:leftNum+"px"});
-        // 获取进度条下的分数
-        var rateVal=$(".choose").find(".rateVal");
-        // 进度条下分数效果
-        rateVal.html(checkLen+"/"+len);
+        // ratioAnimation();
         // 显示输入框
         $(".newDiv:last").find(".items").slideUp();
         $(".newDiv:last").find(".itemInput").slideDown();
@@ -321,51 +333,77 @@ $(function () {
     })
 
     // 添加新的小项目Ajax
-    function insert(inputData){
-        var taskId=$("#taskId").val();
-        var userId=$("#userId").val();
+    function insert(inputData) {
+        var taskId = $("#taskId").val();
+        var userId = $("#userId").val();
         $.ajax({
-            url:"/taskDetail/insertTaskDetail.action",    //请求的url地址
-            dataType:"json",   //返回格式为json
-            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{"inputData":inputData,
-                "taskId":taskId,
-                "userId":userId},    //参数值
-            type:"POST",   //请求方式
-            success:function(data){
-                if (data.status){
-
-                }else {
+            url: "/taskDetail/insertTaskDetail.action",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "name": inputData,
+                "taskId": taskId,
+                "userId": userId
+            },    //参数值
+            type: "POST",   //请求方式
+            success: function (data) {
+                if (data.status) {
+                    ratioAnimation();
+                    // alert("保存成功");
+                    // window.location.reload();
+                    $(".detailId").attr("value", data.data);
+                } else {
                     alert("保存失败");
+                    //保存失败的话就删除最后添加的
+                    var temp = $(".changeInput").is(":visible");
+                    if (temp) {
+                        // $(".changeInput:last").parent().remove();
+                        $(".newDiv:last").remove();
+                    }
+                    return false;
                 }
             },
-            error:function(){
+            error: function () {
                 //请求出错处理
                 alert("服务器错误");
+                //保存失败的话就删除最后添加的
+                var temp = $(".changeInput").is(":visible");
+                if (temp) {
+                    // $(".changeInput:last").parent().remove();
+                    $(".newDiv:last").remove();
+                }
+                return false;
                 // return;
             }
         });
     }
 
-    // 添加新的小项目。当鼠标离开输入框
 
-        $("body").on("blur",".itemInput",function () {
-            // 如果这个输入框可见，且绿色对勾不可见。则隐藏输入框
-            if($(this).is(":visible")&&$(".changeOk").is(":hidden")){
-                $(".itemInput").slideUp();
-                $(".items").slideDown();
-            }
-            // 获取输入的值，返回到后台
-            var data=$(this).find(".changeInput").val();
-            // 如果是空的。就删了它。
-            if(data==""){
+    /*detail修改输入框鼠标离开时将数据赋给原来的span
+        并进行新增或更新操作*/
+    $("body").on("blur", ".changeInput", function () {
+        // 他自己的值
+        var changeInput = $(this).val();
+        // 如果是编辑状态
+        if ($("#changeOk").is(":visible")) {
+            $(this).parent().prev().find("span").html(changeInput);
+            // 往后台传id和内容
+            // 他的hidden的id
+            var inputId = $(this).parent().prev().prev().val();
+            var check = $(this).parent().prev().find("input").is(":checked");
+            update(changeInput, inputId, "update", check);
+        }else {
+            // 新增item
+            $(".itemInput").slideUp();
+            $(".items").slideDown();
+            $(this).parent().prev().find("span").html(changeInput);
+            if (changeInput == "") {
                 $(this).parent().remove();
                 return;
             }
-            insert(data);
-        })
-
-
+            insert(changeInput);
+        }
+    })
 
     // 划掉项目
     $('body').on('click', '.items', function () {
@@ -384,25 +422,28 @@ $(function () {
             $(this).next().find(".checkBox").addClass("c");
         }
 
-        // 进度条效果
-        // 获取小项目的个数
-        var len=document.getElementsByClassName("items").length;
-        // 获取小项目被选中的个数
-        var checkLen=$("#toDoList").find("input[type='checkbox']:checked").length;
-        // 获取进度条的条
-        var ratio=$(".choose").find(".ratio");
-        // 进度条效果
-        var leftNum=(-325)+checkLen/len*325;
-        ratio.animate({left:leftNum+"px"});
-        // 获取进度条下的分数
-        var rateVal=$(".choose").find(".rateVal");
-        // 进度条下分数效果
-        rateVal.html(checkLen+"/"+len);
+        // // 进度条效果
+        // // 获取小项目的个数
+        // var len = document.getElementsByClassName("items").length;
+        // // 获取小项目被选中的个数
+        // var checkLen = $("#toDoList").find("input[type='checkbox']:checked").length;
+        // // 获取进度条的条
+        // var ratio = $(".choose").find(".ratio");
+        // // 进度条效果
+        // var leftNum = (-325) + checkLen / len * 325;
+        // ratio.animate({left: leftNum + "px"});
+        // // 获取进度条下的分数
+        // var rateVal = $(".choose").find(".rateVal");
+        // // 进度条下分数效果
+        // rateVal.html(checkLen + "/" + len);
+        ratioAnimation();
         // 返回数据
-        var changeInput=$(this).parent().next().find(".changeInput").val();
-        var inputId=$(this).parent().next().find(".detailId").attr("id");
-        var check=$(".items").find("input").is(":checked");
-        update(changeInput,inputId,'update',check);
+        var name = $(this).find("span").text();
+        // var detailId = $(this).find(".detailId").val();
+        var detailId = $(this).prev().val();
+        // var check = $(".items").find("input").is(":checked");
+        var check = $(this).find("input[type='checkbox']").is(":checked");
+        update(name, detailId, 'update', check);
     })
 
 
@@ -418,27 +459,33 @@ $(function () {
     })
 
     // 修改状态下的详细列表的Ajax
-    function update(inputData,inputId,actionType,check){
-        var taskId=$("#taskId").val();
-        var userId=$("#userId").val();
+    function update(name, detailId, actionType, check) {
+        var taskId = $("#taskId").val();
+        var userId = $("#userId").val();
         $.ajax({
-            url:"/taskDetail/updateTaskDetail.action",    //请求的url地址
-            dataType:"json",   //返回格式为json
-            async:false,//请求是否异步，默认为异步，这也是ajax重要特性
-            data:{"dataList":inputData,
-                "id":inputId,
-                "actionType":actionType,
-                "isChecked":check,
-                "taskId":taskId,
-                "userId":userId},    //参数值
-            type:"POST",   //请求方式
-            success:function(data){
-                if (data.status){
-                }else {
+            url: "/taskDetail/updateTaskDetail.action",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "name": name,
+                "id": detailId,
+                "actionType": actionType,
+                "isChecked": check,
+                "taskId": taskId,
+                "userId": userId
+            },    //参数值
+            type: "POST",   //请求方式
+            success: function (data) {
+                if (data.status) {
+                    // $("#item-box").location="/task/list.action";
+                    // $("#item-box").load("/taskDetail/list.action?userId="+userId+"&taskId="+taskId);
+                    // window.location.reload();
+                } else {
                     alert("保存失败");
+                    // $("#item-box").location="/taskDetail/list.action";
                 }
             },
-            error:function(){
+            error: function () {
                 //请求出错处理
                 // alert("服务器错误");
                 // return;
@@ -446,45 +493,35 @@ $(function () {
         });
     }
 
-    // detail修改输入框鼠标离开时将数据赋给原来的span
-    $("body").on("blur",".changeInput",function () {
-        // 他自己的值
-        var changeInput=$(this).val();
-        $(this).parent().prev().find("span").html(changeInput);
-        // 往后台传id和内容
-        // 他的hidden的id
-        var inputId=$(this).parent().find("input:hidden").attr("id");
-        var check=$(this).parent().prev().find("input").is(":checked");
-        update(changeInput,inputId,"ud",check);
-    })
-
 
     // 点垃圾桶删除这个小项目
-    $("body").on("click",".changeDel",function () {
+    $("body").on("click", ".changeDel", function () {
+
+        // 获取他的值
+        var changeInput = $(this).parent().find(".changeInput").val();
+        // 获取他的id
+        var inputId = $(this).parent().prev().prev().val();
+        var check = $(this).parent().prev().find("input").is(":checked");
+
         $(this).parent().prev().remove();
         $(this).parent().remove();
-        // 获取他的值
-        var val=$(this).parent().find(".changeInput").val();
-        // 获取他的id
-        var inputId=$(this).parent().find("input:hidden").attr("id");
-        var check=$(this).parent().prev().find("input").is(":checked");
+        // // 进度条效果
+        // // 获取小项目的个数
+        // var len = document.getElementsByClassName("items").length;
+        // // 获取小项目被选中的个数
+        // var checkLen = $("#toDoList").find("input[type='checkbox']:checked").length;
+        // // 获取进度条的条
+        // var ratio = $(".choose").find(".ratio");
+        // // 进度条效果
+        // var leftNum = (-325) + checkLen / len * 325;
+        // ratio.animate({left: leftNum + "px"});
+        // // 获取进度条下的分数
+        // var rateVal = $(".choose").find(".rateVal");
+        // // 进度条下分数效果
+        // rateVal.html(checkLen + "/" + len);
+        ratioAnimation();
 
-        // 进度条效果
-        // 获取小项目的个数
-        var len=document.getElementsByClassName("items").length;
-        // 获取小项目被选中的个数
-        var checkLen=$("#toDoList").find("input[type='checkbox']:checked").length;
-        // 获取进度条的条
-        var ratio=$(".choose").find(".ratio");
-        // 进度条效果
-        var leftNum=(-325)+checkLen/len*325;
-        ratio.animate({left:leftNum+"px"});
-        // 获取进度条下的分数
-        var rateVal=$(".choose").find(".rateVal");
-        // 进度条下分数效果
-        rateVal.html(checkLen+"/"+len);
-
-        update(val,inputId,"del",check);
+        update(changeInput, inputId, "del", check);
     })
 
     // // 编辑状态下的添加小项目
@@ -496,7 +533,7 @@ $(function () {
 
 
     // 点对勾恢复原样
-    $("body").on("click",".changeOk",function () {
+    $("body").on("click", ".changeOk", function () {
         $(".itemInput").slideUp();
         $(".items").slideDown();
         $(".changeOk").slideUp();
@@ -505,10 +542,10 @@ $(function () {
 
 
     // 点击标签筛选
-    $("body").on("click",".select",function (){
+    $("body").on("click", ".select", function () {
 
         // 获取选取标签的id
-        var selectId=$(this).next().next().val();
+        var selectId = $(this).next().next().val();
         // $(window).attr('location','/task/list.action?label='+selectId);
 
         // 他自己是蓝的。别的全是灰的
@@ -516,7 +553,6 @@ $(function () {
         $(this).siblings(".tag").addClass("NoChoose");
 
     })
-
 
 
 })
