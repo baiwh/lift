@@ -230,10 +230,14 @@ body{
 /*标题*/
 .title{
 	margin: 5px 25px;
+	overflow: visible;
 }
 .title input{
 	z-index: 2;
+	font-size: 16px;
 	height: 25px;
+	left: -6px;
+	top: -2px;
 	width: 200px;
 	padding: 5px;
 	border-radius: 5px;
