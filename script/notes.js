@@ -20,11 +20,10 @@ $(function () {
         var date=new Date();
         var hour=date.getHours();
         var minute=date.getMinutes();
-        var time=""+hour+"："+minute;
+        var time=""+hour+":"+minute;
         $(".choose").siblings(".hour").find(".theHour").html(time);
 
     })
-
 
     // 点击垃圾桶就删除他爸爸
     $("body").on("click",".delNote",function () {
