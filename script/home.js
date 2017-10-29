@@ -103,67 +103,95 @@ $(function () {
         $(this).siblings().removeClass("choose");
     })
 
+
     // 小列表的Ajax
     function updateTask(del) {
         var choose = $(".choose");
-        var grade = choose.find(".grade:visible").attr("class");
+        var grade = choose.find(".grade:visible").find("input").val();
         var tag = choose.find(".theTag1").html();
         var title = choose.find(".title span").html();
         var day = choose.find(".day span").html();
-        var taskId = choose.find(".taskId").attr("id");
+        var taskId = choose.find(".taskId").attr("value");
         var userId = $("#userId").val();
         $.ajax({
-            url: "",    //请求的url地址
+            url: "/task/updateTask.action",    //请求的url地址
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
                 "grade": grade,
-                "tag": tag,
-                "title": title,
-                "day": day,
+                "label": tag,
+                // "name": title,
+                // "createDate": day,
                 "del": del,
-                "taskId": taskId,
+                "id": taskId,
                 "userId": userId
             },    //参数值
             type: "POST",   //请求方式
             success: function (data) {
                 if (data.status) {
-
+                    alert("保存成功");
                 } else {
                     alert("保存失败");
                 }
             },
             error: function () {
                 //请求出错处理
-                // alert("服务器错误");
+                alert("服务器错误");
                 // return;
             }
         });
     }
-
-    // 重要程度选择
-    $('body').on('click', '.grade', function () {
-        // $(".grade").click(function () {
-        // 获取他的同辈div
-        var sibl = $(this).siblings("div");
-        // 如果他的同辈div是隐藏状态
-        if (sibl.is(":hidden")) {
-            // 则显示他们
-            sibl.show();
-        } else {
-            //将点击的div设置为选中
-            $(this).animate({'opacity': '1'});
-            //将其他的同级别Div设置为透明
-            sibl.animate({'opacity': '0.1'});
-            sibl.hide();
-        }
-        // 获取紧急程度的class
-        var chooseGrade = $(this).parent().find("div:visible").attr("class");
-        // 赋给大列表的
-        $(".item").find(".grade").attr("class", chooseGrade).animate({'opacity': '1'});
-        ;
-        updateTask("no");
+    $('body').on('click', '.stateBar div:first', function (){
+        // 如果三个圈是隐藏的。显示三个圈。隐藏他自己。获取他自己的class。找到三个圈里class和他一样的那个改变透明度。把三个圈里的同级改为透明。
+        $(this).next().show();
+        $(this).hide();
+        var gradeClass=$(this).attr("class");
+        $(this).next().find(gradeClass).animate({'opacity': '1'});
+        $(this).next().find(gradeClass).siblings().animate({'opacity': '0.1'});
     })
+
+    $('body').on('click', '.gradeBox>div', function () {
+        // 如果点的是三个圈。显示单个的。隐藏gradeBox
+        $(this).parent().prev().show();
+        $(this).parent().hide();
+        // 获取被选中的class和val，赋值给单个的grade，透明度改为1
+        var gradeClass=$(this).attr("class");
+        var gradeVal=$(this).find("input").val();
+        $(this).parent().prev().attr("class",gradeClass);
+        $(this).parent().prev().find("input").attr("value",gradeVal);
+        $(this).parent().prev().animate({'opacity': '1'});
+        // 返回val到后台进行更新
+        updateTask("no")
+
+    })
+    // // 重要程度选择
+    // $('body').on('click', '.grade', function () {
+    //     // $(".grade").click(function () {
+    //     var gradeId = $(this).find("input").val();
+    //     $(this).prev().show();
+    //     $(this).parent().hide();
+    //     $(".item").find(".grade").attr("class", chooseGrade).animate({'opacity': '1'});
+    //     updateTask("no",gradeId);
+    //
+    //     // // 获取他的同辈div
+    //     // var sibl = $(this).siblings("div");
+    //     // // 如果他的同辈div是隐藏状态
+    //     // if (sibl.is(":hidden")||sibl.length==0) {
+    //     //     // 则显示他们
+    //     //     sibl.show();
+    //     // } else {
+    //     //     //将点击的div设置为选中
+    //     //     $(this).animate({'opacity': '1'});
+    //     //     //将其他的同级别Div设置为透明
+    //     //     sibl.animate({'opacity': '0.1'});
+    //     //     sibl.hide();
+    //     //     // 获取紧急程度的class
+    //     //     var chooseGrade = $(this).parent().find("div:visible").attr("class");
+    //     //     // 赋给大列表的
+    //     //     $(".item").find(".grade").attr("class", chooseGrade).animate({'opacity': '1'});
+    //     //     updateTask("no");
+    //     // }
+    // })
 
     // 修改标题。点击切换input
     $('body').on('click', '.listSpan', function () {
@@ -295,7 +323,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"icon/del.png\" alt=\"\"></div>";
+        div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"/icon/del.png\" alt=\"\"></div>";
         // 在之后加
         parent.append(div);
         $(".newDiv").slideDown();
@@ -392,13 +420,15 @@ $(function () {
             var inputId = $(this).parent().prev().prev().val();
             var check = $(this).parent().prev().find("input").is(":checked");
             update(changeInput, inputId, "update", check);
-        }else {
+        } else {
             // 新增item
             $(".itemInput").slideUp();
             $(".items").slideDown();
             $(this).parent().prev().find("span").html(changeInput);
             if (changeInput == "") {
-                $(this).parent().remove();
+                // $(this).parent().prev().prev().remove();
+                // $(this).parent().prev().remove();
+                $(this).parent().parent().remove();
                 return;
             }
             insert(changeInput);
