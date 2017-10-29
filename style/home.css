@@ -327,11 +327,12 @@ body{
 }
 /*增加和删除小项目*/
 .itemInput{
+
 	display: none;
 	border: 1px solid #D3D3D3;
 	width: 500px;
 	height: 50px;
-	line-height: 50px;
+	line-height: 54px;
 	padding: 0px 10px 0px 20px;
 	margin: 0px 40px;
 	border-radius: 2px;
@@ -341,10 +342,12 @@ body{
 }
 /*输入框*/
 .itemInput input{
-	height: 30px;
+	padding: 0px 10px ;
+	font-size: 15px;
+	height: 45px;
 	width: 330px;
 	border-radius: 5px;
-	border: 1px solid #d3d3d3;
+	border: 1px solid #f1f1f1;
 	top: -4px;
 }
 

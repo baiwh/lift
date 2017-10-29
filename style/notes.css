@@ -122,16 +122,19 @@
 }
 /*输入便签*/
 textarea{
+    position: absolute;
+    top: 0px;
+    left: 0px;
     min-height: 100px;
     min-width: 500px;
     border: 1px solid #FFFFFF;
     border-radius: 5px;
     padding: 10px;
     resize: none;
-    height: auto;
+    height: 100%;
 
 }
-textarea.
+
 /*删除便签*/
 .delNote{
     display: none;

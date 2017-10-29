@@ -136,7 +136,7 @@ $(function () {
             },
             error: function () {
                 //请求出错处理
-                alert("服务器错误");
+                // alert("服务器错误");
                 // return;
             }
         });
@@ -393,7 +393,7 @@ $(function () {
             },
             error: function () {
                 //请求出错处理
-                alert("服务器错误");
+                // alert("服务器错误");
                 //保存失败的话就删除最后添加的
                 var temp = $(".changeInput").is(":visible");
                 if (temp) {
