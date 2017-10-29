@@ -129,7 +129,7 @@ $(function () {
             type: "POST",   //请求方式
             success: function (data) {
                 if (data.status) {
-                    alert("保存成功");
+                    // alert("保存成功");
                 } else {
                     alert("保存失败");
                 }
@@ -141,13 +141,16 @@ $(function () {
             }
         });
     }
+    //在载入页面的时候将重要程度设为不透明
+    $(".stateBar").find(":first-child").animate({'opacity': '1'});
     $('body').on('click', '.stateBar div:first', function (){
         // 如果三个圈是隐藏的。显示三个圈。隐藏他自己。获取他自己的class。找到三个圈里class和他一样的那个改变透明度。把三个圈里的同级改为透明。
         $(this).next().show();
         $(this).hide();
-        var gradeClass=$(this).attr("class");
-        $(this).next().find(gradeClass).animate({'opacity': '1'});
-        $(this).next().find(gradeClass).siblings().animate({'opacity': '0.1'});
+        /* 在取多个class的时候，不能有空格而且需要用"."或者","来分隔，
+         不过我们将动画效果移入到下面的function中，就不需要取这个class了*/
+        // var gradeClass=$(this).attr("class");
+        // gradeClass="."+gradeClass.replace(" ",".");
     })
 
     $('body').on('click', '.gradeBox>div', function () {
@@ -160,38 +163,14 @@ $(function () {
         $(this).parent().prev().attr("class",gradeClass);
         $(this).parent().prev().find("input").attr("value",gradeVal);
         $(this).parent().prev().animate({'opacity': '1'});
+        //获取选中的grade。将他的透明度设为1.其他的设为0.1
+        $(this).siblings().animate({'opacity': '0.1'});
+        $(this).animate({'opacity': '1'});
         // 返回val到后台进行更新
         updateTask("no")
 
     })
-    // // 重要程度选择
-    // $('body').on('click', '.grade', function () {
-    //     // $(".grade").click(function () {
-    //     var gradeId = $(this).find("input").val();
-    //     $(this).prev().show();
-    //     $(this).parent().hide();
-    //     $(".item").find(".grade").attr("class", chooseGrade).animate({'opacity': '1'});
-    //     updateTask("no",gradeId);
-    //
-    //     // // 获取他的同辈div
-    //     // var sibl = $(this).siblings("div");
-    //     // // 如果他的同辈div是隐藏状态
-    //     // if (sibl.is(":hidden")||sibl.length==0) {
-    //     //     // 则显示他们
-    //     //     sibl.show();
-    //     // } else {
-    //     //     //将点击的div设置为选中
-    //     //     $(this).animate({'opacity': '1'});
-    //     //     //将其他的同级别Div设置为透明
-    //     //     sibl.animate({'opacity': '0.1'});
-    //     //     sibl.hide();
-    //     //     // 获取紧急程度的class
-    //     //     var chooseGrade = $(this).parent().find("div:visible").attr("class");
-    //     //     // 赋给大列表的
-    //     //     $(".item").find(".grade").attr("class", chooseGrade).animate({'opacity': '1'});
-    //     //     updateTask("no");
-    //     // }
-    // })
+
 
     // 修改标题。点击切换input
     $('body').on('click', '.listSpan', function () {
