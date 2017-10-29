@@ -1,8 +1,8 @@
 *{
 	margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    position: relative;
+	padding: 0;
+	box-sizing: border-box;
+	position: relative;
 }
 div{
 	overflow: hidden;
@@ -122,12 +122,12 @@ body{
 .tag:before{
 	content: "";
 	width: 0;
-    height: 4px;
-    border-top: 10px solid transparent;
+	height: 4px;
+	border-top: 10px solid transparent;
 	border-right: 10px solid #46B6FD;
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    left: -9px;
+	border-bottom: 10px solid transparent;
+	position: absolute;
+	left: -9px;
 	top: -2px;
 }
 /*浮动窗里的标签*/
@@ -207,6 +207,19 @@ body{
 	margin: 5px;
 	cursor: pointer;
 }
+
+.grade1{
+	border: 5px solid red;
+	opacity: 0.1;
+}
+.grade2{
+	border: 5px solid orange;
+	opacity: 0.1;
+}
+.grade3{
+	border: 5px solid green;
+	opacity: 0.1;
+}
 .stateBar .tag{
 	top: 15px;
 }
@@ -256,18 +269,7 @@ body{
 	/*display: none;*/
 	cursor: pointer;
 }
-.grade1{
-	border: 5px solid red;
-	opacity: 0.1;
-}
-.grade2{
-	border: 5px solid orange;
-	opacity: 0.1;
-}
-.grade3{
-	border: 5px solid green;
-	opacity: 0.1;
-}
+
 .addTask .ratio{
 	left: -325px;
 }
@@ -335,8 +337,8 @@ body{
 	border-radius: 2px;
 }
 .itemInput:hover{
-	 border: 1px solid #46B6FD;
- }
+	border: 1px solid #46B6FD;
+}
 /*输入框*/
 .itemInput input{
 	height: 30px;
