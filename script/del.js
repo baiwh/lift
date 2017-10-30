@@ -31,6 +31,7 @@ $(function () {
         rateVal.html(checkLen + "/" + len);
     }
 
+    ratioAnimation();
 
 
     // 恢复的Ajax

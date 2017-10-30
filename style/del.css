@@ -171,8 +171,8 @@ body{
 /*删除小列表的垃圾桶图*/
 .del{
 	opacity: 0.4;
-	height: 20px;
-	width: 20px;
+	height: 25px;
+	width: 25px;
 	float: right;
 	right: 10px;
 	cursor: pointer;
