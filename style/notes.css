@@ -35,13 +35,11 @@
     width: 50px;
     overflow: scroll;
     height: 500px;
-    scrollbar-arrow-color: #f4ae21;
 }
 /*日里的span*/
 .theDay{
     height: 20px;
     width: 20px;
-    scrollbar-arrow-color: #f4ae21;
 }
 /*日的滚动条*/
 .day::-webkit-scrollbar-track{
@@ -88,7 +86,7 @@
     background: #FFFFFF;
     float: left;
     left: -11px;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0px 0px 35px #c2c2c2;
 }
 /*点*/
@@ -121,20 +119,32 @@
     border: 4px solid #009cff;
 }
 /*输入便签*/
-textarea{
+.noteInput{
     position: absolute;
     top: 0px;
     left: 0px;
-    min-height: 100px;
-    min-width: 500px;
+    /*min-height: 100px;*/
+    width: 500px;
     border: 1px solid #FFFFFF;
-    border-radius: 5px;
+    border-radius: 15px;
     padding: 10px;
     resize: none;
     height: 100%;
-
+    font-size: 15px;
+    line-height: 28px;
 }
-
+pre{
+    display: block;
+    width: 500px;
+    padding: 10px;
+    /*visibility: hidden;*/
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    font-size: 15px;
+    line-height: 32px;
+}
 /*删除便签*/
 .delNote{
     display: none;

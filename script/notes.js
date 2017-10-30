@@ -22,7 +22,14 @@ $(function () {
         var minute=date.getMinutes();
         var time=""+hour+":"+minute;
         $(".choose").siblings(".hour").find(".theHour").html(time);
+    })
 
+    // 改变textarea的高度
+    $("body").on("keyup",".noteInput",function () {
+        // 获取他的内容
+        var noteInput=$(this).val();
+        // 赋给他的pre
+        $(this).parent().find(".notesPre").html(noteInput);
     })
 
     // 点击垃圾桶就删除他爸爸
