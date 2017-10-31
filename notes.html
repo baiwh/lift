@@ -63,26 +63,29 @@
         <!--年-->
         <div class="theTime">
             <div class="year">
-                <span>2017</span>
-                <span>2018</span>
-                <span>2019</span>
+                <span class="theYear">2017</span>
+                <span class="theYear">2018</span>
+                <span class="theYear">2019</span>
             </div>
         </div>
         <!--月-->
         <div class="theTime">
             <div class="month">
-                <span class="theMonth">1</span>
-                <span class="theMonth">2</span>
-                <span class="theMonth">3</span>
-                <span class="theMonth">4</span>
-                <span class="theMonth">5</span>
-                <span class="theMonth">6</span>
-                <span class="theMonth">7</span>
-                <span class="theMonth">8</span>
-                <span class="theMonth">9</span>
-                <span class="theMonth">10</span>
-                <span class="theMonth">11</span>
-                <span class="theMonth">12</span>
+                <div>
+                    <span class="theMonth">1</span>
+                    <span class="theMonth">2</span>
+                    <span class="theMonth">3</span>
+                    <span class="theMonth">4</span>
+                    <span class="theMonth">5</span>
+                    <span class="theMonth">6</span>
+                    <span class="theMonth">7</span>
+                    <span class="theMonth">8</span>
+                    <span class="theMonth">9</span>
+                    <span class="theMonth">10</span>
+                    <span class="theMonth">11</span>
+                    <span class="theMonth">12</span>
+                </div>
+
             </div>
         </div>
         <!--日-->
@@ -136,7 +139,7 @@
             <!--便签内容-->
             <div class="notes">
                 <!--输入-->
-                <textarea name="" class="noteInput"></textarea>
+                <div class="noteInput" contenteditable="true"><br/></div>
             </div>
             <!--删除-->
             <img class="delNote" src="icon/del.png" alt="">
@@ -144,12 +147,11 @@
 
         <div class="note">
             <div class="hour">
-                <span class="theHour">23:50</span>
+                <span>23:50</span>
             </div>
             <input type="hidden" class="noteId">
             <div class="notes">
-                <pre ><span class="notesPre"></span><br></pre>
-                <textarea name="" class="noteInput"></textarea>
+                <div class="noteInput" contenteditable="true"><br/></div>
             </div>
             <img class="delNote" src="icon/del.png" alt="">
         </div>
