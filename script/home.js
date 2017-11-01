@@ -143,10 +143,18 @@ $(function () {
     }
     //在载入页面的时候将重要程度设为不透明
     $(".stateBar").find(":first-child").animate({'opacity': '1'});
-    $('body').on('click', '.stateBar div:first', function (){
+
+    $('body').on('click', '.grade', function (){
+        if($(this).parent().attr("class")!="gradeBox"){
+            $(this).hide();
+            $(this).next().show();
+        }else {
+            $(this).parent().prev().show();
+            $(this).parent().hide();
+        }
         // 如果三个圈是隐藏的。显示三个圈。隐藏他自己。获取他自己的class。找到三个圈里class和他一样的那个改变透明度。把三个圈里的同级改为透明。
-        $(this).next().show();
-        $(this).hide();
+        // $(this).next().show();
+        // $(this).hide();
         /* 在取多个class的时候，不能有空格而且需要用"."或者","来分隔，
          不过我们将动画效果移入到下面的function中，就不需要取这个class了*/
         // var gradeClass=$(this).attr("class");

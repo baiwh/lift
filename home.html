@@ -136,7 +136,57 @@
             <img src="icon/del.png" alt="" class="del">
         </div>
 
+        <div class="task addTask" id="">
+            <input type="hidden" id="" class="taskId">
+            <!--附加信息-->
+            <div class="stateBar">
+                <!--紧急程度-->
 
+                <div class="grade grade3" hidden>
+                    <input type="hidden" value="3">
+                </div>
+
+                <div class="gradeBox">
+                    <div class="grade grade1" >
+                        <input type="hidden" name="grade1" value="1">
+                    </div>
+                    <div class="grade grade2">
+                        <input type="hidden" name="grade2" value="2">
+                    </div>
+                    <div class="grade grade3">
+                        <input type="hidden" name="grade3" value="3">
+                    </div>
+                </div>
+                <!--标签-->
+                <span class="tag theTag1">家</span>
+                <!--<span class="tag theTag2">+</span>-->
+            </div>
+            <!--标签悬浮-->
+            <div class="allTag">
+                <span class="tag NoChoose">1</span>
+                <span class="tag NoChoose">2</span>
+                <span class="tag NoChoose">3</span>
+            </div>
+
+            <!--标题-->
+            <div class="title">
+                <input type="text" class="listInput" placeholder="标题">
+                <span class="listSpan">标题</span>
+            </div>
+            <!--日期-->
+            <div class="day">
+                <input type="date" class="listInput">
+                <span class="listSpan">2017</span>
+            </div>
+            <!--进度条-->
+            <div class="rate">
+                <div class="ratio">
+                </div>
+            </div>
+            <span class="rateVal">0/0</span>
+            <!--删除-->
+            <img src="icon/del.png" alt="" class="del">
+        </div>
 
     </div>
     </form>
