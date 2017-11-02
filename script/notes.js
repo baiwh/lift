@@ -4,8 +4,8 @@
 $(function () {
     // 获取当前时间
     var date=new Date();
-    var year=date.getYear().toString();
-    var month=date.getMonth();
+    var year=date.getFullYear();
+    var month=date.getMonth()+1;
     var day=date.getDate();
     var hour=date.getHours();
     var minute=date.getMinutes();
@@ -13,8 +13,14 @@ $(function () {
     if (minute<10){
         minute="0"+minute;
     }
-    alert(year)
-    $(".theYear:contains(2017)").animate({"opacity":"1"});
+    // 给当天的日期去掉透明度
+    $(".theYear:contains("+year+")").animate({"opacity":"1"});
+    $(".theMonth:contains("+month+")").animate({"opacity":"1"});
+    $(".theDay:contains("+day+")").animate({"opacity":"1"});
+    // 调整到指定位置
+    $(".year").animate({"scrollTop":(year-2017)*40});
+    $(".month").animate({"scrollTop":(month-1)*40});
+    $(".day").animate({"scrollTop":(day-1)*40});
 
 
     // 鼠标移入便签范围。显示垃圾桶
@@ -67,12 +73,26 @@ $(function () {
 
     // 点击时间的span
     $(".theTime span").click(function () {
-        // 去掉透明度
-        $(this).animate({"opacity":"1"});
+
         // 它同级的透明度0.3
         $(this).siblings().animate({"opacity":"0.3"});
-        // 往上挪
-        $(this).parent().animate({"top":"-50px"});
+        // 去掉透明度
+        $(this).animate({"opacity":"1"});
+
+        // 获取这个数字
+        var number=$(this).html();
+        if(number<100){
+            // 月和日的span往上挪.先获取点击的HTML。然后*40
+            var scroll=(number-1)*40;
+            $(this).parent().animate({"scrollTop":scroll});
+        }else {
+            // 年的先减2016
+            number=number-2016;
+            var scroll=(number-1)*40;
+            $(this).parent().animate({"scrollTop":scroll});
+        }
+
+        // 传个什么？？
     })
 
 
