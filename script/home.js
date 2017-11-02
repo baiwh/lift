@@ -151,6 +151,21 @@ $(function () {
         }else {
             $(this).parent().prev().show();
             $(this).parent().hide();
+            // 如果点的是三个圈。显示单个的。隐藏gradeBox
+            $(this).parent().prev().show();
+            $(this).parent().hide();
+            // 获取被选中的class和val，赋值给单个的grade，透明度改为1
+            var gradeClass=$(this).attr("class");
+            var gradeVal=$(this).find("input").val();
+            $(this).parent().prev().attr("class",gradeClass);
+            $(this).parent().prev().find("input").attr("value",gradeVal);
+            $(this).parent().prev().animate({'opacity': '1'});
+            //获取选中的grade。将他的透明度设为1.其他的设为0.1
+            $(this).siblings().animate({'opacity': '0.1'});
+            $(this).animate({'opacity': '1'});
+            // 返回val到后台进行更新
+            updateTask("no");
+
         }
         // 如果三个圈是隐藏的。显示三个圈。隐藏他自己。获取他自己的class。找到三个圈里class和他一样的那个改变透明度。把三个圈里的同级改为透明。
         // $(this).next().show();
@@ -161,23 +176,7 @@ $(function () {
         // gradeClass="."+gradeClass.replace(" ",".");
     })
 
-    $('body').on('click', '.gradeBox>div', function () {
-        // 如果点的是三个圈。显示单个的。隐藏gradeBox
-        $(this).parent().prev().show();
-        $(this).parent().hide();
-        // 获取被选中的class和val，赋值给单个的grade，透明度改为1
-        var gradeClass=$(this).attr("class");
-        var gradeVal=$(this).find("input").val();
-        $(this).parent().prev().attr("class",gradeClass);
-        $(this).parent().prev().find("input").attr("value",gradeVal);
-        $(this).parent().prev().animate({'opacity': '1'});
-        //获取选中的grade。将他的透明度设为1.其他的设为0.1
-        $(this).siblings().animate({'opacity': '0.1'});
-        $(this).animate({'opacity': '1'});
-        // 返回val到后台进行更新
-        updateTask("no")
 
-    })
 
 
     // 修改标题。点击切换input

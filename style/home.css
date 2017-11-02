@@ -273,10 +273,7 @@ body{
 
 
 /*增加的列表*/
-.addTask{
-	/*display: none;*/
-	cursor: pointer;
-}
+addTask
 
 .addTask .ratio{
 	left: -325px;
