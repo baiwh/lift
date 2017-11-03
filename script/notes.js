@@ -14,9 +14,9 @@ $(function () {
         minute="0"+minute;
     }
     // 给当天的日期去掉透明度
-    $(".theYear:contains("+year+")").animate({"opacity":"1"});
-    $(".theMonth:eq("+(month-1)+")").animate({"opacity":"1"});
-    $(".theDay:eq("+(day-1)+")").animate({"opacity":"1"});
+    $(".theYear:contains("+year+")").animate({"opacity":"1"}).addClass("choose");
+    $(".theMonth:eq("+(month-1)+")").animate({"opacity":"1"}).addClass("choose");
+    $(".theDay:eq("+(day-1)+")").animate({"opacity":"1"}).addClass("choose");
 
     // 调整到指定位置
     $(".year").animate({"scrollTop":(year-2017)*40});
@@ -138,22 +138,27 @@ $(function () {
     // 点击时间的span
     $(".theTime span").click(function () {
 
-        // 它同级的透明度0.3
-        $(this).siblings().animate({"opacity":"0.3"});
-        // 去掉透明度
-        $(this).animate({"opacity":"1"});
-
-        // 获取这个数字
-        var number=$(this).html();
-        if(number<100){
-            // 月和日的span往上挪.先获取点击的HTML。然后*40
-            var scroll=(number-1)*40;
-            $(this).parent().animate({"scrollTop":scroll});
+        // 如果点击的这个是choose。就去掉透明度。
+        if($(this).hasClass("choose")){
+            $(this).animate({"opacity":"0.3"}).removeClass("choose");
         }else {
-            // 年的先减2016
-            number=number-2016;
-            var scroll=(number-1)*40;
-            $(this).parent().animate({"scrollTop":scroll});
+            // 它同级的透明度0.3
+            $(this).siblings().animate({"opacity":"0.3"}).removeClass("choose");
+            // 不透明
+            $(this).animate({"opacity":"1"}).addClass("choose");
+
+            // 获取这个数字
+            var number=$(this).html();
+            if(number<100){
+                // 月和日的span往上挪.先获取点击的HTML。然后*40
+                var scroll=(number-1)*40;
+                $(this).parent().animate({"scrollTop":scroll});
+            }else {
+                // 年的先减2016
+                number=number-2016;
+                var scroll=(number-1)*40;
+                $(this).parent().animate({"scrollTop":scroll});
+            }
         }
 
         // 传个什么？？
