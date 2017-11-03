@@ -43,21 +43,66 @@ $(function () {
         $(this).parent().parent().siblings().children(".hour").css("color","#c2c2c2");
     })
 
+    var userId=$("#userId").val();
+
     // 鼠标离开输入框
     $("body").on("blur",".noteInput",function () {
         // 计算出时和分
         var time=""+hour+":"+minute;
         // 赋给对应的span
         $(this).parent().parent().find(".hour span").html(time);
-        // 回传一个Ajax
         // 获取它的内容
-        var noteInput=$(this).find("span").html();
+        var noteInput=$(this).html();
+        var noteId=$(this).parent().prev().val();
+        var allTime=""+year+"-"+month+"-"+day+"/"+hour+":"+minute;
+        // 回传一个Ajax
+        $.ajax({
+            url: "",
+            dataType: "json",
+            async: false,
+            data: {
+                "allTime":allTime,
+                "noteId":noteId,
+                "noteInput":noteInput,
+                "userId": userId
+            },
+            type: "POST",
+            success: function (data) {
+
+            },
+            error: function () {
+                // alert("服务器错误");
+                // return;
+            }
+        });
+
     })
 
     // 点击垃圾桶就删除他爸爸
     $("body").on("click",".delNote",function () {
-        $(this).parent().remove();
+        var flag=0;
         // 回传一个Ajax
+        var noteId=$(this).siblings("input").val();
+        $.ajax({
+            url: "",
+            dataType: "json",
+            async: false,
+            data: {
+                "noteId":noteId,
+                "userId": userId
+            },
+            type: "POST",
+            success: function (data) {
+                flag=1;
+            },
+            error: function () {
+                // alert("服务器错误");
+                // return;
+            }
+        });
+        if (flag=1){
+            $(this).parent().remove();
+        }
     })
 
     // 点击加号。添加新的
@@ -69,6 +114,24 @@ $(function () {
             $(".newNote").slideDown();
         }
         // 回传一个Ajax
+        var noteId=$(".contents").children("input:first").val();
+        $.ajax({
+            url: "",
+            dataType: "json",
+            async: false,
+            data: {
+                "noteId":noteId,
+                "userId": userId
+            },
+            type: "POST",
+            success: function (data) {
+
+            },
+            error: function () {
+                // alert("服务器错误");
+                // return;
+            }
+        });
     })
 
     // 点击时间的span
