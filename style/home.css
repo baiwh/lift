@@ -230,14 +230,10 @@ body{
 /*标题*/
 .title{
 	margin: 5px 25px;
-	overflow: visible;
 }
 .title input{
 	z-index: 2;
-	font-size: 16px;
 	height: 25px;
-	left: -6px;
-	top: -2px;
 	width: 200px;
 	padding: 5px;
 	border-radius: 5px;
@@ -273,9 +269,12 @@ body{
 
 
 /*增加的列表*/
-addTask
+/*.addTask{*/
+/*!*display: none;*!*/
+/*cursor: pointer;*/
+/*}*/
 
-.addTask .ratio{
+.task .ratio{
 	left: -325px;
 }
 /*删除小列表的垃圾桶图*/
