@@ -63,17 +63,16 @@ body{
 .addTag{
 	display: none;
 	float: right;
-	height: 20px;
-	width: 120px;
+	height: 25px;
+	width: 90px;
 	margin: 5px;
 	cursor: pointer;
-	background: #FFFFFF;
-	border: 1px dashed #C2C2C2;
-	color: #C2C2C2;
-	border-radius: 10px;
-	line-height: 16px;
+	background: #46B6FD;
+	border: 1px dashed #46B6FD;
+	color: #FFFFFF;
+	border-radius: 5px;
+	line-height: 23px;
 	text-align: center;
-	top: 2px;
 }
 /*新的标签*/
 .newTag{
@@ -226,6 +225,9 @@ body{
 }
 .stateBar .tag{
 	top: 15px;
+}
+.header div{
+	opacity: 1;
 }
 /*标题*/
 .title{

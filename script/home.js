@@ -6,6 +6,15 @@
 $(function () {
 
     /*=================================================头部标签编辑开始===========================================*/
+    // 点击标签筛选
+    $("body").on("click", ".select", function () {
+        // 获取选取标签的id
+        var selectId = $(this).next().next().val();
+        // 他自己是蓝的。别的全是灰的
+        $(this).removeClass("NoChoose");
+        $(this).siblings(".tag").addClass("NoChoose");
+    })
+
     // 点击编辑标签
     $("body").on("click", ".tagChange", function () {
         // 他自己隐藏
@@ -14,23 +23,41 @@ $(function () {
         $(this).siblings().fadeIn();
     })
 
+    // 点击添加新标签。添加输入框
+    $("body").on("click", ".addTag", function () {
+        $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
+    })
+
+    // 鼠标离开新标签输入框。显示新标签。隐藏输入框
+    $("body").on("blur", ".inputTag", function () {
+        var labelName = $(this).val();
+        if (labelName != "") {
+            $(this).next().html(labelName);
+            $(this).next().show();
+            $(this).next().next().show();
+            $(this).hide();
+        }
+        var newLabel = $(this);
+        addLabel(labelName,newLabel);
+    })
+
     // 添加新标签的Ajax
-    function addTag(newTag, del, tagId) {
+    function addLabel(labelName,newLabel) {
         var userId = $("#userId").val();
         $.ajax({
-            url: "",    //请求的url地址
+            url: "/label/insertLabel.action",    //请求的url地址
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
-                "newTag": newTag,
-                "del": del,
-                "tagId": tagId,
+                "labelName": labelName,
                 "userId": userId
-            },    //参数值
+            },
             type: "POST",   //请求方式
             success: function (data) {
                 if (data.status) {
-
+                    var labelId = data.data;
+                    newLabel.parent().find("input:hidden").val(labelId);
+                    alert("label保存成功")
                 } else {
                     alert("保存失败");
                 }
@@ -45,14 +72,44 @@ $(function () {
 
     // 点击减号
     $("body").on("click", ".tagDel", function () {
-        // 他前边的span删除
-        $(this).prev().remove();
-        // 他自己也删除
-        $(this).remove();
         var newTag = $(this).prev().html();
-        var tagId = $(this).next().attr("id");
-        addTag(newTag, "yes", tagId);
+        var tagId = $(this).next().val();
+        var clickLabel = $(this);
+        updateLabel(newTag, "yes", tagId, clickLabel);
     })
+
+    function updateLabel(labelName, del, labelId, clickLabel) {
+        var userId = $("#userId").val();
+        $.ajax({
+            url: "/label/updateLabel.action",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: false,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "labelName": labelName,
+                "userId": userId,
+                "del": del,
+                "labelId": labelId
+            },
+            type: "POST",   //请求方式
+            success: function (data) {
+                if (data.status) {
+                    alert("label删除存成功");
+                    // 他前边的span删除
+                    clickLabel.prev().remove();
+                    clickLabel.next().remove();
+                    // 他自己也删除
+                    clickLabel.remove();
+                } else {
+                    alert("保存失败");
+                }
+            },
+            error: function () {
+                //请求出错处理
+                // alert("服务器错误");
+                // return;
+            }
+        });
+    }
 
     // 点击标签的对勾
     $("body").on("click", ".tagOk", function () {
@@ -71,23 +128,6 @@ $(function () {
         }
     })
 
-    // 点击添加新标签。添加输入框
-    $("body").on("click", ".addTag", function () {
-        $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
-    })
-
-    // 鼠标离开新标签输入框。显示新标签。隐藏他自己
-    $("body").on("blur", ".inputTag", function () {
-        var newTag = $(this).val();
-        if (newTag != "") {
-            $(this).next().html(newTag);
-            $(this).next().show();
-            $(this).next().next().show();
-            $(this).hide();
-        }
-        var tagId = $(this).next().next().attr("id");
-        addTag(newTag, "no", tagId);
-    })
 
     /*------------------------------------------------头部标签编辑结束------------------------------------------------*/
 
@@ -235,10 +275,17 @@ $(function () {
         // 获取他的悬浮标签
         var tag = $(this).parent().next("div");
         if (tag.is(":hidden")) {
+            //如果点击的是悬浮窗外的标签。显示悬浮窗
             tag.fadeIn();
+            // 获取这个标签的html。找到悬浮窗内相同的。变成蓝色。其他的变成灰色。
+            var label=$(this).html();
+            tag.find("span:contains("+label+")").removeClass("NoChoose");
+            tag.find("span:contains("+label+")").addClass("NoChoose");
         } else {
+            //如果点击的是悬浮窗内的标签。隐藏悬浮窗
             tag.fadeOut();
         }
+        $("#allTag").load()
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
@@ -318,6 +365,7 @@ $(function () {
     /*-----------------------------------------------TaskDiv操作结束-------------------------------------------*/
 
     /*=================================================DetailDiv操作开始========================================*/
+
     // 获取进度条效果
     function ratioAnimation() {
         // 进度条效果
@@ -490,7 +538,7 @@ $(function () {
     })
 
     // 修改状态下的详细列表的Ajax
-    function update(name, detailId, actionType, check, checkedNo, totalNo) {
+    function update(name, detailId, actionType, check, checkedNo, totalNo, clickItem) {
         var taskId = $("#taskId").val();
         var userId = $("#userId").val();
         $.ajax({
@@ -510,9 +558,11 @@ $(function () {
             type: "POST",   //请求方式
             success: function (data) {
                 if (data.status) {
-                    // $("#item-box").location="/task/list.action";
-                    // $("#item-box").load("/taskDetail/list.action?userId="+userId+"&taskId="+taskId);
-                    // window.location.reload();
+                    if (actionType === "del") {
+                        clickItem.parent().prev().remove();
+                        clickItem.parent().remove();
+                        ratioAnimation();
+                    }
                 } else {
                     alert("保存失败");
                     // $("#item-box").location="/taskDetail/list.action";
@@ -533,15 +583,16 @@ $(function () {
         // 获取他的id
         var inputId = $(this).parent().prev().prev().val();
         var check = $(this).parent().prev().find("input").is(":checked");
-        $(this).parent().prev().remove();
-        $(this).parent().remove();
+        // $(this).parent().prev().remove();
+        // $(this).parent().remove();
         // // 进度条效果
-        // // 获取小项目的个数
+        // ratioAnimation();
+        // 获取小项目的个数
         var totalNo = document.getElementsByClassName("items").length;
-        // // 获取小项目被选中的个数
+        // 获取小项目被选中的个数
         var checkedNo = $("#toDoList").find("input[type='checkbox']:checked").length;
-        ratioAnimation();
-        update(changeInput, inputId, "del", check, checkedNo, totalNo);
+        var clickItem = $(this);
+        update(changeInput, inputId, "del", check, checkedNo, totalNo, clickItem);
     })
     // // 编辑状态下的添加小项目
     // $("body").on("click",".changeAdd",function () {
@@ -550,14 +601,7 @@ $(function () {
     //     $(this).parent().next().next().slideDown();
     // })
 
-    // 点击标签筛选
-    $("body").on("click", ".select", function () {
-        // 获取选取标签的id
-        var selectId = $(this).next().next().val();
-        // 他自己是蓝的。别的全是灰的
-        $(this).removeClass("NoChoose");
-        $(this).siblings(".tag").addClass("NoChoose");
-    })
+
 
     /*-----------------------------------------------DetailDiv操作结束-------------------------------------------*/
 
