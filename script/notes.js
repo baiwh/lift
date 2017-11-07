@@ -155,8 +155,8 @@ $(function () {
                 $(this).parent().animate({"scrollTop":scroll});
             }else {
                 // 年的先减2016
-                number=number-2016;
-                var scroll=(number-1)*40;
+                number=number-2017;
+                var scroll=number*40;
                 $(this).parent().animate({"scrollTop":scroll});
             }
         }
