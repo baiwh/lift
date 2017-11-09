@@ -42,11 +42,11 @@ $(function () {
             $(this).hide();
         }
         var newLabel = $(this);
-        addLabel(labelName,newLabel);
+        addLabel(labelName, newLabel);
     })
 
     // 添加新标签的Ajax
-    function addLabel(labelName,newLabel) {
+    function addLabel(labelName, newLabel) {
         var userId = $("#userId").val();
         $.ajax({
             url: "/label/insertLabel.action",    //请求的url地址
@@ -104,9 +104,9 @@ $(function () {
                     // 他自己也删除
                     clickLabel.remove();
                 } else {
-                    if(data.data===1){
+                    if (data.data === 1) {
                         alert("此标签正在使用，不能删除");
-                    }else {
+                    } else {
                         alert("保存失败");
 
                     }
@@ -173,7 +173,7 @@ $(function () {
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
                 "gradeId": grade,
-                "labelName":labelName,
+                "labelName": labelName,
                 "labelId": labelId,
                 "taskName": title,
                 "createTime": day,
@@ -210,7 +210,7 @@ $(function () {
 
     $('body').on('click', '.grade', function () {
         // 如果点击的不是detail里的grade
-        if($(this).parent().parent().attr("class")!="header") {
+        if ($(this).parent().parent().attr("class") != "header") {
             //若是点击单个grade
             if ($(this).parent().attr("class") != "gradeBox") {
                 $(this).hide();
@@ -285,16 +285,17 @@ $(function () {
 
     // 标签悬浮窗的显示和隐藏
     $('body').on('click', '.stateBar span', function () {
-        $(".allTag").load("/label/getLabelList.action?userId=" + userId);
+        var labelId = $(this).prev().val();
+        $(".allTag").load("/label/getLabelList.action?userId=" + userId + "&labelId=" + labelId);
         // 获取他的悬浮标签
         var tag = $(this).parent().next("div");
         if (tag.is(":hidden")) {
-            //如果点击的是悬浮窗外的标签。显示悬浮窗
+            // //如果点击的是悬浮窗外的标签。显示悬浮窗
             tag.fadeIn();
-            // 获取这个标签的html。找到悬浮窗内相同的。变成蓝色。其他的变成灰色。
-            var label=$(this).html();
-            tag.find("span:contains("+label+")").removeClass("NoChoose");
-            tag.find("span:contains("+label+")").addClass("NoChoose");
+            // // 获取这个标签的html。找到悬浮窗内相同的。变成蓝色。其他的变成灰色。
+            // var label = $(this).html();
+            // tag.find("span").addClass("NoChoose");
+            // tag.find("span:contains(" + label + ")").removeClass("NoChoose");
         } else {
             //如果点击的是悬浮窗内的标签。隐藏悬浮窗
             tag.fadeOut();
@@ -306,12 +307,12 @@ $(function () {
     $('body').on('click', '.allTag span', function () {
         // 获取悬浮窗内被点击的html
         var newLabel = $(this).html();
-        var newLabelId= $(this).prev().val();
+        var newLabelId = $(this).prev().val();
         // 获取要替换的那个tag
         var labelName = $(this).parent().parent().children().find(".theTag1");
         // 替换悬浮窗外的小标签
         labelName.html(newLabel);
-        $(".labelId").val(newLabelId);
+        $(this).parent().parent().children().find(".labelId").val(newLabelId);
         // 替换掉大列表里的标签
         $(".item").find(".tag").html(newLabel);
         // 隐藏悬浮窗
@@ -616,7 +617,6 @@ $(function () {
     //     $(this).parent().next().slideUp();
     //     $(this).parent().next().next().slideDown();
     // })
-
 
 
     /*-----------------------------------------------DetailDiv操作结束-------------------------------------------*/
