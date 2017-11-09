@@ -222,6 +222,9 @@ $(function () {
                 gradeClass = "." + gradeClass.replace(" ", ".");
                 //将gradeBox中，与该单个Grade相同颜色的grade，设置为不透明。
                 $(this).next().find(gradeClass).animate({'opacity': '1'});
+                e.stopPropagation();
+                $(this).closest(".task").addClass("choose");
+                $(this).closest(".task").siblings().removeClass("choose");
             } else {
                 // 如果点的是gradeBox。显示单个grade。隐藏gradeBox
                 $(this).parent().prev().show();
@@ -241,6 +244,9 @@ $(function () {
                 var clickDiv = $(this).parent().parent().parent();
                 updateTask("no", clickDiv);
                 $(".header").children().find(".grade").attr("class", gradeClass);
+                e.stopPropagation();
+                $(this).closest(".task").addClass("choose");
+                $(this).closest(".task").siblings().removeClass("choose");
             }
         }
     })
@@ -252,6 +258,9 @@ $(function () {
         // 让span隐藏，input显示
         $(this).hide();
         $(this).siblings().show();
+        e.stopPropagation();
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     });
 
     // 日期和标题的onblur事件，对修改进行保存
@@ -267,7 +276,17 @@ $(function () {
         // 获取当前点击的taskDiv
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
+        e.stopPropagation();
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
+
+    // 阻止冒泡
+    $('body').on('blur', '.listInput', function (e) {
+        e.stopPropagation();
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
+    }
 
     // 初始化页面时，js取task标题赋值给detail标题
     var chooseTitle = $(".choose").find(".title span").html();
@@ -301,7 +320,9 @@ $(function () {
             //如果点击的是悬浮窗内的标签。隐藏悬浮窗
             tag.fadeOut();
         }
-
+        e.stopPropagation();
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
@@ -323,12 +344,18 @@ $(function () {
         $(this).siblings().removeClass("labelChoose");
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
+        e.stopPropagation();
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // TaskDiv的删除事件
     $("body").on("click", ".del", function () {
         var clickDiv = $(this).parent();
         updateTask("yes", clickDiv);
+        e.stopPropagation();
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
     // 添加新任务
     $('body').on('click', '#add', function () {
