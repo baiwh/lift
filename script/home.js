@@ -30,7 +30,7 @@ $(function () {
 
     // 点击添加新标签。添加输入框
     $("body").on("click", ".addTag", function () {
-        $(this).before("<input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select NoChoose\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\">");
+        $(this).before("<input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select NoChoose newTag\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\">");
     })
 
     // 鼠标离开新标签输入框。显示新标签。隐藏输入框
@@ -40,7 +40,7 @@ $(function () {
             $(this).next().html(labelName);
             $(this).next().show();
             $(this).next().next().show();
-            $(this).hide();
+            $(this).remove();
         }
         var newLabel = $(this);
         addLabel(labelName, newLabel);
