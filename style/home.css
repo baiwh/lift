@@ -76,10 +76,6 @@ body{
 }
 /*新的标签*/
 .newTag{
-	float: right;
-	overflow: visible;
-}
-.newTag span{
 	display: none;
 }
 .inputTag{
@@ -89,6 +85,7 @@ body{
 	line-height: 25px;
 	border-radius: 5px;
 	border: 1px solid #C2C2C2;
+	float: right;
 }
 /*标签*/
 .tag{
