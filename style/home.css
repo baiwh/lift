@@ -99,8 +99,8 @@ body{
 	cursor: pointer;
 	font-size: 15px;
 	color: #FFFFFF;
-	border: 2px solid #46B6FD;
-	background: #46B6FD;
+	border: 2px solid #C2C2C2;
+	background: #C2C2C2;
 	text-align: center;
 }
 /*标签的白色圆点*/
@@ -120,7 +120,7 @@ body{
 	width: 0;
 	height: 4px;
 	border-top: 10px solid transparent;
-	border-right: 10px solid #46B6FD;
+	border-right: 10px solid #C2C2C2;
 	border-bottom: 10px solid transparent;
 	position: absolute;
 	left: -9px;
@@ -130,13 +130,20 @@ body{
 .allTag span{
 	float: left;
 }
-/*未选中。灰色*/
-.NoChoose{
-	background: #C2C2C2;
-	border: 2px solid #C2C2C2;
+/*选中。蓝色*/
+.labelChoose{
+	background: #46B6FD;
+	border: 2px solid #46B6FD;
 }
-.NoChoose:before{
-	border-right: 10px solid #C2C2C2;
+.labelChoose:before{
+	border-right: 10px solid #46B6FD;
+}
+.labelChoose{
+	background: #46B6FD;
+	border: 2px solid #46B6FD;
+}
+.labelChoose:before{
+	border-right: 10px solid #46B6FD;
 }
 /*标签悬浮*/
 .allTag{

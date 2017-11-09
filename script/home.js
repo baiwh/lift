@@ -15,8 +15,8 @@ $(function () {
         // 获取选取标签的id
         var selectId = $(this).next().next().val();
         // 他自己是蓝的。别的全是灰的
-        $(this).removeClass("NoChoose");
-        $(this).siblings(".tag").addClass("NoChoose");
+        $(this).addClass("labelChoose");
+        $(this).siblings(".tag").removeClass("labelChoose");
 
     })
 
@@ -30,7 +30,7 @@ $(function () {
 
     // 点击添加新标签。添加输入框
     $("body").on("click", ".addTag", function () {
-        $(this).before("<input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select NoChoose newTag\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\">");
+        $(this).before("<input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select newTag\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\">");
     })
 
     // 鼠标离开新标签输入框。显示新标签。隐藏输入框
@@ -319,8 +319,8 @@ $(function () {
         // 隐藏悬浮窗
         $(this).parent().fadeOut();
         // 颜色替换
-        $(this).removeClass("NoChoose");
-        $(this).siblings().addClass("NoChoose");
+        $(this).addClass("labelChoose");
+        $(this).siblings().removeClass("labelChoose");
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
     })
@@ -374,7 +374,7 @@ $(function () {
         //设置 div 属性，如 id
         div.setAttribute("class", "task newDiv");
         // div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"taskId\"><div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">家</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"/icon/del.png\" alt=\"\" class=\"del\">";
-        div.innerHTML = "  <input type=\"hidden\" id=\"\" class=\"taskId\" value=\"\"> <div class=\"stateBar\"> <div class=\"grade \" hidden=\"hidden\"> <input type=\"hidden\" value=\"\"> </div> <div class=\"gradeBox\" > <div class=\"grade grade1\"> <input type=\"hidden\" name=\"grade1\" value=\"1\"> </div> <div class=\"grade grade2\"> <input type=\"hidden\" name=\"grade2\" value=\"2\"> </div> <div class=\"grade grade3\"> <input type=\"hidden\" name=\"grade3\" value=\"3\"> </div> </div> <span class=\"tag theTag1\"></span> </div> <div class=\"allTag\"> <span class=\"tag NoChoose\"></span> </div> <div class=\"title\"> <input type=\"text\" class=\"listInput\" placeholder=\"标题\"> <span class=\"listSpan\"></span> </div> <div class=\"day\"> <input type=\"date\" class=\"listInput\"> <span class=\"listSpan\"></span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">0/0</span> <img src=\"/icon/del.png\" alt=\"\" class=\"del\"> "
+        div.innerHTML = "  <input type=\"hidden\" id=\"\" class=\"taskId\" value=\"\"> <div class=\"stateBar\"> <div class=\"grade \" hidden=\"hidden\"> <input type=\"hidden\" value=\"\"> </div> <div class=\"gradeBox\" > <div class=\"grade grade1\"> <input type=\"hidden\" name=\"grade1\" value=\"1\"> </div> <div class=\"grade grade2\"> <input type=\"hidden\" name=\"grade2\" value=\"2\"> </div> <div class=\"grade grade3\"> <input type=\"hidden\" name=\"grade3\" value=\"3\"> </div> </div> <span class=\"tag theTag1\"></span> </div> <div class=\"allTag\"> <span class=\"tag\"></span> </div> <div class=\"title\"> <input type=\"text\" class=\"listInput\" placeholder=\"标题\"> <span class=\"listSpan\"></span> </div> <div class=\"day\"> <input type=\"date\" class=\"listInput\"> <span class=\"listSpan\"></span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">0/0</span> <img src=\"/icon/del.png\" alt=\"\" class=\"del\"> "
         //在之前加
         parent.prepend(div);
         $(".newDiv").slideDown();
