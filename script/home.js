@@ -17,6 +17,7 @@ $(function () {
         // 他自己是蓝的。别的全是灰的
         $(this).removeClass("NoChoose");
         $(this).siblings(".tag").addClass("NoChoose");
+
     })
 
     // 点击编辑标签
@@ -29,7 +30,7 @@ $(function () {
 
     // 点击添加新标签。添加输入框
     $("body").on("click", ".addTag", function () {
-        $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select NoChoose\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
+        $(this).before("<input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select NoChoose\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\">");
     })
 
     // 鼠标离开新标签输入框。显示新标签。隐藏输入框
