@@ -4,7 +4,11 @@
 
 
 $(function () {
-
+    var userId = $("#userId").val();
+    $("#search-button").click(function () {
+        var taskName = $("#search-text").val();
+        $("#searchForm").submit();
+    })
     /*=================================================头部标签编辑开始===========================================*/
     // 点击标签筛选
     $("body").on("click", ".select", function () {
@@ -25,7 +29,7 @@ $(function () {
 
     // 点击添加新标签。添加输入框
     $("body").on("click", ".addTag", function () {
-        $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
+        $(this).before("<div class=\"newTag\"><input class=\"inputTag\" type=\"text\" placeholder=\"新标签\" ><span class=\"tag select NoChoose\"></span><span class=\"tagDel\">-</span><input type=\"hidden\" value=\"\"></div>");
     })
 
     // 鼠标离开新标签输入框。显示新标签。隐藏输入框
@@ -93,14 +97,19 @@ $(function () {
             type: "POST",   //请求方式
             success: function (data) {
                 if (data.status) {
-                    alert("label删除存成功");
+                    alert("label删除成功");
                     // 他前边的span删除
                     clickLabel.prev().remove();
                     clickLabel.next().remove();
                     // 他自己也删除
                     clickLabel.remove();
                 } else {
-                    alert("保存失败");
+                    if(data.data===1){
+                        alert("此标签正在使用，不能删除");
+                    }else {
+                        alert("保存失败");
+
+                    }
                 }
             },
             error: function () {
@@ -152,7 +161,8 @@ $(function () {
     // 小列表的Ajax
     function updateTask(del, clickDiv) {
         var grade = clickDiv.find(".grade:visible").find("input").val();
-        var tag = clickDiv.find(".theTag1").html();
+        var labelName = clickDiv.find(".theTag1").html();
+        var labelId = clickDiv.find(".labelId").val();
         var title = clickDiv.find(".title span").html();
         var day = clickDiv.find(".day span").html();
         var taskId = clickDiv.find(".taskId").attr("value");
@@ -162,8 +172,9 @@ $(function () {
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
-                "grade": grade,
-                "label": tag,
+                "gradeId": grade,
+                "labelName":labelName,
+                "labelId": labelId,
                 "taskName": title,
                 "createTime": day,
                 "del": del,
@@ -198,37 +209,39 @@ $(function () {
     }
 
     $('body').on('click', '.grade', function () {
-        //若是点击单个grade
-        if ($(this).parent().attr("class") != "gradeBox") {
-            $(this).hide();
-            $(this).next().show();
-            /* 在取多个class的时候，不能有空格而且需要用"."或者","来分隔，
-         不过我们将动画效果移入到下面的function中，就不需要取这个class了*/
-            var gradeClass = $(this).attr("class");
-            gradeClass = "." + gradeClass.replace(" ", ".");
-            //将gradeBox中，与该单个Grade相同颜色的grade，设置为不透明。
-            $(this).next().find(gradeClass).animate({'opacity': '1'});
-        } else {
-            // 如果点的是gradeBox。显示单个grade。隐藏gradeBox
-            $(this).parent().prev().show();
-            $(this).parent().hide();
-            // 获取被选中的class和val，赋值给单个的grade，透明度改为1
-            var gradeClass = $(this).attr("class");
-            var gradeVal = $(this).find("input").val();
-            //获取单个grade的div
-            var grade = $(this).parent().prev();
-            grade.attr("class", gradeClass);
-            grade.find("input").attr("value", gradeVal);
-            grade.animate({'opacity': '1'});
-            //获取选中的grade。将他的透明度设为1.其他的设为0.1
-            $(this).siblings().animate({'opacity': '0.1'});
-            $(this).animate({'opacity': '1'});
-            // 返回val到后台进行更新
-            var clickDiv = $(this).parent().parent().parent();
-            updateTask("no", clickDiv);
-            $(".header").children().find(".grade").attr("class", gradeClass);
+        // 如果点击的不是detail里的grade
+        if($(this).parent().parent().attr("class")!="header") {
+            //若是点击单个grade
+            if ($(this).parent().attr("class") != "gradeBox") {
+                $(this).hide();
+                $(this).next().show();
+                /* 在取多个class的时候，不能有空格而且需要用"."或者","来分隔，
+             不过我们将动画效果移入到下面的function中，就不需要取这个class了*/
+                var gradeClass = $(this).attr("class");
+                gradeClass = "." + gradeClass.replace(" ", ".");
+                //将gradeBox中，与该单个Grade相同颜色的grade，设置为不透明。
+                $(this).next().find(gradeClass).animate({'opacity': '1'});
+            } else {
+                // 如果点的是gradeBox。显示单个grade。隐藏gradeBox
+                $(this).parent().prev().show();
+                $(this).parent().hide();
+                // 获取被选中的class和val，赋值给单个的grade，透明度改为1
+                var gradeClass = $(this).attr("class");
+                var gradeVal = $(this).find("input").val();
+                //获取单个grade的div
+                var grade = $(this).parent().prev();
+                grade.attr("class", gradeClass);
+                grade.find("input").attr("value", gradeVal);
+                grade.animate({'opacity': '1'});
+                //获取选中的grade。将他的透明度设为1.其他的设为0.1
+                $(this).siblings().animate({'opacity': '0.1'});
+                $(this).animate({'opacity': '1'});
+                // 返回val到后台进行更新
+                var clickDiv = $(this).parent().parent().parent();
+                updateTask("no", clickDiv);
+                $(".header").children().find(".grade").attr("class", gradeClass);
+            }
         }
-
     })
 
     // 点击日期和标题，从span切换成input
@@ -272,6 +285,7 @@ $(function () {
 
     // 标签悬浮窗的显示和隐藏
     $('body').on('click', '.stateBar span', function () {
+        $(".allTag").load("/label/getLabelList.action?userId=" + userId);
         // 获取他的悬浮标签
         var tag = $(this).parent().next("div");
         if (tag.is(":hidden")) {
@@ -285,19 +299,21 @@ $(function () {
             //如果点击的是悬浮窗内的标签。隐藏悬浮窗
             tag.fadeOut();
         }
-        $("#allTag").load()
+
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
     $('body').on('click', '.allTag span', function () {
         // 获取悬浮窗内被点击的html
-        var newTag = $(this).html();
+        var newLabel = $(this).html();
+        var newLabelId= $(this).prev().val();
         // 获取要替换的那个tag
-        var theTag1 = $(this).parent().parent().children().find(".theTag1");
+        var labelName = $(this).parent().parent().children().find(".theTag1");
         // 替换悬浮窗外的小标签
-        theTag1.html(newTag);
+        labelName.html(newLabel);
+        $(".labelId").val(newLabelId);
         // 替换掉大列表里的标签
-        $(".item").find(".tag").html(newTag);
+        $(".item").find(".tag").html(newLabel);
         // 隐藏悬浮窗
         $(this).parent().fadeOut();
         // 颜色替换
