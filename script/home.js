@@ -36,14 +36,14 @@ $(function () {
     // 鼠标离开新标签输入框。显示新标签。隐藏输入框
     $("body").on("blur", ".inputTag", function () {
         var labelName = $(this).val();
+        var newLabel = $(this);
+        addLabel(labelName, newLabel);
         if (labelName != "") {
             $(this).next().html(labelName);
             $(this).next().show();
             $(this).next().next().show();
             $(this).remove();
         }
-        var newLabel = $(this);
-        addLabel(labelName, newLabel);
     })
 
     // 添加新标签的Ajax
@@ -61,7 +61,7 @@ $(function () {
             success: function (data) {
                 if (data.status) {
                     var labelId = data.data;
-                    newLabel.parent().find("input:hidden").val(labelId);
+                    newLabel.next().next().next().val(labelId);
                     alert("label保存成功")
                 } else {
                     alert("保存失败");
