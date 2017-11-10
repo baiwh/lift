@@ -209,7 +209,7 @@ $(function () {
         }
     }
 
-    $('body').on('click', '.grade', function () {
+    $('body').on('click', '.grade', function (e) {
         // 如果点击的不是detail里的grade
         if ($(this).parent().parent().attr("class") != "header") {
             //若是点击单个grade
@@ -252,7 +252,7 @@ $(function () {
     })
 
     // 点击日期和标题，从span切换成input
-    $('body').on('click', '.listSpan', function () {
+    $('body').on('click', '.listSpan', function (e) {
         var str = $(this).html();
         $(this).prev().attr("value", str);
         // 让span隐藏，input显示
@@ -264,7 +264,7 @@ $(function () {
     });
 
     // 日期和标题的onblur事件，对修改进行保存
-    $('body').on('blur', '.listInput', function () {
+    $('body').on('blur', '.listInput', function (e) {
         // 获取输入的值
         var input = $(this).val();
         // 把input的值赋给span
@@ -282,11 +282,11 @@ $(function () {
     })
 
     // 阻止冒泡
-    $('body').on('blur', '.listInput', function (e) {
+    $('body').on('click', '.listInput', function (e) {
         e.stopPropagation();
         $(this).closest(".task").addClass("choose");
         $(this).closest(".task").siblings().removeClass("choose");
-    }
+    })
 
     // 初始化页面时，js取task标题赋值给detail标题
     var chooseTitle = $(".choose").find(".title span").html();
@@ -304,7 +304,7 @@ $(function () {
     })
 
     // 标签悬浮窗的显示和隐藏
-    $('body').on('click', '.stateBar span', function () {
+    $('body').on('click', '.stateBar span', function (e) {
         var labelId = $(this).prev().val();
         $(".allTag").load("/label/getLabelList.action?userId=" + userId + "&labelId=" + labelId);
         // 获取他的悬浮标签
@@ -326,7 +326,7 @@ $(function () {
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
-    $('body').on('click', '.allTag span', function () {
+    $('body').on('click', '.allTag span', function (e) {
         // 获取悬浮窗内被点击的html
         var newLabel = $(this).html();
         var newLabelId = $(this).prev().val();
@@ -350,7 +350,7 @@ $(function () {
     })
 
     // TaskDiv的删除事件
-    $("body").on("click", ".del", function () {
+    $("body").on("click", ".del", function (e) {
         var clickDiv = $(this).parent();
         updateTask("yes", clickDiv);
         e.stopPropagation();
