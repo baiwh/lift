@@ -223,8 +223,8 @@ $(function () {
                 //将gradeBox中，与该单个Grade相同颜色的grade，设置为不透明。
                 $(this).next().find(gradeClass).animate({'opacity': '1'});
                 e.stopPropagation();
-                $(this).closest(".task").addClass("choose");
-                $(this).closest(".task").siblings().removeClass("choose");
+                // $(this).closest(".task").addClass("choose");
+                // $(this).closest(".task").siblings().removeClass("choose");
             } else {
                 // 如果点的是gradeBox。显示单个grade。隐藏gradeBox
                 $(this).parent().prev().show();
@@ -243,10 +243,12 @@ $(function () {
                 // 返回val到后台进行更新
                 var clickDiv = $(this).parent().parent().parent();
                 updateTask("no", clickDiv);
-                $(".header").children().find(".grade").attr("class", gradeClass);
+                if ($(this).parent().attr("class")=="task c choose"){
+                    $(".header").children().find(".grade").attr("class", gradeClass);
+                }
                 e.stopPropagation();
-                $(this).closest(".task").addClass("choose");
-                $(this).closest(".task").siblings().removeClass("choose");
+                // $(this).closest(".task").addClass("choose");
+                // $(this).closest(".task").siblings().removeClass("choose");
             }
         }
     })
@@ -259,8 +261,8 @@ $(function () {
         $(this).hide();
         $(this).siblings().show();
         e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     });
 
     // 日期和标题的onblur事件，对修改进行保存
@@ -277,15 +279,15 @@ $(function () {
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
         e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 阻止冒泡
     $('body').on('click', '.listInput', function (e) {
         e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 初始化页面时，js取task标题赋值给detail标题
@@ -295,8 +297,9 @@ $(function () {
     //  获取标题，将detail的标题与task的标题同步
     $('body').on('keyup', '.listInput', function () {
         var par = $(this).parent().attr("class");
+        var choose=$(this).parent().attr("class");
         // 若点击的是title下面的input
-        if (titInput != "" && par == "title") {
+        if (titInput != "" && par == "title" && choose=="task c choose") {
             var titInput = $(this).val();
             $("#item").find("h2").html(titInput);
         }
@@ -321,8 +324,8 @@ $(function () {
             tag.fadeOut();
         }
         e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
@@ -345,8 +348,8 @@ $(function () {
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
         e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // TaskDiv的删除事件
@@ -354,8 +357,8 @@ $(function () {
         var clickDiv = $(this).parent();
         updateTask("yes", clickDiv);
         e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
     // 添加新任务
     $('body').on('click', '#add', function () {
