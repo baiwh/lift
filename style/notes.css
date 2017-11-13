@@ -1,9 +1,9 @@
 
 /*主体部分*/
 .content{
-    width: 1000px;
     top: 100px;
-    margin: 0px auto 50px auto;
+    margin: 0px 0px 50px 0px;
+    left: 10%;
 }
 /*时间的整个div*/
 .time{
@@ -33,7 +33,7 @@
 .theYear:hover,.theMonth:hover,.theDay:hover{
     opacity: 0.7;
 }
-/*年月日的最外层的共同class*/
+/*年月日的最外层的共同class。用来盖住滚动条*/
 .theTime{
     width: 85px;
     float: left;
@@ -41,51 +41,25 @@
     height: 200px;
     margin: 5px;
 }
-/*年*/
-.year{
-    width: 105px;
-    overflow: scroll;
-    height: 220px;
-}
-/*月*/
-.month{
-    width: 105px;
-    overflow: scroll;
-    height: 220px;
-}
-/*日*/
-.day{
-    width: 105px;
-    overflow: scroll;
-    height: 220px;
-}
-.noThing{
-    display: block;
-    float: left;
-    clear: both;
-    height: 30px;
-    line-height: 20px;
-    min-width: 80px;
-    padding: 5px;
-    margin: 5px;
-    color: #FFFFFF;
-    text-align: center;
-    opacity: 0.3;
-    border-radius: 10px;
-}
 
-
+/*年月日外层的整体*/
+.day,.year,.month{
+    width: 105px;
+    overflow: scroll;
+    height: 215px;
+    padding: 80px 0px;
+}
 
 /*内容（时间轴的轴）*/
 .contents{
-    width: 600px;
+    width: 700px;
     border-left: 4px solid #c2c2c2;
     float: left;
 }
 /*便签外框*/
 .note{
     min-height: 100px;
-    width: 600px;
+    width: 700px;
     margin: 20px 0px;
     float: left;
 }
@@ -105,7 +79,7 @@
 /*便签内框*/
 .notes{
     min-height: 100px;
-    width: 500px;
+    width: 600px;
     background: #FFFFFF;
     float: left;
     left: -11px;
@@ -143,8 +117,8 @@
 }
 /*输入便签*/
 .noteInput{
-    width: 500px;
-    min-height: 100px;
+    width: 600px;
+    min-height: 150px;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
