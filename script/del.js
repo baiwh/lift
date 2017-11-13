@@ -59,6 +59,12 @@ $(function () {
     $(".del").click(function () {
         update();
         $(this).parent().remove();
+        //如果垃圾桶没东西。就不显示detail
+        if($(".task").length>0){
+            $("#item-box").show();
+        }else {
+            $("#item-box").hide();
+        }
     })
 
     // 点击标签筛选
@@ -74,7 +80,7 @@ $(function () {
     })
 
     //如果垃圾桶没东西。就不显示detail
-    if($(".task")){
+    if($(".task").length>0){
         $("#item-box").show();
     }else {
         $("#item-box").hide();
