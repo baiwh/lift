@@ -33,7 +33,6 @@ $(function () {
 
     ratioAnimation();
 
-
     // 恢复的Ajax
     function update() {
         var userId=$("#userId").val();
@@ -54,7 +53,6 @@ $(function () {
 
             }
         });
-
     }
 
     // 恢复
@@ -63,12 +61,8 @@ $(function () {
         $(this).parent().remove();
     })
 
-
-
-
     // 点击标签筛选
     $("body").on("click", ".select", function () {
-
         // 获取选取标签的id
         var selectId = $(this).next().next().val();
         // $(window).attr('location','/task/list.action?label='+selectId);
@@ -78,6 +72,13 @@ $(function () {
         $(this).siblings(".tag").addClass("NoChoose");
 
     })
+
+    //如果垃圾桶没东西。就不显示detail
+    if($(".task")){
+        $("#item-box").show();
+    }else {
+        $("#item-box").hide();
+    }
 
 
 })
