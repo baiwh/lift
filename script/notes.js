@@ -16,7 +16,7 @@ $(function () {
     // 给当天的日期去掉透明度
     $(".theYear:contains("+year+")").animate({"opacity":"1"}).addClass("choose").attr("id","chooseYear");
     $(".theMonth:eq("+(month-1)+")").animate({"opacity":"1"}).addClass("choose").attr("id","chooseMonth");
-    $(".theDay:eq("+(day-1)+")").animate({"opacity":"1"}).addClass("choose").attr("id","chooseDay");
+    $(".theDay:eq("+(day-1)+")").addClass("choose").attr("id","chooseDay");
 
     // 调整到指定位置
     $(".year").animate({"scrollTop":(year-2017)*40});
@@ -27,6 +27,7 @@ $(function () {
     // 鼠标移入便签范围。显示垃圾桶
     $("body").on("mouseover",".note",function () {
         $(this).find(".delNote").show();
+        $(this).find(".delNote").attr("display", "block");
     })
 
     // 鼠标移出便签范围。隐藏垃圾桶
@@ -48,27 +49,33 @@ $(function () {
 
     // 鼠标离开输入框
     $("body").on("blur",".noteInput",function () {
-        // 计算出时和分
-        var time=""+hour+":"+minute;
-        // 赋给对应的span
-        $(this).parent().parent().find(".hour span").html(time);
+        // // 计算出时和分
+        // var time=""+hour+":"+minute;
+        // // 赋给对应的span
+        // $(this).parent().parent().find(".hour span").html(time);
         // 获取它的内容
         var noteInput=$(this).html();
         var noteId=$(this).parent().prev().val();
         var allTime=""+year+"-"+month+"-"+day+"/"+hour+":"+minute;
         // 回传一个Ajax
         $.ajax({
-            url: "",
+            url: "/note/updateNote.action",
             dataType: "json",
             async: false,
             data: {
                 "allTime":allTime,
                 "noteId":noteId,
-                "noteInput":noteInput,
+                "content":noteInput,
                 "userId": userId
             },
             type: "POST",
             success: function (data) {
+                if(data.status){
+
+                }else {
+                    alert("数据过长")
+                }
+
 
             },
             error: function () {
@@ -85,15 +92,19 @@ $(function () {
         // 回传一个Ajax
         var noteId=$(this).siblings("input").val();
         $.ajax({
-            url: "",
+            url: "/note/updateNote.action",
             dataType: "json",
             async: false,
             data: {
                 "noteId":noteId,
-                "userId": userId
+                "userId": userId,
+                "del":"yes"
             },
             type: "POST",
             success: function (data) {
+                if(data.status) {
+                    alert("删除成功");
+                }
                 flag=1;
             },
             error: function () {
@@ -117,15 +128,26 @@ $(function () {
         // 回传一个Ajax
         var noteId=$(".contents").children("input:first").val();
         $.ajax({
-            url: "",
+            url: "/note/insertNote.action",
             dataType: "json",
             async: false,
             data: {
-                "noteId":noteId,
                 "userId": userId
             },
             type: "POST",
             success: function (data) {
+                if(data.status) {
+                    $(".contents").prepend("<div class=\"note newNote\"><div class=\"hour\"><span></span></div><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><div class=\"noteInput\" contenteditable=\"true\"><br/></div></div><img class=\"delNote\" src=\"/icon/del.png\" alt=\"\" ></div>");
+                    var time=""+hour+":"+minute;
+                    $(".newNote").find(".hour span").html(time);
+                    $(".newNote").find(".noteId").val(data.data);
+                    if($(".newNote").is(":hidden")){
+                        $(".newNote").slideDown();
+                    }
+                    alert("新增note成功")
+                }else {
+                    alert("新增note失败")
+                }
 
             },
             error: function () {
@@ -134,7 +156,6 @@ $(function () {
             }
         });
     })
-
 
 
     $(".theYear").click(function () {
@@ -251,25 +272,10 @@ $(function () {
 
     //时间筛选的Ajax
     function time(startTime,endTime) {
-        $.ajax({
-            url: "",
-            dataType: "json",
-            async: false,
-            data: {
-                "startTime":startTime,
-                "endTime":endTime,
-                "userId": userId
-            },
-            type: "POST",
-            success: function (data) {
+        $("#noteInputForm").load("/note/noteInputList.action?startTime=" + startTime+"&endTime="+endTime);
 
-            },
-            error: function () {
-                // alert("服务器错误");
-                // return;
-            }
-        });
     }
+
 
 
 })
