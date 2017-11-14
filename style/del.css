@@ -16,13 +16,14 @@ body{
 
 /*主体部分*/
 #content{
-	width: 1000px;
+	width: 1200px;
 	top: 100px;
-	margin: 0px auto 50px auto;
+	margin: 0px 0px 50px 0px;
+	left: 10%;
 }
 /*标签*/
 #contentTag{
-	width: 1000px;
+	width: 1100px;
 	overflow: visible;
 }
 #contentTag span{
@@ -160,6 +161,7 @@ body{
 	background: #46B6FD;
 	border-radius: 10px;
 	text-align: right;
+	left: -325px;
 }
 .rateVal{
 	color: #808080;
@@ -183,7 +185,6 @@ body{
 
 /*右边详细内容的大盒子*/
 #item-box{
-	width: 600px;
 	float: left;
 	padding: 10px 10px;
 
@@ -191,9 +192,10 @@ body{
 /*里边还要套一个小一号的盒纸*/
 .item{
 	background: #FFFFFF;
-	width: 580px;
+	width: 700px;
 	border: 1px solid #D3D3D3;
 	box-shadow: 0px 0px 15px #C2C2C2;
+	padding: 0 0 50px 0;
 }
 /*不知道这个可不可以算是页眉*/
 .header{
@@ -233,11 +235,11 @@ h2{
 /*每一个小小的项目*/
 .items{
 	border: 1px solid #D3D3D3;
-	width: 500px;
+	width: 600px;
 	height: 50px;
 	line-height: 50px;
 	padding: 0px 10px 0px 20px;
-	margin: 0px 40px;
+	margin: 0px 50px;
 	border-radius: 2px;
 	display: block;
 }
