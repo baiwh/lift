@@ -73,7 +73,7 @@ body{
     outline: none;
 }
 #search-button{
-    height: 31px;
+    height: 32px;
     width: 50px;
     background: #C2C2C2;
     border: 1px solid #C2C2C2;
@@ -81,6 +81,10 @@ body{
     cursor: pointer;
     float: left;
     outline: none;
+}
+#search-button:hover{
+    background: #46B6FD;
+    border: 1px solid #46B6FD;
 }
 #search img{
     left: 10px;
