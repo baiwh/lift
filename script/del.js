@@ -9,10 +9,12 @@ $(function () {
 
     // 被选中的小列表加上效果
     $('body').on('click', '.task', function () {
+        // $(".task").click(function () {
         $(this).addClass("choose");
         $(this).siblings().removeClass("choose");
+        var taskId = $(this).find(".taskId").val();
+        $("#detailForm").load("../taskDetail/list.action?taskId=" + taskId+"&isDel=1");
     })
-
     // 获取进度条效果
     function ratioAnimation() {
         // 进度条效果
@@ -33,12 +35,23 @@ $(function () {
 
     ratioAnimation();
 
+    if ($("#list-box").children().length > 0){
+        $("#detailForm").show();
+        $("#emptyBG").hide();
+    }else {
+        $("#detailForm").hide();
+        $("#emptyBG").show();
+    }
     // 恢复的Ajax
-    function update() {
+    function update(clickDiv,isDel) {
         var userId=$("#userId").val();
-        var taskId=$(".choose").find(".taskId").val();
+        var taskId=clickDiv.find(".taskId").val();
+        var url = "../task/revertTask.action";
+        if (isDel) {
+            url = "../task/deleteTask.action";
+        }
         $.ajax({
-            url: "",
+            url: url,
             dataType: "json",
             async: false,
             data: {
@@ -47,28 +60,40 @@ $(function () {
             },    //参数值
             type: "POST",   //请求方式
             success: function (data) {
-
+                if (data.status){
+                    clickDiv.remove()
+                    if ($("#list-box").children().length == 0){
+                        $("#detailForm").hide();
+                        $("#emptyBG").show();
+                    }
+                }
             },
             error: function () {
 
             }
         });
+
     }
 
     // 恢复
     $(".del").click(function () {
-        update();
-        $(this).parent().remove();
-        //如果垃圾桶没东西。就不显示detail
-        if($(".task").length>0){
-            $("#item-box").show();
-        }else {
-            $("#item-box").hide();
-        }
+        var clickDiv = $(this).parent();
+        update(clickDiv);
+        // $(this).parent().remove();
     })
+
+    $(".delExt").click(function () {
+        var clickDiv = $(this).parent();
+        update(clickDiv,"isDel");
+        // $(this).parent().remove();
+    })
+
+
+
 
     // 点击标签筛选
     $("body").on("click", ".select", function () {
+
         // 获取选取标签的id
         var selectId = $(this).next().next().val();
         // $(window).attr('location','/task/list.action?label='+selectId);
@@ -79,12 +104,6 @@ $(function () {
 
     })
 
-    //如果垃圾桶没东西。就不显示detail
-    if($(".task").length>0){
-        $("#item-box").show();
-    }else {
-        $("#item-box").hide();
-    }
 
 
 })

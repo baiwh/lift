@@ -35,23 +35,14 @@ $(function () {
         $(this).find(".delNote").hide();
     })
 
-
-    //便签的点击效果
-    function noteInputClick(input) {
-        // 添加选中效果
-        input.parent().addClass("choose");
-        input.parent().parent().find(".hour").css("color","#009cff");
-        // 其他的去掉选中效果
-        input.parent().parent().siblings().find(".notes").removeClass("choose");
-        input.parent().parent().siblings().children(".hour").css("color","#c2c2c2");
-    }
-
-    $(".noteInput:first").trigger("focus",noteInputClick($(".noteInput:first")));
-
     // 鼠标点击某个便签
-    $("body").on("focus",".noteInput",function (){
-        var input=$(this);
-        noteInputClick(input);
+    $("body").on("click",".noteInput",function (){
+        // 添加选中效果
+        $(this).parent().addClass("choose");
+        $(this).parent().parent().find(".hour").css("color","#009cff");
+        // 其他的去掉选中效果
+        $(this).parent().parent().siblings().find(".notes").removeClass("choose");
+        $(this).parent().parent().siblings().children(".hour").css("color","#c2c2c2");
     })
 
     var userId=$("#userId").val();
@@ -68,7 +59,7 @@ $(function () {
         var allTime=""+year+"-"+month+"-"+day+"/"+hour+":"+minute;
         // 回传一个Ajax
         $.ajax({
-            url: "/note/updateNote.action",
+            url: "../note/updateNote.action",
             dataType: "json",
             async: false,
             data: {
@@ -82,7 +73,7 @@ $(function () {
                 if(data.status){
 
                 }else {
-                    alert("数据过长")
+                    alert("保存失败")
                 }
 
 
@@ -94,14 +85,19 @@ $(function () {
         });
 
     })
-
+    if ($("#noteList").children().length > 0){
+        $("#emptyBG").hide();
+    }else {
+        $("#emptyBG").show();
+    }
     // 点击垃圾桶就删除他爸爸
     $("body").on("click",".delNote",function () {
         var flag=0;
         // 回传一个Ajax
+        var clickDiv = $(this).parent();
         var noteId=$(this).siblings("input").val();
         $.ajax({
-            url: "/note/updateNote.action",
+            url: "../note/updateNote.action",
             dataType: "json",
             async: false,
             data: {
@@ -112,7 +108,14 @@ $(function () {
             type: "POST",
             success: function (data) {
                 if(data.status) {
-                    alert("删除成功");
+                    clickDiv.remove();
+                    if ($("#noteList").children().length == 0){
+                        $("#emptyBG").show();
+                    }
+
+                    // alert("删除成功");
+                }else {
+                    alert("删除失败")
                 }
                 flag=1;
             },
@@ -121,23 +124,23 @@ $(function () {
                 // return;
             }
         });
-        if (flag=1){
-            $(this).parent().remove();
-        }
+        // if (flag=1){
+        //     $(this).parent().remove();
+        // }
     })
 
     // 点击加号。添加新的
     $("body").on("click","#add",function () {
-        $(".contents").prepend("<div class=\"note newNote\"><div class=\"hour\"><span></span></div><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><div class=\"noteInput\" contenteditable=\"true\"><br/></div></div><img class=\"delNote\" src=\"icon/del.png\" alt=\"\"></div>");
-        var time=""+hour+":"+minute;
-        $(".newNote").find(".hour span").html(time);
+        // $(".contents").prepend("<div class=\"note newNote\"><div class=\"hour\"><span></span></div><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><div class=\"noteInput\" contenteditable=\"true\"><br/></div></div><img class=\"delNote\" src=\"icon/del.png\" alt=\"\"></div>");
+        // var time=""+hour+":"+minute;
+        // $(".newNote").find(".hour span").html(time);
         if($(".newNote").is(":hidden")){
             $(".newNote").slideDown();
         }
         // 回传一个Ajax
         var noteId=$(".contents").children("input:first").val();
         $.ajax({
-            url: "/note/insertNote.action",
+            url: "../note/insertNote.action",
             dataType: "json",
             async: false,
             data: {
@@ -146,14 +149,17 @@ $(function () {
             type: "POST",
             success: function (data) {
                 if(data.status) {
-                    $(".contents").prepend("<div class=\"note newNote\"><div class=\"hour\"><span></span></div><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><div class=\"noteInput\" contenteditable=\"true\"><br/></div></div><img class=\"delNote\" src=\"/icon/del.png\" alt=\"\" ></div>");
+                    $(".contents").prepend("<div class=\"note newNote\"><div class=\"hour\"><span></span></div><input type=\"hidden\" class=\"noteId\"><div class=\"notes\"><div class=\"noteInput\" contenteditable=\"true\"><br/></div></div><img class=\"delNote\" src=\"../icon/del.png\" alt=\"\" ></div>");
                     var time=""+hour+":"+minute;
                     $(".newNote").find(".hour span").html(time);
                     $(".newNote").find(".noteId").val(data.data);
                     if($(".newNote").is(":hidden")){
                         $(".newNote").slideDown();
                     }
-                    alert("新增note成功")
+                    if ($("#noteList").children().length > 0){
+                        $("#emptyBG").hide();
+                    }
+                    // alert("新增note成功")
                 }else {
                     alert("新增note失败")
                 }
@@ -166,19 +172,6 @@ $(function () {
         });
     })
 
-    // 根据月份显示天数
-    function getDay() {
-        // 获取选中的年月的数
-        var getYear=$("#chooseYear").html();
-        var getMonth=$("#chooseMonth").html();
-        // 获取天数
-        var getDayNumber=new Date(getYear,getMonth,0);
-        var getNumber=getDayNumber.getDate()-1;
-        // 先全部显示。再把索引大于天数的都隐藏
-        $(".day").find("span").show();
-        $(".day").find("span:gt("+getNumber+")").hide();
-    }
-    getDay();
 
     $(".theYear").click(function () {
         // 如果点击的这个是choose。且没有选择日和月。就去掉透明度。
@@ -220,7 +213,6 @@ $(function () {
             time(startTime,endTime);
         }
     })
-
     $(".theMonth").click(function () {
         // 如果点击的这个是choose。就去掉透明度。
         if($(this).hasClass("choose")&&($("#chooseDay").length<1)){
@@ -257,9 +249,7 @@ $(function () {
                 time(startTime,endTime);
             }
         }
-        getDay();
     })
-
     $(".theDay").click(function () {
         // 如果点击的这个是choose。就去掉透明度。
         if($(this).hasClass("choose")){
@@ -297,7 +287,7 @@ $(function () {
 
     //时间筛选的Ajax
     function time(startTime,endTime) {
-        $("#noteInputForm").load("/note/noteInputList.action?startTime=" + startTime+"&endTime="+endTime);
+        $("#noteInputForm").load("../note/noteInputList.action?startTime=" + startTime+"&endTime="+endTime);
 
     }
 

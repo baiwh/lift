@@ -62,7 +62,7 @@ $(function () {
                 if (data.status) {
                     var labelId = data.data;
                     newLabel.next().next().next().val(labelId);
-                    alert("label保存成功")
+                    // alert("label保存成功")
                 } else {
                     alert("保存失败");
                 }
@@ -98,7 +98,7 @@ $(function () {
             type: "POST",   //请求方式
             success: function (data) {
                 if (data.status) {
-                    alert("label删除成功");
+                    // alert("label删除成功");
                     // 他前边的span删除
                     clickLabel.prev().remove();
                     clickLabel.next().remove();
@@ -108,7 +108,7 @@ $(function () {
                     if (data.data === 1) {
                         alert("此标签正在使用，不能删除");
                     } else {
-                        alert("保存失败");
+                        alert("删除存失败");
 
                     }
                 }
@@ -176,6 +176,7 @@ $(function () {
         }}
 
 
+
     // 小列表的Ajax
     function updateTask(del, clickDiv) {
         var grade = clickDiv.find(".grade:visible").find("input").val();
@@ -207,6 +208,11 @@ $(function () {
                         if(clickDiv.hasClass("choose")){
                             divClick(div);
                         }
+                        if ($("#list-box").children().length == 0){
+                            $("#detailForm").hide();
+                            $("#emptyBG").show();
+                        }
+
                     }
                     // alert("保存成功");
                 } else {
@@ -382,7 +388,13 @@ $(function () {
     $('body').on('click', '#add', function () {
         addTask();
     })
-
+    if ($("#list-box").children().length > 0){
+        $("#detailForm").show();
+        $("#emptyBG").hide();
+    }else {
+        $("#detailForm").hide();
+        $("#emptyBG").show();
+    }
     // 新增task的ajax
     function addTask() {
         var userId = $("#userId").val();
@@ -402,6 +414,10 @@ $(function () {
                     taskDiv.find(".taskId").attr("value", task.taskId);
                     taskDiv.find(".title span").html(task.taskName);
                     taskDiv.find(".day span").html(task.beginDate.split(" ")[0]);
+                    if ($("#list-box").children().length > 0){
+                        $("#detailForm").show();
+                        $("#emptyBG").hide();
+                    }
                 } else {
                     alert("保存失败");
                 }

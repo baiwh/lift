@@ -170,7 +170,7 @@ body{
 .addTask .ratio{
 	left: -325px;
 }
-/*删除小列表的垃圾桶图*/
+/*删除的垃圾桶图*/
 .del{
 	opacity: 0.4;
 	height: 25px;
@@ -182,7 +182,17 @@ body{
 .del:hover{
 	opacity: 0.7;
 }
-
+.delExt{
+	opacity: 0.4;
+	height: 25px;
+	width: 25px;
+	float: right;
+	right: 10px;
+	cursor: pointer;
+}
+.delExt:hover{
+	opacity: 0.7;
+}
 /*右边详细内容的大盒子*/
 #item-box{
 	float: left;
