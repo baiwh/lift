@@ -146,7 +146,10 @@ $(function () {
 
     // 给页面的第一个小列表加上选中效果
     var div = $("#list-box").find("div:first");
-    div[0].classList.add("choose");
+    if(div.length>0) {
+
+        div[0].classList.add("choose");
+    }
 
     // 被选中的小列表加上效果
     //会引起冒泡事件
@@ -155,7 +158,7 @@ $(function () {
         $(this).addClass("choose");
         $(this).siblings().removeClass("choose");
         var taskId = $(this).find(".taskId").val();
-        $("#detailForm").load("/taskDetail/list.action?taskId=" + taskId);
+        $("#detailForm").load("../taskDetail/list.action?taskId=" + taskId);
     })
 
 
@@ -169,7 +172,7 @@ $(function () {
         var taskId = clickDiv.find(".taskId").attr("value");
         var userId = $("#userId").val();
         $.ajax({
-            url: "/task/updateTask.action",    //请求的url地址
+            url: "../task/updateTask.action",    //请求的url地址
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
@@ -223,8 +226,8 @@ $(function () {
                 //将gradeBox中，与该单个Grade相同颜色的grade，设置为不透明。
                 $(this).next().find(gradeClass).animate({'opacity': '1'});
                 e.stopPropagation();
-                // $(this).closest(".task").addClass("choose");
-                // $(this).closest(".task").siblings().removeClass("choose");
+                $(this).closest(".task").addClass("choose");
+                $(this).closest(".task").siblings().removeClass("choose");
             } else {
                 // 如果点的是gradeBox。显示单个grade。隐藏gradeBox
                 $(this).parent().prev().show();
@@ -243,12 +246,10 @@ $(function () {
                 // 返回val到后台进行更新
                 var clickDiv = $(this).parent().parent().parent();
                 updateTask("no", clickDiv);
-                if ($(this).parent().attr("class")=="task c choose"){
-                    $(".header").children().find(".grade").attr("class", gradeClass);
-                }
+                $(".header").children().find(".grade").attr("class", gradeClass);
                 e.stopPropagation();
-                // $(this).closest(".task").addClass("choose");
-                // $(this).closest(".task").siblings().removeClass("choose");
+                $(this).closest(".task").addClass("choose");
+                $(this).closest(".task").siblings().removeClass("choose");
             }
         }
     })
@@ -261,8 +262,8 @@ $(function () {
         $(this).hide();
         $(this).siblings().show();
         e.stopPropagation();
-        // $(this).closest(".task").addClass("choose");
-        // $(this).closest(".task").siblings().removeClass("choose");
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     });
 
     // 日期和标题的onblur事件，对修改进行保存
@@ -279,15 +280,15 @@ $(function () {
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
         e.stopPropagation();
-        // $(this).closest(".task").addClass("choose");
-        // $(this).closest(".task").siblings().removeClass("choose");
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 阻止冒泡
     $('body').on('click', '.listInput', function (e) {
         e.stopPropagation();
-        // $(this).closest(".task").addClass("choose");
-        // $(this).closest(".task").siblings().removeClass("choose");
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 初始化页面时，js取task标题赋值给detail标题
@@ -297,9 +298,8 @@ $(function () {
     //  获取标题，将detail的标题与task的标题同步
     $('body').on('keyup', '.listInput', function () {
         var par = $(this).parent().attr("class");
-        var choose=$(this).parent().attr("class");
         // 若点击的是title下面的input
-        if (titInput != "" && par == "title" && choose=="task c choose") {
+        if (titInput != "" && par == "title") {
             var titInput = $(this).val();
             $("#item").find("h2").html(titInput);
         }
@@ -309,7 +309,7 @@ $(function () {
     // 标签悬浮窗的显示和隐藏
     $('body').on('click', '.stateBar span', function (e) {
         var labelId = $(this).prev().val();
-        $(".allTag").load("/label/getLabelList.action?userId=" + userId + "&labelId=" + labelId);
+        $(".allTag").load("../label/getLabelList.action?userId=" + userId + "&labelId=" + labelId);
         // 获取他的悬浮标签
         var tag = $(this).parent().next("div");
         if (tag.is(":hidden")) {
@@ -324,8 +324,8 @@ $(function () {
             tag.fadeOut();
         }
         e.stopPropagation();
-        // $(this).closest(".task").addClass("choose");
-        // $(this).closest(".task").siblings().removeClass("choose");
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
@@ -348,8 +348,8 @@ $(function () {
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
         e.stopPropagation();
-        // $(this).closest(".task").addClass("choose");
-        // $(this).closest(".task").siblings().removeClass("choose");
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // TaskDiv的删除事件
@@ -357,8 +357,8 @@ $(function () {
         var clickDiv = $(this).parent();
         updateTask("yes", clickDiv);
         e.stopPropagation();
-        // $(this).closest(".task").addClass("choose");
-        // $(this).closest(".task").siblings().removeClass("choose");
+        $(this).closest(".task").addClass("choose");
+        $(this).closest(".task").siblings().removeClass("choose");
     })
     // 添加新任务
     $('body').on('click', '#add', function () {
@@ -369,7 +369,7 @@ $(function () {
     function addTask() {
         var userId = $("#userId").val();
         $.ajax({
-            url: "/task/insertTask.action",    //请求的url地址
+            url: "../task/insertTask.action",    //请求的url地址
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
@@ -403,8 +403,8 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "task newDiv");
-        // div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"taskId\"><div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">家</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"/icon/del.png\" alt=\"\" class=\"del\">";
-        div.innerHTML = "  <input type=\"hidden\" id=\"\" class=\"taskId\" value=\"\"> <div class=\"stateBar\"> <div class=\"grade \" hidden=\"hidden\"> <input type=\"hidden\" value=\"\"> </div> <div class=\"gradeBox\" > <div class=\"grade grade1\"> <input type=\"hidden\" name=\"grade1\" value=\"1\"> </div> <div class=\"grade grade2\"> <input type=\"hidden\" name=\"grade2\" value=\"2\"> </div> <div class=\"grade grade3\"> <input type=\"hidden\" name=\"grade3\" value=\"3\"> </div> </div> <span class=\"tag theTag1\"></span> </div> <div class=\"allTag\"> <span class=\"tag\"></span> </div> <div class=\"title\"> <input type=\"text\" class=\"listInput\" placeholder=\"标题\"> <span class=\"listSpan\"></span> </div> <div class=\"day\"> <input type=\"date\" class=\"listInput\"> <span class=\"listSpan\"></span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">0/0</span> <img src=\"/icon/del.png\" alt=\"\" class=\"del\"> "
+        // div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"taskId\"><div class=\"stateBar\"><div class=\"grade grade1\"></div><div class=\"grade grade2\" ></div><div class=\"grade grade3\" ></div><span class=\"tag theTag1\">家</span></div><div class=\"allTag\"><span class=\"tag NoChoose\">1</span><span class=\"tag NoChoose\">2</span><span class=\"tag NoChoose\">3</span></div><div class=\"title\"><input type=\"text\" class=\"listInput\" placeholder=\"标题\"><span class=\"listSpan\">标题</span></div><div class=\"day\"><input type=\"date\" class=\"listInput\"><span class=\"listSpan\">2017</span></div><div class=\"rate\"><div class=\"ratio\"></div></div><span class=\"rateVal\">0/0</span><img src=\"../icon/del.png\" alt=\"\" class=\"del\">";
+        div.innerHTML = "  <input type=\"hidden\" id=\"\" class=\"taskId\" value=\"\"> <div class=\"stateBar\"> <div class=\"grade \" hidden=\"hidden\"> <input type=\"hidden\" value=\"\"> </div> <div class=\"gradeBox\" > <div class=\"grade grade1\"> <input type=\"hidden\" name=\"grade1\" value=\"1\"> </div> <div class=\"grade grade2\"> <input type=\"hidden\" name=\"grade2\" value=\"2\"> </div> <div class=\"grade grade3\"> <input type=\"hidden\" name=\"grade3\" value=\"3\"> </div> </div> <span class=\"tag theTag1 labelChoose\"></span> </div> <div class=\"allTag\"> <span class=\"tag \"></span> </div> <div class=\"title\"> <input type=\"text\" class=\"listInput\" placeholder=\"标题\"> <span class=\"listSpan\"></span> </div> <div class=\"day\"> <input type=\"date\" class=\"listInput\"> <span class=\"listSpan\"></span> </div> <div class=\"rate\"> <div class=\"ratio\"> </div> </div> <span class=\"rateVal\">0/0</span> <img src=\"../icon/del.png\" alt=\"\" class=\"del\"> "
         //在之前加
         parent.prepend(div);
         $(".newDiv").slideDown();
@@ -454,7 +454,7 @@ $(function () {
         var div = document.createElement("div");
         //设置 div 属性，如 id
         div.setAttribute("class", "newDiv");
-        div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"/icon/del.png\" alt=\"\"></div>";
+        div.innerHTML = "<input type=\"hidden\" id=\"\" class=\"detailId\"><div class=\"items\"><input type=\"checkbox\"/><div class=\"checkBox\"></div><span></span></div><div class=\"itemInput\"><div class=\"checkBox\"></div><input class=\"changeInput\" type=\"text\" ><img class=\"changeDel\" src=\"../icon/del.png\" alt=\"\"></div>";
         // 在之后加
         parent.append(div);
         $(".newDiv").slideDown();
@@ -466,7 +466,7 @@ $(function () {
         var taskId = $("#taskId").val();
         var userId = $("#userId").val();
         $.ajax({
-            url: "/taskDetail/insertTaskDetail.action",    //请求的url地址
+            url: "../taskDetail/insertTaskDetail.action",    //请求的url地址
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
@@ -590,7 +590,7 @@ $(function () {
         var taskId = $("#taskId").val();
         var userId = $("#userId").val();
         $.ajax({
-            url: "/taskDetail/updateTaskDetail.action",    //请求的url地址
+            url: "../taskDetail/updateTaskDetail.action",    //请求的url地址
             dataType: "json",   //返回格式为json
             async: false,//请求是否异步，默认为异步，这也是ajax重要特性
             data: {
@@ -613,7 +613,7 @@ $(function () {
                     }
                 } else {
                     alert("保存失败");
-                    // $("#item-box").location="/taskDetail/list.action";
+                    // $("#item-box").location="../taskDetail/list.action";
                 }
             },
             error: function () {
