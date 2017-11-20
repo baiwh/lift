@@ -146,20 +146,34 @@ $(function () {
 
     // 给页面的第一个小列表加上选中效果
     var div = $("#list-box").find("div:first");
-    if(div.length>0) {
 
-        div[0].classList.add("choose");
+    if ($(".choose").length==0){
+        if(div.length>0) {
+            div[0].classList.add("choose");
+        }
     }
 
     // 被选中的小列表加上效果
     //会引起冒泡事件
     $('body').on('click', '.task', function () {
-        // $(".task").click(function () {
-        $(this).addClass("choose");
-        $(this).siblings().removeClass("choose");
-        var taskId = $(this).find(".taskId").val();
-        $("#detailForm").load("../taskDetail/list.action?taskId=" + taskId);
+        if (!$(this).hasClass("choose")) {
+            // $(".task").click(function () {
+            $(this).addClass("choose");
+            $(this).siblings().removeClass("choose");
+
+            var taskId = $(this).find(".taskId").val();
+            $("#detailForm").load("../taskDetail/list.action?taskId=" + taskId);
+        }
     })
+
+    function divClick(task){
+        if (!task.hasClass("choose")) {
+            // $(".task").click(function () {
+            task.addClass("choose");
+            task.siblings().removeClass("choose");
+            var taskId = task.find(".taskId").val();
+            $("#detailForm").load("../taskDetail/list.action?taskId=" + taskId);
+        }}
 
 
     // 小列表的Ajax
@@ -190,6 +204,9 @@ $(function () {
                 if (data.status) {
                     if (del == "yes") {
                         clickDiv.remove();
+                        if(clickDiv.hasClass("choose")){
+                            divClick(div);
+                        }
                     }
                     // alert("保存成功");
                 } else {
@@ -225,9 +242,9 @@ $(function () {
                 gradeClass = "." + gradeClass.replace(" ", ".");
                 //将gradeBox中，与该单个Grade相同颜色的grade，设置为不透明。
                 $(this).next().find(gradeClass).animate({'opacity': '1'});
-                e.stopPropagation();
-                $(this).closest(".task").addClass("choose");
-                $(this).closest(".task").siblings().removeClass("choose");
+                // e.stopPropagation();
+                // $(this).closest(".task").addClass("choose");
+                // $(this).closest(".task").siblings().removeClass("choose");
             } else {
                 // 如果点的是gradeBox。显示单个grade。隐藏gradeBox
                 $(this).parent().prev().show();
@@ -247,9 +264,9 @@ $(function () {
                 var clickDiv = $(this).parent().parent().parent();
                 updateTask("no", clickDiv);
                 $(".header").children().find(".grade").attr("class", gradeClass);
-                e.stopPropagation();
-                $(this).closest(".task").addClass("choose");
-                $(this).closest(".task").siblings().removeClass("choose");
+                // e.stopPropagation();
+                // $(this).closest(".task").addClass("choose");
+                // $(this).closest(".task").siblings().removeClass("choose");
             }
         }
     })
@@ -261,9 +278,9 @@ $(function () {
         // 让span隐藏，input显示
         $(this).hide();
         $(this).siblings().show();
-        e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // e.stopPropagation();
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     });
 
     // 日期和标题的onblur事件，对修改进行保存
@@ -279,16 +296,16 @@ $(function () {
         // 获取当前点击的taskDiv
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
-        e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // e.stopPropagation();
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 阻止冒泡
     $('body').on('click', '.listInput', function (e) {
-        e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // e.stopPropagation();
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 初始化页面时，js取task标题赋值给detail标题
@@ -323,9 +340,9 @@ $(function () {
             //如果点击的是悬浮窗内的标签。隐藏悬浮窗
             tag.fadeOut();
         }
-        e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // e.stopPropagation();
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // 点击悬浮窗内的标签。替换悬浮窗外的
@@ -347,18 +364,19 @@ $(function () {
         $(this).siblings().removeClass("labelChoose");
         var clickDiv = $(this).parent().parent();
         updateTask("no", clickDiv);
-        e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+        // e.stopPropagation();
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
 
     // TaskDiv的删除事件
     $("body").on("click", ".del", function (e) {
         var clickDiv = $(this).parent();
         updateTask("yes", clickDiv);
-        e.stopPropagation();
-        $(this).closest(".task").addClass("choose");
-        $(this).closest(".task").siblings().removeClass("choose");
+
+        // e.stopPropagation();
+        // $(this).closest(".task").addClass("choose");
+        // $(this).closest(".task").siblings().removeClass("choose");
     })
     // 添加新任务
     $('body').on('click', '#add', function () {
